@@ -1009,7 +1009,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
 .action-result h3{margin:0 0 7px;font-size:19px}
 .action-result .route{display:grid;grid-template-columns:100px 1fr;gap:7px;margin-top:8px;font-size:12px}
 .action-result .route b{color:#526076}
-.rights-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
+.rights-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:12px}
 .right-card{padding:12px;border-radius:13px;border:1px solid rgba(24,33,58,.13);background:#f8fbff}
 .right-card b{display:block;font-size:12px}.right-card span{display:block;font-size:10px;color:var(--muted);line-height:1.4;margin-top:4px}
 .policy-studio{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
@@ -1094,7 +1094,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
       <div class="level-body">
         <div class="learn-arc"><span>LEARN · political ideas</span><span>UNDERSTAND · power structure</span><span>APPLY · route a real issue</span></div>
         <div class="civic-two-col">
-          <div class="course-card"><h3>Ideology is a lens, not a team jersey</h3><p>These are broad traditions with internal disagreement. The point is to recognize recurring questions about liberty, equality, authority, markets, community, and the role of the state.</p>
+          <div class="course-card"><h3>Ideology is a lens, not a team jersey</h3><p>These are broad traditions with internal disagreement. “Left” and “right” can be useful shorthand, but one line cannot capture every view on liberty, equality, authority, markets, community, and the role of the state.</p>
             <div class="ideology-grid">
               <button class="ideology-btn active" type="button" onclick="showCivicIdeology('liberal',this)">Liberalism</button>
               <button class="ideology-btn" type="button" onclick="showCivicIdeology('conservative',this)">Conservatism</button>
@@ -1114,6 +1114,11 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
               <div class="election-chip"><small>Ohio election</small><b>Nov. 3, 2026</b></div>
               <div class="election-chip"><small>Register by</small><b>Oct. 5, 2026</b></div>
               <div class="election-chip"><small>Early voting starts</small><b>Oct. 6, 2026</b></div>
+            </div>
+            <div class="source-ladder" style="margin-top:9px">
+              <div class="source-step"><i>P</i><div><b>Primary election</b><span>Parties nominate candidates for many offices; Ohio voters requesting a partisan primary ballot declare that party for the primary.</span></div></div>
+              <div class="source-step"><i>G</i><div><b>General election</b><span>Voters choose among candidates for offices and may also vote on ballot questions or issues.</span></div></div>
+              <div class="source-step"><i>R</i><div><b>Representation</b><span>The winners take public office for defined terms and exercise powers assigned to that office by law.</span></div></div>
             </div>
           </div>
         </div>
@@ -1145,6 +1150,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
             </div>
           </div>
         </div>
+        <div class="course-card" style="margin-top:12px"><h3>Three reasoning traps to notice</h3><div class="civic-three-col"><div class="source-step"><i>A</i><div><b>Ad hominem</b><span>Attacking the person instead of evaluating the claim or evidence.</span></div></div><div class="source-step"><i>2</i><div><b>False dilemma</b><span>Presenting only two options when more possibilities may exist.</span></div></div><div class="source-step"><i>↔</i><div><b>Correlation ≠ causation</b><span>Two things moving together does not by itself show that one caused the other.</span></div></div></div></div>
         <div class="practice-box claim-card"><small>CLAIM LAB · FICTIONAL POST</small><div class="claim-post">“Ohio lawmakers passed this bill yesterday, so it is already state law today.” The post includes a cropped screenshot but no link.</div><h3>What is the best first move?</h3><div class="practice-actions"><button type="button" onclick="verifyCivicClaim('official')">Open the official legislation page</button><button type="button" class="alt" onclick="verifyCivicClaim('comments')">Read the comments</button><button type="button" class="alt" onclick="verifyCivicClaim('repost')">Find a more popular repost</button></div><div class="practice-feedback" id="claimFeedback">Use lateral reading: leave the post, find the underlying source, and check the bill’s actual status and effective-date information.</div></div>
         <div class="level-footer"><div class="course-sources"><a href="https://www.legislature.ohio.gov/legislation/search?generalAssembly=136" target="_blank" rel="noopener">Current Ohio legislation ↗</a><a href="https://ed.stanford.edu/news/how-spot-fake-news-online" target="_blank" rel="noopener">Lateral reading ↗</a><a href="https://newslit.org/news-and-research/fact-check-it/" target="_blank" rel="noopener">Verification skills ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(1)">Complete Level 2 →</button></div>
       </div>
@@ -1157,6 +1163,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
       <div class="level-body">
         <div class="learn-arc"><span>LEARN · rights</span><span>UNDERSTAND · local institutions</span><span>APPLY · route your action</span></div>
         <div class="rights-row">
+          <div class="right-card"><b>Federal First Amendment</b><span>Protects religious liberty and freedoms of speech, press, peaceable assembly, and petition against government abridgment, subject to constitutional doctrine and lawful limits.</span></div>
           <div class="right-card"><b>Peaceable assembly</b><span>Ohio Constitution Article I protects peaceable assembly for the common good.</span></div>
           <div class="right-card"><b>Petition & instruct representatives</b><span>Article I also protects petitioning the General Assembly and instructing representatives.</span></div>
           <div class="right-card"><b>Observe & request records</b><span>Ohio Sunshine Laws provide access to many public meetings and government records, subject to legal exceptions.</span></div>
@@ -1183,6 +1190,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
       <div class="level-head"><div class="level-no">04</div><div><h2>Critical Thinking & Public Policy Analysis</h2><p>Build a policy, identify tradeoffs, apply an economic lens, and practice disagreement without turning the exercise into a “correct ideology” test.</p></div><span class="level-goal">Goal: explain tradeoffs without scoring sides</span></div>
       <div class="level-body">
         <div class="learn-arc"><span>LEARN · policy process & economics</span><span>UNDERSTAND · tradeoffs</span><span>APPLY · build a policy memo</span></div>
+        <div class="course-card" style="margin-bottom:12px"><h3>Who shapes policy before the final vote?</h3><p>Formal authority belongs to public institutions, but policy development also includes testimony, constituents, organized interests, lobbyists, experts, agencies, news coverage, and public opinion. Ohio maintains a public lobbying database where registered lobbying activity and employer reports can be searched.</p><div class="power-stack" style="margin-top:10px"><div class="power-layer"><small>Public</small><b>Constituents</b><span>Calls, testimony, elections, petitions, meetings.</span></div><div class="power-layer"><small>Organized</small><b>Interest groups</b><span>Research, advocacy, coalitions, lobbying.</span></div><div class="power-layer"><small>Institutional</small><b>Agencies & experts</b><span>Implementation, data, technical analysis.</span></div><div class="power-layer"><small>Political</small><b>Legislators & executive</b><span>Draft, amend, enact, veto, administer.</span></div></div></div>
         <div class="policy-studio">
           <div class="policy-builder"><small class="section-kicker">FICTIONAL OHIO PRACTICE FILE</small><h3>Community Transit Access Pilot</h3><p>Several communities want more weekend transit access. Build a proposal by choosing a scope, funding mechanism, and accountability rule. There is no score; each combination creates different administrative and fiscal tradeoffs.</p>
             <div class="lever-group"><small>1 · Scope</small><div class="lever-options" data-policy-group="scope"><button type="button" class="active" onclick="choosePolicyLever('scope','Three-county pilot',this)">Three-county pilot</button><button type="button" onclick="choosePolicyLever('scope','Statewide eligibility',this)">Statewide eligibility</button><button type="button" onclick="choosePolicyLever('scope','Local opt-in grants',this)">Local opt-in grants</button></div></div>
@@ -1198,7 +1206,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
           <div class="policy-memo" id="policyMemo"><small class="section-kicker">YOUR POLICY MEMO</small><h3>Three-county pilot</h3><div class="memo-line"><b>Funding:</b> State appropriation. The legislature would authorize public spending; the key questions include amount, duration, and competing uses of the same revenue.</div><div class="memo-line"><b>Accountability:</b> Two-year sunset and report. This creates a scheduled review point but may also create uncertainty for longer-term planning.</div><div class="memo-line"><b>Implementation question:</b> Which state or local entity administers the program, and what evidence will determine whether it continues?</div></div>
         </div>
         <div class="discourse-box"><small class="section-kicker">CIVIL DISCOURSE · FIND THE SHARED QUESTION</small><div class="voice-pair"><div class="voice-mini"><b>Resident A</b><br>“Weekend service would make it easier to reach work and appointments. I want the state to move quickly.”</div><div class="voice-mini"><b>Resident B</b><br>“I want better access too, but I want to know the cost and whether the service will actually be used before committing long-term funds.”</div></div><div class="practice-actions"><button type="button" onclick="showCommonGround()">Find common ground</button></div><div class="common-ground" id="commonGround">Both residents care about access. Their disagreement is mainly about pace, evidence, and fiscal commitment. A productive next question is: <b>What pilot design would measure usage and cost well enough to inform a longer-term decision?</b></div></div>
-        <div class="level-footer"><div class="course-sources"><a href="https://www.legislature.ohio.gov/publications/the-legislative-process" target="_blank" rel="noopener">How an Ohio bill becomes law ↗</a><a href="https://www.legislature.ohio.gov/laws/ohio-constitution?Part=18&Section=01" target="_blank" rel="noopener">Ohio Constitution & laws ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(3)">Finish Civic Path ✓</button></div>
+        <div class="level-footer"><div class="course-sources"><a href="https://www.legislature.ohio.gov/publications/the-legislative-process" target="_blank" rel="noopener">How an Ohio bill becomes law ↗</a><a href="https://www.legislature.ohio.gov/laws/ohio-constitution?Part=18&Section=01" target="_blank" rel="noopener">Ohio Constitution & laws ↗</a><a href="https://www2.jlec-olig.state.oh.us/olac/" target="_blank" rel="noopener">Ohio lobbying records ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(3)">Finish Civic Path ✓</button></div>
       </div>
     </div>
   </div>
