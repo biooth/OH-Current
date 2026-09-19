@@ -935,19 +935,272 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
   .puzzle-progress{grid-template-columns:1fr 1fr}
 }
 </style>
+<style id="oh-civic-path-style">
+/* Four-level Ohio Civic Path */
+.civic-course-hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(310px,.75fr);gap:18px;background:linear-gradient(135deg,#16233f,#27385c 60%,#344b74);color:white;border-radius:28px;padding:30px 32px;margin-bottom:16px;overflow:hidden;position:relative}
+.civic-course-hero:after{content:'4';position:absolute;right:18px;bottom:-52px;font-size:190px;font-weight:950;color:rgba(255,255,255,.045);line-height:1}
+.civic-course-hero h1{font-size:clamp(38px,5vw,62px);letter-spacing:-.055em;line-height:1;margin:8px 0 12px}
+.civic-course-hero p{max-width:760px;color:#dbe4f4;line-height:1.5;margin:0}
+.oh-now{display:grid;gap:8px;align-content:center;position:relative;z-index:1}
+.oh-now-card{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);border-radius:14px;padding:11px 13px}
+.oh-now-card small{display:block;font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:#bfcbe0;font-weight:900}
+.oh-now-card b{display:block;margin-top:3px;font-size:13px}
+.civic-level-rail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0 16px}
+.civic-level-btn{border:1px solid rgba(24,33,58,.16);background:#fffdf8;border-radius:16px;padding:13px 14px;text-align:left;cursor:pointer;min-height:82px;position:relative}
+.civic-level-btn:hover{border-color:#8793aa}
+.civic-level-btn.active{background:var(--navy);color:white;border-color:var(--navy)}
+.civic-level-btn.done:after{content:'✓';position:absolute;right:11px;top:9px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#dff3e8;color:#176947;font-weight:950}
+.civic-level-btn small{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.1em;font-weight:950;opacity:.7}
+.civic-level-btn b{display:block;margin-top:5px;font-size:14px;line-height:1.2}
+.civic-level-panel{display:none}
+.civic-level-panel.active{display:block}
+.level-shell{background:#fffdf8;border:1px solid rgba(24,33,58,.14);border-radius:24px;overflow:hidden}
+.level-head{display:grid;grid-template-columns:78px 1fr auto;gap:16px;align-items:center;padding:18px 22px;border-bottom:1px solid rgba(24,33,58,.12);background:#f8f4ea}
+.level-no{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;background:var(--navy);color:white;font-size:25px;font-weight:950}
+.level-head h2{margin:0;font-size:28px;letter-spacing:-.04em}
+.level-head p{margin:4px 0 0;color:var(--muted);font-size:13px;line-height:1.4}
+.level-goal{font-size:11px;font-weight:900;border-radius:999px;padding:8px 10px;background:#eaf2ff;color:#294f92;white-space:nowrap}
+.level-body{padding:20px 22px}
+.learn-arc{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.learn-arc span{padding:7px 10px;border-radius:999px;background:#f0ece3;font-size:10px;font-weight:900;color:#5c6578}
+.learn-arc span:nth-child(2){background:#e9f4ef;color:#28694f}
+.learn-arc span:nth-child(3){background:#fff1d4;color:#7b5b19}
+.civic-two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.civic-three-col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.course-card{border:1px solid rgba(24,33,58,.13);border-radius:17px;padding:16px;background:white;min-width:0}
+.course-card h3{font-size:18px;margin:0 0 8px;letter-spacing:-.025em}
+.course-card p{color:#59647a;font-size:13px;line-height:1.45;margin:0}
+.ideology-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.ideology-btn{border:1px solid rgba(24,33,58,.14);background:#fbfaf6;border-radius:12px;padding:11px;text-align:left;cursor:pointer;font-weight:900}
+.ideology-btn.active{background:#eef3ff;border-color:#6f86b5;color:#223e74}
+.ideology-detail{margin-top:10px;padding:13px;border-radius:13px;background:#f6f7fa;min-height:108px}
+.ideology-detail b{display:block;font-size:14px}
+.ideology-detail span{display:block;color:#616b7e;font-size:12px;line-height:1.45;margin-top:5px}
+.power-stack{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:12px}
+.power-layer{border:1px solid rgba(24,33,58,.14);border-radius:12px;padding:11px;background:#fbfaf6}
+.power-layer small{font-size:9px;font-weight:950;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.power-layer b{display:block;font-size:13px;margin-top:4px}
+.power-layer span{display:block;font-size:10px;line-height:1.35;color:#697386;margin-top:4px}
+.oh-election-strip{display:grid;grid-template-columns:1.1fr .9fr .9fr;gap:9px;margin-top:12px}
+.election-chip{border:1px solid rgba(24,33,58,.13);border-radius:13px;padding:11px;background:#fff8e8}
+.election-chip small{display:block;font-size:9px;text-transform:uppercase;font-weight:950;color:#7a6530}
+.election-chip b{display:block;margin-top:3px;font-size:13px}
+.practice-box{margin-top:14px;border:2px solid var(--navy);border-radius:17px;padding:15px;background:#fffef9}
+.practice-box small{font-size:9px;text-transform:uppercase;letter-spacing:.1em;font-weight:950;color:var(--blue)}
+.practice-box h3{margin:5px 0 8px;font-size:18px}
+.practice-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.practice-actions button,.course-action{border:0;border-radius:11px;padding:10px 12px;font-weight:900;cursor:pointer;background:var(--navy);color:white}
+.practice-actions button.alt,.course-action.alt{background:#fff;border:1px solid rgba(24,33,58,.2);color:var(--navy)}
+.practice-feedback{margin-top:10px;min-height:44px;padding:10px 12px;border-radius:11px;background:#f3f5f8;color:#556176;font-size:12px;line-height:1.4}
+.claim-card{background:#f7f8fb;border:1px solid rgba(24,33,58,.13);border-radius:16px;padding:15px}
+.claim-post{border-left:5px solid #7a8da9;background:white;border-radius:11px;padding:12px;font-size:14px;line-height:1.4}
+.source-ladder{display:grid;gap:8px;margin-top:10px}
+.source-step{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;border:1px solid rgba(24,33,58,.12);border-radius:12px;padding:9px 10px;background:white}
+.source-step i{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:#edf1f6;font-style:normal;font-weight:950}
+.source-step b{display:block;font-size:12px}.source-step span{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.feed-sim{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.feed-tile{border:1px solid rgba(24,33,58,.12);border-radius:12px;padding:11px;background:#fff}
+.feed-tile b{font-size:12px}.feed-tile p{font-size:11px;margin-top:5px}
+.action-router{display:grid;grid-template-columns:230px 1fr;gap:12px}
+.action-list{display:grid;gap:7px}
+.action-list button{border:1px solid rgba(24,33,58,.13);background:#fbfaf6;border-radius:11px;padding:10px;text-align:left;font-weight:850;cursor:pointer}
+.action-list button.active{background:#edf4ff;border-color:#7289b3}
+.action-result{border:1px solid rgba(24,33,58,.13);border-radius:14px;padding:14px;background:white;min-height:185px}
+.action-result h3{margin:0 0 7px;font-size:19px}
+.action-result .route{display:grid;grid-template-columns:100px 1fr;gap:7px;margin-top:8px;font-size:12px}
+.action-result .route b{color:#526076}
+.rights-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
+.right-card{padding:12px;border-radius:13px;border:1px solid rgba(24,33,58,.13);background:#f8fbff}
+.right-card b{display:block;font-size:12px}.right-card span{display:block;font-size:10px;color:var(--muted);line-height:1.4;margin-top:4px}
+.policy-studio{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+.policy-builder{border:1px solid rgba(24,33,58,.13);border-radius:17px;padding:15px;background:#fff}
+.policy-builder h3{margin:0 0 4px}
+.lever-group{margin-top:13px}
+.lever-group>small{display:block;text-transform:uppercase;letter-spacing:.08em;font-size:9px;font-weight:950;color:var(--muted);margin-bottom:6px}
+.lever-options{display:flex;gap:7px;flex-wrap:wrap}
+.lever-options button{border:1px solid rgba(24,33,58,.14);background:#fbfaf6;border-radius:10px;padding:8px 10px;font-size:11px;font-weight:850;cursor:pointer}
+.lever-options button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.policy-memo{border:2px solid #7b674b;border-radius:17px;padding:15px;background:#fff9ed}
+.policy-memo h3{margin:0 0 6px}
+.memo-line{padding:8px 0;border-top:1px dashed rgba(90,70,45,.22);font-size:11px;line-height:1.4;color:#625641}
+.memo-line b{color:#433725}
+.econ-lens{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:12px}
+.econ-chip{border:1px solid rgba(24,33,58,.13);border-radius:11px;padding:9px;background:#f8f7f3}
+.econ-chip b{display:block;font-size:11px}.econ-chip span{display:block;font-size:9px;line-height:1.35;color:var(--muted);margin-top:3px}
+.discourse-box{margin-top:13px;border:1px solid rgba(24,33,58,.13);border-radius:16px;padding:14px;background:#f5f7fb}
+.voice-pair{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.voice-mini{background:white;border-radius:11px;padding:11px;border:1px solid rgba(24,33,58,.1);font-size:12px;line-height:1.4}
+.common-ground{margin-top:9px;padding:10px;border-radius:11px;background:#eaf5ef;color:#2c5945;font-size:11px;line-height:1.4;display:none}
+.common-ground.show{display:block}
+.level-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(24,33,58,.12)}
+.level-footer p{margin:0;color:var(--muted);font-size:11px}
+.course-sources{display:flex;gap:7px;flex-wrap:wrap}
+.course-sources a{font-size:10px;font-weight:850;color:#315aa8;text-decoration:none;border-bottom:1px solid rgba(49,90,168,.28)}
+@media(max-width:1000px){
+  .civic-course-hero,.policy-studio{grid-template-columns:1fr}
+  .civic-level-rail{grid-template-columns:1fr 1fr}
+  .civic-two-col{grid-template-columns:1fr}
+  .power-stack{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .civic-course-hero{padding:24px 20px}
+  .level-head{grid-template-columns:58px 1fr}.level-goal{grid-column:1/-1;width:max-content}
+  .level-no{width:52px;height:52px}
+  .civic-three-col,.oh-election-strip,.rights-row,.econ-lens{grid-template-columns:1fr}
+  .action-router{grid-template-columns:1fr}
+  .voice-pair{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-<header class="topbar"><div class="shell nav"><div class="brand-lockup" aria-label="OH! Civics"><div class="logo-mark">OH!</div><div class="brand-copy"><strong>OH! CIVICS</strong><small>Ohio government, one move at a time</small></div></div><nav class="tabs" aria-label="Primary"><button class="tab active" data-page="today">Home</button><button class="tab" data-page="games">Lawmaking Lab</button><button class="tab" data-page="health">Health Committee</button><button class="tab" data-page="arts">Culture Bill</button><button class="tab" data-page="explorer">Map</button><button class="tab" data-page="sources">Sources</button></nav></div></header>
+<header class="topbar"><div class="shell nav"><div class="brand-lockup" aria-label="OH! Civics"><div class="logo-mark">OH!</div><div class="brand-copy"><strong>OH! CIVICS</strong><small>Ohio government, one move at a time</small></div></div><nav class="tabs" aria-label="Primary"><button class="tab active" data-page="today">Home</button><button class="tab" data-page="learn">Civic Course</button><button class="tab" data-page="games">Lawmaking Lab</button><button class="tab" data-page="health">Health Committee</button><button class="tab" data-page="arts">Culture Bill</button><button class="tab" data-page="explorer">Map</button><button class="tab" data-page="sources">Sources</button></nav></div></header>
 <main>
 <section id="today" class="page active"><div class="shell">
   <div class="law-hero deep-home-hero">
-    <div class="law-hero-copy"><h1>Learn Ohio government by doing the work.</h1><p>Each module uses a different kind of challenge. Hear testimony, solve a drafting puzzle, explore districts, and inspect real sources without turning every activity into the same points-and-meters game.</p><div class="actions"><button class="primary" onclick="go('games')">See the game rooms →</button><button class="secondary" onclick="go('explorer')">Find my legislators</button></div></div>
+    <div class="law-hero-copy"><h1>Learn Ohio government by doing the work.</h1><p>Each module uses a different kind of challenge. Hear testimony, solve a drafting puzzle, explore districts, and inspect real sources without turning every activity into the same points-and-meters game.</p><div class="actions"><button class="primary" onclick="startCivicPath()">Start the 4-level Civic Path →</button><button class="secondary" onclick="go('games')">Explore lawmaking games</button></div></div>
     <aside class="law-hero-side"><span class="section-kicker">Design rule</span><h3>Stay in one governmental process long enough to understand it.</h3><div class="law-rule"><b>1</b><span>Enter one richly illustrated civic setting.</span></div><div class="law-rule"><b>2</b><span>Meet people whose concerns change the bill.</span></div><div class="law-rule"><b>3</b><span>Watch the document and room evolve as the process moves.</span></div></aside>
   </div>
   <div class="section-head"><div><span class="section-kicker">Two modules · two deep games</span><h2>Choose the process you want to inhabit.</h2><p>Health stays entirely inside a legislative committee. Culture stays entirely inside bill drafting. Each playthrough has several acts, but they are acts of one game—not separate minigames.</p></div></div>
   <div class="deep-module-grid">
     <article class="deep-module-card health-room"><div class="room-miniature"><div class="mini-dais"><i></i><i></i><i></i><i></i></div><div class="mini-table"></div><div class="mini-people"><i></i><i></i><i></i></div></div><div><span class="pill green">Health · committee process</span><h3>The Committee Room</h3><p>Walk a fictional health bill through one committee hearing: briefing, testimony, amendment, member discussion, and a committee vote.</p><div class="deep-card-rule objective-rule"><b>Objective: build the hearing record</b><span>Identify concerns, choose an amendment, then see the committee vote.</span></div><button onclick="go('health')">Enter the hearing →</button></div></article>
     <article class="deep-module-card culture-room"><div class="desk-miniature"><div class="mini-paper"></div><div class="mini-note n1"></div><div class="mini-note n2"></div><div class="mini-pen"></div></div><div><span class="pill purple">Culture · drafting process</span><h3>The Drafting Desk</h3><p>Turn a fictional arts-policy idea into a bill: hear the need, choose clauses, fit the bill together, survive a sponsor review, and print the draft.</p><div class="deep-card-rule objective-rule"><b>Objective: complete the bill puzzle</b><span>Fill four clause jobs, resolve one sponsor redline, and print the draft.</span></div><button onclick="go('arts')">Open the drafting desk →</button></div></article>
+  </div>
+</div></section>
+
+<section id="learn" class="page"><div class="shell">
+  <div class="civic-course-hero">
+    <div>
+      <span class="section-kicker" style="color:#ffd56a">OHIO CIVIC PATH · 4 LEVELS</span>
+      <h1>Understand power. Verify information. Act locally. Analyze policy.</h1>
+      <p>A practical political-literacy course built around Ohio today. Each level starts with concepts, moves into an interactive challenge, and ends with something you can actually do with the skill.</p>
+    </div>
+    <aside class="oh-now" aria-label="Ohio now">
+      <div class="oh-now-card"><small>Ohio Legislature now</small><b>136th General Assembly · 2025–2026</b></div>
+      <div class="oh-now-card"><small>2026 general election</small><b>November 3 · registration deadline October 5</b></div>
+      <div class="oh-now-card"><small>Practical rule</small><b>Learn the institution before judging the argument.</b></div>
+    </aside>
+  </div>
+
+  <div class="civic-level-rail" role="tablist" aria-label="Civic course levels">
+    <button class="civic-level-btn active" type="button" data-civic-level="0" onclick="setCivicLevel(0)"><small>Level 1</small><b>Power & Systems</b></button>
+    <button class="civic-level-btn" type="button" data-civic-level="1" onclick="setCivicLevel(1)"><small>Level 2</small><b>Information Defense</b></button>
+    <button class="civic-level-btn" type="button" data-civic-level="2" onclick="setCivicLevel(2)"><small>Level 3</small><b>Rights & Action</b></button>
+    <button class="civic-level-btn" type="button" data-civic-level="3" onclick="setCivicLevel(3)"><small>Level 4</small><b>Policy & Tradeoffs</b></button>
+  </div>
+
+  <div class="civic-level-panel active" data-civic-panel="0">
+    <div class="level-shell">
+      <div class="level-head"><div class="level-no">01</div><div><h2>Foundations of Government & Systems</h2><p>Learn the vocabulary of political ideas, then trace where power actually sits in Ohio and the United States.</p></div><span class="level-goal">Goal: locate power before taking a position</span></div>
+      <div class="level-body">
+        <div class="learn-arc"><span>LEARN · political ideas</span><span>UNDERSTAND · power structure</span><span>APPLY · route a real issue</span></div>
+        <div class="civic-two-col">
+          <div class="course-card"><h3>Ideology is a lens, not a team jersey</h3><p>These are broad traditions with internal disagreement. The point is to recognize recurring questions about liberty, equality, authority, markets, community, and the role of the state.</p>
+            <div class="ideology-grid">
+              <button class="ideology-btn active" type="button" onclick="showCivicIdeology('liberal',this)">Liberalism</button>
+              <button class="ideology-btn" type="button" onclick="showCivicIdeology('conservative',this)">Conservatism</button>
+              <button class="ideology-btn" type="button" onclick="showCivicIdeology('socialist',this)">Socialism</button>
+              <button class="ideology-btn" type="button" onclick="showCivicIdeology('libertarian',this)">Libertarianism</button>
+            </div>
+            <div class="ideology-detail" id="civicIdeologyDetail"><b>Liberalism</b><span>A broad tradition that gives a central role to liberty and asks when political authority or legal restrictions are justified. Different liberal traditions disagree substantially about markets, equality, and the proper scope of government.</span></div>
+          </div>
+          <div class="course-card"><h3>Where does power live?</h3><p>Ohio politics operates inside overlapping layers. A useful first question is not “Who do I agree with?” but “Which institution can actually act?”</p>
+            <div class="power-stack">
+              <div class="power-layer"><small>Local</small><b>City · county · school district</b><span>Zoning, local services, school governance, many public meetings.</span></div>
+              <div class="power-layer"><small>Ohio</small><b>State government</b><span>General Assembly, statewide executive offices, state courts and agencies.</span></div>
+              <div class="power-layer"><small>Federal</small><b>U.S. government</b><span>Congress, President/executive branch, federal courts and agencies.</span></div>
+              <div class="power-layer"><small>International</small><b>Treaties & institutions</b><span>Countries cooperate through agreements and institutions; U.S. foreign relations are primarily federal.</span></div>
+            </div>
+            <div class="oh-election-strip">
+              <div class="election-chip"><small>Ohio election</small><b>Nov. 3, 2026</b></div>
+              <div class="election-chip"><small>Register by</small><b>Oct. 5, 2026</b></div>
+              <div class="election-chip"><small>Early voting starts</small><b>Oct. 6, 2026</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="practice-box"><small>PRACTICE · WHO HAS THE POWER?</small><h3 id="powerCaseQuestion">A public school district is considering a change to district policy. Which institution should you watch first?</h3><div class="practice-actions" id="powerCaseActions"><button type="button" onclick="answerPowerCase('local')">Local / school board</button><button type="button" class="alt" onclick="answerPowerCase('state')">Ohio General Assembly</button><button type="button" class="alt" onclick="answerPowerCase('federal')">Congress</button></div><div class="practice-feedback" id="powerCaseFeedback">Choose the institution with the most direct authority over the decision described.</div></div>
+        <div class="level-footer"><div class="course-sources"><a href="https://www.legislature.ohio.gov/publications/organizational-chart" target="_blank" rel="noopener">Ohio government chart ↗</a><a href="https://www.ohiosos.gov/elections/voting-schedule-text-only" target="_blank" rel="noopener">2026 voting schedule ↗</a><a href="https://www.ohiosos.gov/elections/district-maps" target="_blank" rel="noopener">District maps ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(0)">Complete Level 1 →</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="civic-level-panel" data-civic-panel="1">
+    <div class="level-shell">
+      <div class="level-head"><div class="level-no">02</div><div><h2>Media Literacy & Information Evaluation</h2><p>Learn how framing, recommendation systems, and source types affect what reaches you—and how to verify before reacting.</p></div><span class="level-goal">Goal: trace claims back to evidence</span></div>
+      <div class="level-body">
+        <div class="learn-arc"><span>LEARN · framing & algorithms</span><span>UNDERSTAND · source hierarchy</span><span>APPLY · verify a claim</span></div>
+        <div class="civic-two-col">
+          <div class="course-card"><h3>Your feed is not a neutral sample</h3><p>Recommendation systems can personalize what you see based on interests and interactions. Personalization can be useful, but repeated exposure is not evidence that a claim is accurate.</p>
+            <div class="feed-sim">
+              <div class="feed-tile"><b>You watch several Ohio tax videos</b><p>A platform may infer interest and recommend more tax-related content.</p></div>
+              <div class="feed-tile"><b>You share a school-board clip</b><p>The system may surface more similar clips—even if the next clips differ in quality or accuracy.</p></div>
+            </div>
+            <div class="practice-actions"><button type="button" onclick="setFeedLesson('interest')">What the algorithm learns</button><button class="alt" type="button" onclick="setFeedLesson('accuracy')">What it does NOT prove</button></div>
+            <div class="practice-feedback" id="feedLesson">Algorithms can infer what keeps your attention. That is different from determining whether a political claim is true.</div>
+          </div>
+          <div class="course-card"><h3>Source ladder</h3><p>For a claim about Ohio government, move as close to the underlying record as possible, then use quality reporting and analysis for context.</p>
+            <div class="source-ladder">
+              <div class="source-step"><i>1</i><div><b>Primary record</b><span>Bill text/status, official vote, court opinion, budget document, meeting minutes, election data.</span></div></div>
+              <div class="source-step"><i>2</i><div><b>Reported context</b><span>Journalism that interviews people, checks records, and explains what changed.</span></div></div>
+              <div class="source-step"><i>3</i><div><b>Commentary / post</b><span>Useful for understanding arguments or reactions, but not a substitute for the underlying record.</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="practice-box claim-card"><small>CLAIM LAB · FICTIONAL POST</small><div class="claim-post">“Ohio lawmakers passed this bill yesterday, so it is already state law today.” The post includes a cropped screenshot but no link.</div><h3>What is the best first move?</h3><div class="practice-actions"><button type="button" onclick="verifyCivicClaim('official')">Open the official legislation page</button><button type="button" class="alt" onclick="verifyCivicClaim('comments')">Read the comments</button><button type="button" class="alt" onclick="verifyCivicClaim('repost')">Find a more popular repost</button></div><div class="practice-feedback" id="claimFeedback">Use lateral reading: leave the post, find the underlying source, and check the bill’s actual status and effective-date information.</div></div>
+        <div class="level-footer"><div class="course-sources"><a href="https://www.legislature.ohio.gov/legislation/search?generalAssembly=136" target="_blank" rel="noopener">Current Ohio legislation ↗</a><a href="https://ed.stanford.edu/news/how-spot-fake-news-online" target="_blank" rel="noopener">Lateral reading ↗</a><a href="https://newslit.org/news-and-research/fact-check-it/" target="_blank" rel="noopener">Verification skills ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(1)">Complete Level 2 →</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="civic-level-panel" data-civic-panel="2">
+    <div class="level-shell">
+      <div class="level-head"><div class="level-no">03</div><div><h2>Civic Rights, Responsibilities & Engagement</h2><p>Connect constitutional rights to the practical places where Ohioans can observe, question, petition, comment, organize, vote, and request records.</p></div><span class="level-goal">Goal: choose an avenue that matches the issue</span></div>
+      <div class="level-body">
+        <div class="learn-arc"><span>LEARN · rights</span><span>UNDERSTAND · local institutions</span><span>APPLY · route your action</span></div>
+        <div class="rights-row">
+          <div class="right-card"><b>Peaceable assembly</b><span>Ohio Constitution Article I protects peaceable assembly for the common good.</span></div>
+          <div class="right-card"><b>Petition & instruct representatives</b><span>Article I also protects petitioning the General Assembly and instructing representatives.</span></div>
+          <div class="right-card"><b>Observe & request records</b><span>Ohio Sunshine Laws provide access to many public meetings and government records, subject to legal exceptions.</span></div>
+        </div>
+        <div class="course-card" style="margin-top:12px"><h3>Action Router</h3><p>Choose a practical Ohio scenario. The module routes you to the institution and civic tool that most directly matches it.</p>
+          <div class="action-router" style="margin-top:12px">
+            <div class="action-list">
+              <button type="button" class="active" onclick="routeCivicAction('school',this)">School district policy</button>
+              <button type="button" onclick="routeCivicAction('city',this)">City service / zoning</button>
+              <button type="button" onclick="routeCivicAction('bill',this)">Pending Ohio bill</button>
+              <button type="button" onclick="routeCivicAction('records',this)">Find the government record</button>
+            </div>
+            <div class="action-result" id="civicActionResult"><small class="section-kicker">BEST FIRST VENUE</small><h3>School board / district meeting</h3><div class="route"><b>Why</b><span>Ohio school boards are policymaking bodies for their districts; the board acts collectively in public meetings.</span><b>Practical move</b><span>Read the agenda, attend or watch the meeting, inspect the policy, and use the district’s public-comment process if available.</span><b>Then</b><span>Separate board policy from day-to-day administration so you contact the right person.</span></div></div>
+          </div>
+        </div>
+        <div class="practice-box"><small>PRACTICALITY · 10-MINUTE CIVIC CHECK</small><h3>Before contacting anyone, answer three questions</h3><div class="civic-three-col"><div class="course-card"><h3>1. Who decides?</h3><p>Name the body or office with authority.</p></div><div class="course-card"><h3>2. What is the record?</h3><p>Find the agenda, bill, vote, budget, minutes, or policy.</p></div><div class="course-card"><h3>3. What action fits?</h3><p>Comment, petition, contact, attend, organize, request a record, or vote.</p></div></div></div>
+        <div class="level-footer"><div class="course-sources"><a href="https://codes.ohio.gov/ohio-constitution/article-1" target="_blank" rel="noopener">Ohio Bill of Rights ↗</a><a href="https://www.ohioattorneygeneral.gov/Sunshine" target="_blank" rel="noopener">Ohio Sunshine Laws ↗</a><a href="https://www.ohioschoolboards.org/understanding-your-school-board" target="_blank" rel="noopener">School board role ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(2)">Complete Level 3 →</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="civic-level-panel" data-civic-panel="3">
+    <div class="level-shell">
+      <div class="level-head"><div class="level-no">04</div><div><h2>Critical Thinking & Public Policy Analysis</h2><p>Build a policy, identify tradeoffs, apply an economic lens, and practice disagreement without turning the exercise into a “correct ideology” test.</p></div><span class="level-goal">Goal: explain tradeoffs without scoring sides</span></div>
+      <div class="level-body">
+        <div class="learn-arc"><span>LEARN · policy process & economics</span><span>UNDERSTAND · tradeoffs</span><span>APPLY · build a policy memo</span></div>
+        <div class="policy-studio">
+          <div class="policy-builder"><small class="section-kicker">FICTIONAL OHIO PRACTICE FILE</small><h3>Community Transit Access Pilot</h3><p>Several communities want more weekend transit access. Build a proposal by choosing a scope, funding mechanism, and accountability rule. There is no score; each combination creates different administrative and fiscal tradeoffs.</p>
+            <div class="lever-group"><small>1 · Scope</small><div class="lever-options" data-policy-group="scope"><button type="button" class="active" onclick="choosePolicyLever('scope','Three-county pilot',this)">Three-county pilot</button><button type="button" onclick="choosePolicyLever('scope','Statewide eligibility',this)">Statewide eligibility</button><button type="button" onclick="choosePolicyLever('scope','Local opt-in grants',this)">Local opt-in grants</button></div></div>
+            <div class="lever-group"><small>2 · Funding</small><div class="lever-options" data-policy-group="funding"><button type="button" class="active" onclick="choosePolicyLever('funding','State appropriation',this)">State appropriation</button><button type="button" onclick="choosePolicyLever('funding','State-local match',this)">State-local match</button><button type="button" onclick="choosePolicyLever('funding','Dedicated fee',this)">Dedicated fee</button></div></div>
+            <div class="lever-group"><small>3 · Accountability</small><div class="lever-options" data-policy-group="accountability"><button type="button" class="active" onclick="choosePolicyLever('accountability','Two-year sunset and report',this)">Two-year sunset + report</button><button type="button" onclick="choosePolicyLever('accountability','Annual performance report',this)">Annual report</button><button type="button" onclick="choosePolicyLever('accountability','Independent audit trigger',this)">Audit trigger</button></div></div>
+            <div class="econ-lens">
+              <div class="econ-chip"><b>Tax / fee</b><span>A way government raises revenue; who pays and how matters.</span></div>
+              <div class="econ-chip"><b>Appropriation</b><span>Legal authorization to spend public money for a purpose.</span></div>
+              <div class="econ-chip"><b>Inflation</b><span>A broad rise in prices that can change the real purchasing power of a fixed budget.</span></div>
+              <div class="econ-chip"><b>Debt</b><span>Borrowing shifts some payment into the future and creates repayment obligations.</span></div>
+            </div>
+          </div>
+          <div class="policy-memo" id="policyMemo"><small class="section-kicker">YOUR POLICY MEMO</small><h3>Three-county pilot</h3><div class="memo-line"><b>Funding:</b> State appropriation. The legislature would authorize public spending; the key questions include amount, duration, and competing uses of the same revenue.</div><div class="memo-line"><b>Accountability:</b> Two-year sunset and report. This creates a scheduled review point but may also create uncertainty for longer-term planning.</div><div class="memo-line"><b>Implementation question:</b> Which state or local entity administers the program, and what evidence will determine whether it continues?</div></div>
+        </div>
+        <div class="discourse-box"><small class="section-kicker">CIVIL DISCOURSE · FIND THE SHARED QUESTION</small><div class="voice-pair"><div class="voice-mini"><b>Resident A</b><br>“Weekend service would make it easier to reach work and appointments. I want the state to move quickly.”</div><div class="voice-mini"><b>Resident B</b><br>“I want better access too, but I want to know the cost and whether the service will actually be used before committing long-term funds.”</div></div><div class="practice-actions"><button type="button" onclick="showCommonGround()">Find common ground</button></div><div class="common-ground" id="commonGround">Both residents care about access. Their disagreement is mainly about pace, evidence, and fiscal commitment. A productive next question is: <b>What pilot design would measure usage and cost well enough to inform a longer-term decision?</b></div></div>
+        <div class="level-footer"><div class="course-sources"><a href="https://www.legislature.ohio.gov/publications/the-legislative-process" target="_blank" rel="noopener">How an Ohio bill becomes law ↗</a><a href="https://www.legislature.ohio.gov/laws/ohio-constitution?Part=18&Section=01" target="_blank" rel="noopener">Ohio Constitution & laws ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(3)">Finish Civic Path ✓</button></div>
+      </div>
+    </div>
   </div>
 </div></section>
 
@@ -2714,6 +2967,92 @@ judImpactStage=function(){const c=judCase(),h=c.holdings.find(x=>x[0]===courtGam
   window.renderCulture=renderCulture;
   window.renderHealth=renderHealth;
 
+
+  // Four-level Ohio Civic Path
+  let civicLevel=0;
+  const civicDone=[false,false,false,false];
+  const civicIdeologies={
+    liberal:{name:'Liberalism',text:'A broad tradition that gives a central role to liberty and asks when political authority or legal restrictions are justified. Different liberal traditions disagree substantially about markets, equality, and the proper scope of government.'},
+    conservative:{name:'Conservatism',text:'A broad tradition often emphasizing continuity, inherited institutions, experience, social order, and caution about rapid political change. Conservative traditions differ about markets, state power, religion, and national identity.'},
+    socialist:{name:'Socialism',text:'A diverse tradition critical of concentrated private economic power and concerned with how ownership, production, equality, democracy, and solidarity should be organized. Socialist traditions vary widely in institutions and methods.'},
+    libertarian:{name:'Libertarianism',text:'A family of views that places especially strong weight on individual liberty and limits on coercion. Libertarian traditions commonly emphasize personal freedom and private property but also contain important internal disagreements.'}
+  };
+  window.startCivicPath=function(){go('learn');setCivicLevel(0);};
+  window.setCivicLevel=function(i){
+    civicLevel=Math.max(0,Math.min(3,Number(i)||0));
+    document.querySelectorAll('[data-civic-panel]').forEach((x,n)=>x.classList.toggle('active',n===civicLevel));
+    document.querySelectorAll('[data-civic-level]').forEach((x,n)=>{x.classList.toggle('active',n===civicLevel);x.classList.toggle('done',!!civicDone[n]);});
+  };
+  window.completeCivicLevel=function(i){
+    civicDone[i]=true;
+    document.querySelectorAll('[data-civic-level]').forEach((x,n)=>x.classList.toggle('done',!!civicDone[n]));
+    if(i<3)setCivicLevel(i+1);
+    else {
+      const btn=document.querySelector('[data-civic-level="3"]');
+      if(btn)btn.classList.add('done');
+      window.scrollTo({top:document.getElementById('learn')?.offsetTop||0,behavior:'smooth'});
+    }
+  };
+  window.showCivicIdeology=function(key,btn){
+    const d=civicIdeologies[key]||civicIdeologies.liberal;
+    document.querySelectorAll('.ideology-btn').forEach(x=>x.classList.toggle('active',x===btn));
+    const box=document.getElementById('civicIdeologyDetail');
+    if(box)box.innerHTML='<b>'+d.name+'</b><span>'+d.text+'</span>';
+  };
+  window.answerPowerCase=function(choice){
+    const f=document.getElementById('powerCaseFeedback'); if(!f)return;
+    if(choice==='local') f.innerHTML='<b>Best first stop: the school board / district.</b> School boards are district policymaking bodies. State and federal law still constrain them, but the described policy decision is being made locally.';
+    else if(choice==='state') f.innerHTML='The state can set laws that govern schools, but the scenario says the <b>district itself is considering a district policy</b>. Start with the school board and the policy record.';
+    else f.innerHTML='Federal law can constrain school policy, but the described decision is local. Start with the institution actually taking the action.';
+  };
+  window.setFeedLesson=function(kind){
+    const f=document.getElementById('feedLesson'); if(!f)return;
+    f.textContent=kind==='accuracy'?'Repeated recommendations, likes, shares, and virality do not establish that a political claim is accurate. Verify the claim independently.':'A recommendation system can infer interests from signals such as viewing, clicking, following, sharing, or dwelling on similar material.';
+  };
+  window.verifyCivicClaim=function(choice){
+    const f=document.getElementById('claimFeedback'); if(!f)return;
+    if(choice==='official') f.innerHTML='<b>Strong first move.</b> Check the official Ohio Legislature page for the bill text and status. “Passed” can describe one chamber, both chambers, or a later stage; effective dates also matter.';
+    else f.innerHTML='That may show how people are reacting, but it does not establish the bill’s legal status. <b>Leave the post and inspect the official record first.</b>';
+  };
+  const civicRoutes={
+    school:{title:'School board / district meeting',why:'Ohio school boards are policymaking bodies for their districts; the board acts collectively in public meetings.',move:'Read the agenda, attend or watch the meeting, inspect the policy, and use the district’s public-comment process if available.',then:'Separate board policy from day-to-day administration so you contact the right person.'},
+    city:{title:'City council / relevant city department',why:'Local governments handle many municipal services, land-use rules, and local ordinances, subject to state and federal law.',move:'Find the agenda or ordinance, identify the committee or department, and use the city’s meeting/comment process.',then:'If the question is about a record rather than a policy choice, request the underlying public record.'},
+    bill:{title:'Ohio General Assembly',why:'A pending state bill moves through the Ohio House or Senate, committees, floor votes, and—if passed by both chambers—to the Governor.',move:'Open the official bill page, read the current status and committee assignment, then contact the legislators or committee handling it if you want to share a view.',then:'Track amendments and substitute versions; the text can change during the process.'},
+    records:{title:'Public office holding the record',why:'Ohio’s Public Records Act generally gives any person access to records kept by a public office that document its activities, subject to legal exceptions.',move:'Identify the office that keeps the record and make a specific records request using the office’s published process.',then:'For meetings, also look for agendas and minutes under Ohio’s Open Meetings framework.'}
+  };
+  window.routeCivicAction=function(key,btn){
+    document.querySelectorAll('.action-list button').forEach(x=>x.classList.toggle('active',x===btn));
+    const r=civicRoutes[key]||civicRoutes.school, box=document.getElementById('civicActionResult');
+    if(box)box.innerHTML='<small class="section-kicker">BEST FIRST VENUE</small><h3>'+r.title+'</h3><div class="route"><b>Why</b><span>'+r.why+'</span><b>Practical move</b><span>'+r.move+'</span><b>Then</b><span>'+r.then+'</span></div>';
+  };
+  const policyState={scope:'Three-county pilot',funding:'State appropriation',accountability:'Two-year sunset and report'};
+  window.choosePolicyLever=function(group,value,btn){
+    policyState[group]=value;
+    document.querySelectorAll('[data-policy-group="'+group+'"] button').forEach(x=>x.classList.toggle('active',x===btn));
+    renderPolicyMemo();
+  };
+  function renderPolicyMemo(){
+    const box=document.getElementById('policyMemo');if(!box)return;
+    const funding={
+      'State appropriation':'The legislature would authorize public spending; key questions include amount, duration, and competing uses of the same revenue.',
+      'State-local match':'State funds would depend on local contributions; this can share costs but may affect which communities can participate.',
+      'Dedicated fee':'A designated revenue stream could tie funding to a specific charge; policymakers would still need to decide who pays, how much, and whether the revenue is stable.'
+    }[policyState.funding];
+    const accountability={
+      'Two-year sunset and report':'A scheduled end date forces a review, but can create uncertainty for longer-term planning.',
+      'Annual performance report':'Regular reporting creates recurring information for oversight, but reporting itself has administrative costs.',
+      'Independent audit trigger':'An audit trigger can provide deeper fiscal review when specified conditions occur, but it is not the same as measuring whether the policy achieved its service goals.'
+    }[policyState.accountability];
+    const scope={
+      'Three-county pilot':'A limited pilot can generate evidence before expansion, but its results may not represent every region of Ohio.',
+      'Statewide eligibility':'More communities could participate immediately, but statewide administration and fiscal exposure would be larger.',
+      'Local opt-in grants':'Local choice is preserved, but participation and service levels may vary significantly across communities.'
+    }[policyState.scope];
+    box.innerHTML='<small class="section-kicker">YOUR POLICY MEMO</small><h3>'+policyState.scope+'</h3><div class="memo-line"><b>Scope tradeoff:</b> '+scope+'</div><div class="memo-line"><b>Funding:</b> '+policyState.funding+'. '+funding+'</div><div class="memo-line"><b>Accountability:</b> '+policyState.accountability+'. '+accountability+'</div><div class="memo-line"><b>Implementation question:</b> Which state or local entity administers the program, and what evidence will determine whether it continues?</div>';
+  }
+  window.showCommonGround=function(){const x=document.getElementById('commonGround');if(x)x.classList.add('show');};
+
+
   // Final page router: legacy game engines remain dormant; only the deep single-game modules initialize.
   window.go=function(id){
     if(id==='judiciary') id='games';
@@ -2723,6 +3062,7 @@ judImpactStage=function(){const c=judCase(),h=c.holdings.find(x=>x[0]===courtGam
     if(id==='explorer'&&typeof window.initDistrictMap==='function')setTimeout(()=>window.initDistrictMap(),40);
     if(id==='health')setTimeout(()=>window.startHealthDeepGame(false),25);
     if(id==='arts')setTimeout(()=>window.startCultureDeepGame(false),25);
+    if(id==='learn'&&typeof window.setCivicLevel==='function')setTimeout(()=>window.setCivicLevel(civicLevel||0),10);
   };
 
   // Update labels from the earlier prototype without touching the map/source pages.
