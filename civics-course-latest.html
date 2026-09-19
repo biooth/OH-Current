@@ -1,205 +1,399 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>OH! Civics — Civic Course</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>OH! Civics — Civics Course</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#172033;background:#f4f7fb}button{font:inherit}.app{height:100vh;display:flex;flex-direction:column;overflow:hidden}.topbar{height:76px;flex:0 0 76px;background:#fff;border-bottom:1px solid #dfe5ef;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;gap:24px}.brand{font-weight:950;font-size:28px;letter-spacing:-1px;color:#14213d}.brand span{color:#2563eb}.progress-wrap{width:min(320px,42vw)}.progress-label{font-size:11px;font-weight:900;letter-spacing:.08em;color:#68758a;margin-bottom:7px}.progress-track{height:9px;border-radius:999px;background:#e7ecf3;overflow:hidden}.progress-fill{height:100%;width:0;background:#22c55e;transition:.35s ease}.home{flex:1;min-height:0;padding:4vh 5vw;display:flex;flex-direction:column;overflow:hidden}.eyebrow{font-size:12px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;color:#2563eb;margin-bottom:8px}.hero{margin-bottom:3vh}.hero h1{margin:0 0 10px;font-size:clamp(34px,4.5vw,62px);line-height:.96;letter-spacing:-.04em;color:#14213d}.hero p{margin:0;color:#68758a;font-size:clamp(14px,1.4vw,18px);max-width:760px}.modules{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.module{position:relative;border:1px solid #dfe5ef;background:#fff;border-radius:24px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;cursor:pointer;transition:.2s ease;overflow:hidden}.module:hover:not(.locked){transform:translateY(-4px);box-shadow:0 16px 40px rgba(20,33,61,.11);border-color:#b7c8ea}.module.locked{opacity:.48;cursor:not-allowed;filter:grayscale(.65)}.module.done{border:2px solid #86d6a0}.num{width:42px;height:42px;border-radius:13px;background:#dbeafe;color:#2563eb;display:grid;place-items:center;font-weight:950}.icon{font-size:clamp(42px,5vw,72px);margin:2vh 0}.module h2{font-size:clamp(19px,2vw,27px);line-height:1.05;margin:0 0 8px;color:#14213d}.module p{font-size:14px;line-height:1.45;margin:0;color:#68758a}.status{margin-top:16px;font-size:13px;font-weight:950;color:#2563eb}.lesson{position:fixed;inset:0;z-index:50;background:#eef3f8;display:none;flex-direction:column;overflow:hidden}.lesson.open{display:flex}.lesson-bar{height:66px;flex:0 0 66px;background:#fff;border-bottom:1px solid #dfe5ef;display:flex;align-items:center;gap:16px;padding:0 22px}.close{width:40px;height:40px;border:0;border-radius:50%;background:#eef2f7;color:#14213d;font-size:22px;cursor:pointer}.lesson-name{font-weight:950;color:#14213d;flex:1}.counter{font-size:12px;color:#68758a;font-weight:900}.stage{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:3vh 4vw 94px}.slide{width:min(1080px,96%);height:min(620px,100%);background:#fff;border:1px solid #dfe5ef;border-radius:30px;box-shadow:0 22px 65px rgba(25,42,72,.1);padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:1.05fr .95fr;gap:5vw;align-items:center;overflow:hidden}.copy{max-width:560px}.kicker{display:inline-block;padding:7px 12px;border-radius:999px;background:#dbeafe;color:#2563eb;font-size:11px;font-weight:950;letter-spacing:.08em;text-transform:uppercase;margin-bottom:17px}.slide h2{margin:0 0 16px;font-size:clamp(30px,4vw,54px);line-height:1;letter-spacing:-.035em;color:#14213d}.slide p{margin:0;color:#68758a;font-size:clamp(15px,1.4vw,19px);line-height:1.52}.visual{min-height:305px;border-radius:26px;background:linear-gradient(145deg,#eef5ff,#fbfdff);border:1px solid #dbe7fb;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px}.visual-icon{font-size:clamp(82px,10vw,150px);line-height:1;margin-bottom:18px}.visual-label{font-size:14px;color:#2563eb;font-weight:950}.process{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}.process-step{min-width:92px;padding:14px 12px;border-radius:14px;background:#fff;border:1px solid #dfe5ef;font-size:12px;font-weight:950;color:#14213d}.arrow{font-size:20px;color:#2563eb;font-weight:950}.example{margin-top:22px;background:#fff7d8;border:1px solid #efd98a;padding:18px 20px;border-radius:17px}.example b{display:block;color:#80640c;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}.example span{font-size:14px;line-height:1.45;color:#54491f}.choices{display:grid;gap:10px;margin-top:20px}.choice{border:2px solid #dfe5ef;background:#fff;border-radius:14px;padding:13px 15px;text-align:left;font-weight:850;color:#14213d;cursor:pointer}.choice:hover{border-color:#2563eb;background:#f6f9ff}.choice.correct{border-color:#22c55e;background:#f0fff5}.choice.wrong{border-color:#f59e0b;background:#fff9ed}.feedback{min-height:40px;margin-top:12px;color:#2563eb;font-size:13px;font-weight:850}.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.game-card{border-radius:17px;padding:17px;background:#14213d;color:#fff}.game-card.alt{background:#5b3a8a}.game-card b{display:block;font-size:16px;margin-bottom:5px}.game-card span{font-size:12px;line-height:1.4;color:#dbe5f7}.guide{position:absolute;left:3vw;bottom:14px;z-index:55;display:flex;align-items:flex-end;gap:12px;pointer-events:none}.avatar{width:80px;height:80px;border:5px solid #fff;border-radius:50%;background:#f9c74f;display:grid;place-items:center;font-size:44px;box-shadow:0 8px 28px rgba(20,33,61,.16)}.bubble{width:min(440px,48vw);background:#14213d;color:#fff;border-radius:18px 18px 18px 5px;padding:13px 16px;box-shadow:0 10px 32px rgba(20,33,61,.18);font-size:13px;line-height:1.4}.guide-name{font-size:10px;color:#9ec5ff;font-weight:950;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}.nav{position:absolute;right:4vw;bottom:21px;z-index:56;display:flex;gap:9px}.nav button{border:0;border-radius:13px;padding:12px 18px;font-weight:950;cursor:pointer}.back{background:#fff;color:#14213d;border:1px solid #dfe5ef!important}.next{background:#2563eb;color:#fff}.next.finish{background:#22c55e}.source{position:absolute;top:82px;right:4vw;font-size:10px;color:#8090a8}.source a{color:#5c6f8d;text-decoration:none}@media(max-width:920px){.modules{grid-template-columns:repeat(2,1fr)}.slide{grid-template-columns:1fr .8fr;gap:24px}.visual{min-height:230px}}@media(max-width:650px){.topbar{height:64px;flex-basis:64px}.progress-wrap{display:none}.home{padding:3vh 16px}.hero{margin-bottom:2vh}.hero h1{font-size:34px}.modules{gap:10px}.module{border-radius:18px;padding:16px}.module p{display:none}.icon{font-size:38px;margin:8px 0}.lesson-bar{height:58px;flex-basis:58px;padding:0 12px}.stage{padding:12px 12px 116px}.slide{width:100%;height:100%;border-radius:20px;padding:22px;grid-template-columns:1fr;gap:14px;align-content:center;overflow:auto}.visual{min-height:155px;padding:18px}.visual-icon{font-size:64px;margin-bottom:8px}.slide h2{font-size:30px}.slide p{font-size:14px}.example{margin-top:12px;padding:13px}.guide{left:10px;bottom:10px}.avatar{width:58px;height:58px;font-size:32px}.bubble{width:calc(100vw - 180px);font-size:10px;padding:9px 11px}.nav{right:10px;bottom:15px}.nav button{padding:10px 12px}.source{display:none}.game-grid{grid-template-columns:1fr}}
+:root{
+  --navy:#14213d;--blue:#2563eb;--blue2:#eaf2ff;--ink:#172033;--muted:#69778d;
+  --line:#dfe6ef;--paper:#fff;--bg:#f3f6fa;--gold:#f5c451;--green:#22c55e;
+  --purple:#6d4bb5;--orange:#f59e0b;--red:#ef4444;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
+button{font:inherit}
+button:focus-visible{outline:3px solid rgba(37,99,235,.35);outline-offset:3px}
+#app{height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:64px;flex:0 0 64px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:0 clamp(16px,3vw,42px)}
+.brand{font-size:25px;font-weight:950;letter-spacing:-.04em;color:var(--navy);white-space:nowrap}
+.brand span{color:var(--blue)}
+.course-track{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-width:0}
+.track-dot{height:8px;flex:1;max-width:74px;border-radius:999px;background:#e8edf4;transition:.25s}
+.track-dot.on{background:var(--blue)}
+.track-dot.done{background:var(--green)}
+.progress-copy{font-size:11px;font-weight:900;color:var(--muted);white-space:nowrap}
+.home{flex:1;min-height:0;padding:clamp(18px,3.5vh,42px) clamp(18px,4vw,58px) clamp(18px,3vh,34px);display:grid;grid-template-rows:auto 1fr;gap:clamp(18px,3vh,28px);overflow:hidden}
+.hero{display:flex;align-items:end;justify-content:space-between;gap:28px}
+.hero-copy{max-width:780px}
+.eyebrow{font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:7px}
+.hero h1{margin:0;color:var(--navy);font-size:clamp(32px,5vw,68px);line-height:.92;letter-spacing:-.055em}
+.hero p{margin:10px 0 0;color:var(--muted);font-size:clamp(13px,1.2vw,17px);max-width:680px}
+.hero-badge{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 16px;text-align:center;min-width:132px;box-shadow:0 10px 30px rgba(20,33,61,.06)}
+.hero-badge b{display:block;font-size:22px;color:var(--navy)}
+.hero-badge span{font-size:11px;font-weight:800;color:var(--muted)}
+.modules{min-height:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.module{position:relative;min-width:0;border:1px solid var(--line);background:#fff;border-radius:24px;padding:18px;cursor:pointer;text-align:left;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:.2s ease}
+.module:before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--blue);opacity:.16}
+.module:hover:not(.locked){transform:translateY(-4px);box-shadow:0 16px 38px rgba(20,33,61,.11);border-color:#bdd0f2}
+.module.locked{opacity:.46;cursor:not-allowed;filter:grayscale(.55)}
+.module.done{border:2px solid #8ed9a6}
+.module.done:before{background:var(--green);opacity:1}
+.module-num{width:38px;height:38px;border-radius:12px;background:var(--blue2);color:var(--blue);display:grid;place-items:center;font-size:12px;font-weight:950}
+.module-icon{font-size:clamp(34px,4.3vw,62px);line-height:1;margin:clamp(10px,2vh,20px) 0}
+.module h2{font-size:clamp(16px,1.55vw,23px);line-height:1.02;letter-spacing:-.025em;color:var(--navy);margin:0 0 7px}
+.module p{font-size:12px;line-height:1.35;color:var(--muted);margin:0}
+.module-status{font-size:11px;font-weight:950;color:var(--blue);margin-top:12px}
+.lesson{position:fixed;inset:0;z-index:100;background:#edf2f8;display:none;flex-direction:column;overflow:hidden}
+.lesson.open{display:flex}
+.lessonbar{height:60px;flex:0 0 60px;background:#fff;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:0 clamp(12px,2vw,28px)}
+.icon-btn{width:38px;height:38px;border:0;border-radius:50%;background:#eff3f8;color:var(--navy);font-size:20px;cursor:pointer}
+.lesson-title{font-size:14px;font-weight:950;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lesson-count{font-size:11px;font-weight:900;color:var(--muted)}
+.stage{position:relative;flex:1;min-height:0;padding:clamp(12px,2.5vh,24px) clamp(12px,3vw,40px) 92px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.slide{width:min(1120px,96vw);height:min(610px,calc(100dvh - 170px));min-height:0;background:#fff;border:1px solid var(--line);border-radius:30px;box-shadow:0 22px 60px rgba(20,33,61,.09);overflow:hidden;display:grid;grid-template-columns:1.02fr .98fr;align-items:stretch}
+.slide-copy{padding:clamp(25px,4vw,54px);display:flex;flex-direction:column;justify-content:center;min-width:0}
+.kicker{display:inline-flex;align-self:flex-start;padding:7px 11px;border-radius:999px;background:var(--blue2);color:var(--blue);font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;margin-bottom:15px}
+.slide h2{margin:0 0 12px;color:var(--navy);font-size:clamp(29px,4vw,54px);line-height:.98;letter-spacing:-.045em}
+.slide p{margin:0;color:var(--muted);font-size:clamp(14px,1.4vw,18px);line-height:1.45;max-width:560px}
+.micro{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
+.micro span{font-size:11px;font-weight:900;color:#4e617c;background:#f5f7fa;border:1px solid var(--line);padding:8px 10px;border-radius:999px}
+.visual{position:relative;min-width:0;background:linear-gradient(145deg,#edf5ff,#f9fbff);border-left:1px solid #deebfb;display:flex;align-items:center;justify-content:center;padding:clamp(20px,3vw,40px);overflow:hidden}
+.big-icon{font-size:clamp(90px,12vw,170px);line-height:1;filter:drop-shadow(0 14px 18px rgba(20,33,61,.08))}
+.visual-caption{position:absolute;left:22px;right:22px;bottom:18px;text-align:center;font-size:11px;font-weight:900;color:#5d6f89}
+.map{width:100%;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}
+.map-step{min-width:88px;padding:14px 10px;background:#fff;border:1px solid var(--line);border-radius:15px;text-align:center;font-size:12px;font-weight:950;color:var(--navy);box-shadow:0 6px 18px rgba(20,33,61,.05)}
+.map-arrow{color:var(--blue);font-size:20px;font-weight:950}
+.real{width:100%;max-width:440px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 10px 30px rgba(20,33,61,.07)}
+.real-tag{display:inline-block;font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;color:#8a6500;background:#fff2bd;border-radius:999px;padding:6px 9px;margin-bottom:12px}
+.real h3{font-size:22px;letter-spacing:-.03em;color:var(--navy);margin:0 0 8px}
+.real p{font-size:13px;line-height:1.42;color:var(--muted);margin:0}
+.real-flow{margin-top:16px;display:flex;gap:6px;flex-wrap:wrap}
+.real-flow span{font-size:10px;font-weight:950;border-radius:999px;padding:7px 9px;background:#f3f6fa;color:#50617a}
+.source-link{display:inline-block;margin-top:14px;font-size:11px;font-weight:900;color:var(--blue);text-decoration:none}
+.people{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.person{background:#fff;border:1px solid var(--line);border-radius:17px;padding:15px 10px;text-align:center}
+.person .emoji{font-size:36px}
+.person b{display:block;margin-top:8px;font-size:12px;color:var(--navy)}
+.person span{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.compare{width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+.doc{min-height:190px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:9px}
+.doc b{font-size:12px;color:var(--navy)}
+.line{height:8px;border-radius:999px;background:#dce4ee}
+.line.short{width:60%}.line.changed{background:#9bc1ff}
+.compare-arrow{font-size:24px;color:var(--blue)}
+.quiz{width:100%;max-width:440px;display:grid;gap:9px}
+.quiz button{border:2px solid #dce4ee;background:#fff;border-radius:15px;padding:13px 14px;text-align:left;color:var(--navy);font-size:12px;font-weight:900;cursor:pointer}
+.quiz button:hover{border-color:var(--blue)}
+.quiz button.right{border-color:var(--green);background:#f1fff5}
+.quiz button.wrong{border-color:var(--orange);background:#fff9ed}
+.quiz-feedback{min-height:32px;font-size:11px;font-weight:850;color:#52657f;padding-top:3px}
+.game-pair{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.game{border-radius:20px;padding:20px;color:#fff;background:var(--navy);min-height:180px;display:flex;flex-direction:column;justify-content:space-between}
+.game.alt{background:var(--purple)}
+.game .emoji{font-size:42px}
+.game h3{margin:8px 0 4px;font-size:17px}
+.game p{margin:0;color:#e2e9f6;font-size:11px;line-height:1.35}
+.guide{position:absolute;left:clamp(12px,3vw,42px);bottom:14px;z-index:120;display:flex;align-items:flex-end;gap:11px;pointer-events:none}
+.avatar{width:70px;height:70px;border-radius:50%;border:4px solid #fff;background:var(--gold);display:grid;place-items:center;font-size:39px;box-shadow:0 8px 24px rgba(20,33,61,.17)}
+.bubble{width:min(450px,48vw);background:var(--navy);color:#fff;border-radius:17px 17px 17px 5px;padding:12px 15px;font-size:12px;line-height:1.36;box-shadow:0 10px 30px rgba(20,33,61,.18)}
+.guide-name{font-size:9px;text-transform:uppercase;letter-spacing:.11em;font-weight:950;color:#a8c9ff;margin-bottom:3px}
+.nav{position:absolute;right:clamp(12px,3vw,42px);bottom:19px;z-index:121;display:flex;align-items:center;gap:8px}
+.nav button{border:0;border-radius:13px;padding:11px 16px;font-size:12px;font-weight:950;cursor:pointer}
+.prev{background:#fff;color:var(--navy);border:1px solid var(--line)!important}
+.next{background:var(--blue);color:#fff}
+.next.finish{background:var(--green)}
+.slide-dots{display:flex;gap:5px;margin-right:5px}
+.slide-dots i{display:block;width:7px;height:7px;border-radius:50%;background:#cfd8e5}
+.slide-dots i.on{background:var(--blue)}
+.module-intro{position:absolute;inset:0;z-index:130;background:rgba(237,242,248,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+.module-intro.show{display:flex}
+.intro-card{width:min(520px,92vw);background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px;text-align:center;box-shadow:0 25px 80px rgba(20,33,61,.18)}
+.intro-avatar{width:92px;height:92px;border-radius:50%;background:var(--gold);border:6px solid #fff;box-shadow:0 10px 30px rgba(20,33,61,.12);display:grid;place-items:center;font-size:52px;margin:-72px auto 14px}
+.intro-card .small{font-size:10px;text-transform:uppercase;letter-spacing:.13em;font-weight:950;color:var(--blue)}
+.intro-card h2{margin:7px 0 9px;font-size:32px;letter-spacing:-.04em;color:var(--navy)}
+.intro-card p{margin:0 auto 20px;color:var(--muted);font-size:14px;line-height:1.45;max-width:410px}
+.start-btn{border:0;border-radius:14px;background:var(--blue);color:#fff;font-weight:950;padding:12px 20px;cursor:pointer}
+@media(max-width:900px){
+  .hero-badge{display:none}
+  .modules{gap:9px}
+  .module{padding:13px;border-radius:18px}
+  .module p{display:none}
+  .slide{grid-template-columns:1fr .82fr}
+  .people{grid-template-columns:1fr;gap:7px}.person{padding:8px}.person .emoji{font-size:24px}
+}
+@media(max-width:680px){
+  .topbar{height:54px;flex-basis:54px;padding:0 12px}.brand{font-size:20px}.progress-copy{display:none}
+  .course-track{gap:4px}.track-dot{height:6px}
+  .home{padding:14px 12px;gap:12px}.hero h1{font-size:30px}.hero p{font-size:12px;margin-top:6px}
+  .modules{grid-template-columns:repeat(5,1fr);gap:5px}
+  .module{padding:9px 7px;border-radius:14px;align-items:center;text-align:center}
+  .module-num{width:27px;height:27px;border-radius:9px;font-size:9px}.module-icon{font-size:29px;margin:8px 0}.module h2{font-size:11px}.module-status{font-size:8px;margin-top:7px}
+  .lessonbar{height:52px;flex-basis:52px}.stage{padding:8px 8px 102px}
+  .slide{width:100%;height:100%;grid-template-columns:1fr .78fr;border-radius:20px}
+  .slide-copy{padding:17px}.kicker{font-size:8px;margin-bottom:9px;padding:5px 8px}.slide h2{font-size:24px;margin-bottom:8px}.slide p{font-size:11px;line-height:1.35}
+  .micro{margin-top:10px;gap:4px}.micro span{font-size:8px;padding:5px 7px}
+  .visual{padding:12px}.big-icon{font-size:72px}.visual-caption{font-size:8px;bottom:8px;left:8px;right:8px}
+  .map{gap:4px}.map-step{min-width:50px;padding:8px 5px;font-size:8px;border-radius:10px}.map-arrow{font-size:12px}
+  .real{padding:12px;border-radius:14px}.real-tag{font-size:7px;padding:4px 6px;margin-bottom:7px}.real h3{font-size:15px;margin-bottom:4px}.real p{font-size:9px}.real-flow{margin-top:8px;gap:3px}.real-flow span{font-size:7px;padding:4px 5px}.source-link{font-size:8px;margin-top:7px}
+  .person .emoji{font-size:20px}.person b{font-size:8px;margin-top:3px}.person span{font-size:7px}.people{gap:4px}
+  .doc{min-height:115px;padding:10px;gap:6px}.doc b{font-size:8px}.line{height:5px}.compare{gap:4px}.compare-arrow{font-size:14px}
+  .quiz{gap:5px}.quiz button{padding:8px;font-size:8px;border-radius:10px}.quiz-feedback{font-size:8px;min-height:20px}
+  .game-pair{gap:6px}.game{padding:11px;border-radius:13px;min-height:120px}.game .emoji{font-size:26px}.game h3{font-size:11px;margin:5px 0 2px}.game p{font-size:8px}
+  .guide{left:8px;bottom:7px;gap:6px}.avatar{width:50px;height:50px;font-size:28px}.bubble{width:calc(100vw - 170px);font-size:8.5px;padding:8px 9px;border-radius:11px 11px 11px 4px}.guide-name{font-size:6.5px}
+  .nav{right:8px;bottom:11px;gap:5px}.nav button{padding:8px 9px;font-size:9px;border-radius:9px}.slide-dots{display:none}
+  .intro-card{padding:24px 18px}.intro-avatar{width:76px;height:76px;font-size:43px}.intro-card h2{font-size:26px}.intro-card p{font-size:12px}
+}
+@media(max-height:650px) and (min-width:681px){
+  .topbar{height:54px;flex-basis:54px}.home{padding-top:18px}.hero h1{font-size:42px}.module-icon{font-size:42px;margin:10px 0}.module p{display:none}
+  .stage{padding-top:10px;padding-bottom:78px}.slide{height:calc(100dvh - 142px)}.guide{bottom:7px}.avatar{width:58px;height:58px;font-size:32px}.bubble{font-size:10px}.nav{bottom:12px}
+}
 </style>
 </head>
 <body>
-<div class="app">
-<header class="topbar">
-  <div class="brand">OH! <span>Civics</span></div>
-  <div class="progress-wrap">
-    <div class="progress-label">CIVICS COURSE PROGRESS</div>
-    <div class="progress-track"><div class="progress-fill" id="courseProgress"></div></div>
-  </div>
-</header>
-<main class="home">
-  <section class="hero">
-    <div class="eyebrow">Civics Course</div>
-    <h1>How Ohio government works.</h1>
-    <p>Four short, guided levels. Click a module, follow Maya, see a real-world example, then connect the idea to the games.</p>
-  </section>
-  <section class="modules" id="moduleGrid"></section>
-</main>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">OH! <span>Civics</span></div>
+    <div class="course-track" id="courseTrack"></div>
+    <div class="progress-copy" id="progressCopy">Level 1 of 5</div>
+  </header>
+
+  <main class="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Civics Course</div>
+        <h1>See it. Click it. Understand it.</h1>
+        <p>Five short levels build one picture of how Ohio lawmaking works. No long reading pages.</p>
+      </div>
+      <div class="hero-badge"><b>~8 min</b><span>full course</span></div>
+    </section>
+    <section class="modules" id="modules"></section>
+  </main>
 </div>
 
 <section class="lesson" id="lesson">
-  <div class="lesson-bar">
-    <button class="close" id="closeLesson" aria-label="Close lesson">×</button>
-    <div class="lesson-name" id="lessonName"></div>
-    <div class="counter" id="counter"></div>
-  </div>
-  <div class="source" id="sourceLine"></div>
+  <header class="lessonbar">
+    <button class="icon-btn" id="closeBtn" aria-label="Close module">×</button>
+    <div class="lesson-title" id="lessonTitle"></div>
+    <div class="lesson-count" id="lessonCount"></div>
+  </header>
+
   <div class="stage">
     <article class="slide" id="slide"></article>
+
     <div class="guide">
       <div class="avatar">🧑🏽‍🏫</div>
-      <div class="bubble"><div class="guide-name">Maya • Your Civics Guide</div><div id="guideText"></div></div>
+      <div class="bubble">
+        <div class="guide-name">Maya • your guide</div>
+        <div id="guideText"></div>
+      </div>
     </div>
+
     <div class="nav">
-      <button class="back" id="backBtn">← Back</button>
+      <div class="slide-dots" id="slideDots"></div>
+      <button class="prev" id="prevBtn">← Back</button>
       <button class="next" id="nextBtn">Next →</button>
+    </div>
+
+    <div class="module-intro" id="moduleIntro">
+      <div class="intro-card">
+        <div class="intro-avatar">🧑🏽‍🏫</div>
+        <div class="small" id="introSmall">Level 1</div>
+        <h2 id="introTitle"></h2>
+        <p id="introText"></p>
+        <button class="start-btn" id="startBtn">Start presentation →</button>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-const SOURCES = {
-  legislature: "https://www.legislature.ohio.gov/publications/organizational-chart",
-  courts: "https://www.supremecourt.ohio.gov/courts/judicial-system-structure/",
-  laws: "https://codes.ohio.gov/"
+const SOURCE = {
+  process:"https://www.legislature.ohio.gov/publications/the-legislative-process",
+  hb96:"https://www.legislature.ohio.gov/legislation/136/hb96/status",
+  hb96docs:"https://www.legislature.ohio.gov/legislation/136/hb96/documents",
+  hb750:"https://www.legislature.ohio.gov/legislation/136/hb750/committee",
+  hb561:"https://www.legislature.ohio.gov/legislation/136/hb561/committee"
 };
 
-const modules = [
+const course = [
 {
-  title:"Who Does What?", icon:"🏛️", blurb:"Meet the three branches and the jobs they perform.",
+  title:"Meet the System", icon:"🏛️", teaser:"Who does what?",
+  intro:"First, build the map. You only need to know the job each part of government performs.",
   slides:[
-    {kicker:"Start Here",title:"Ohio government has three branches.",text:"Legislative, executive, and judicial institutions have different responsibilities.",icon:"🏛️",label:"Different jobs. One state government.",guide:"Instead of memorizing names, focus on the job each branch performs.",source:"legislature"},
-    {kicker:"Legislative",title:"The General Assembly makes state laws.",text:"Ohio's General Assembly is made up of the House of Representatives and the Senate.",icon:"📜",label:"House + Senate",guide:"When you see a bill moving through committees and votes, you are watching the legislative branch at work.",source:"legislature"},
-    {kicker:"Executive",title:"The executive branch carries laws out.",text:"The governor and state agencies administer programs and carry out many responsibilities created by law.",icon:"⚙️",label:"Governor + state agencies",guide:"Passing a law does not automatically run a program. Executive offices and agencies handle implementation.",source:"legislature"},
-    {kicker:"Judicial",title:"Courts resolve legal disputes.",text:"Ohio courts interpret and apply law when deciding cases within their jurisdiction.",icon:"⚖️",label:"Ohio court system",guide:"Courts are not another legislature. Their core role is resolving disputes according to law.",source:"courts"}
+    {type:"icon",kicker:"Big Picture",title:"Three branches. Different jobs.",text:"Laws are made, carried out, and interpreted by different parts of state government.",icon:"🏛️",caption:"Legislative • Executive • Judicial",guide:"Don't memorize a wall of names. Start with the three jobs.",chips:["Make","Carry out","Interpret"]},
+    {type:"map",kicker:"Our Focus",title:"Zoom in on lawmaking.",text:"For this course, we follow the legislative path from an idea to a state law.",steps:["Idea","Bill","Committee","House + Senate","Governor"],guide:"This is the map the rest of the course will keep using.",source:"process"},
+    {type:"quiz",kicker:"Quick Check",title:"Where does a bill get debated first?",text:"Pick the best answer.",answers:["A legislative committee","A state agency","A courtroom"],correct:0,success:"Right — bills are referred to legislative committees for hearings and review.",guide:"Try one fast check before we move on.",source:"process"}
   ]
 },
 {
-  title:"How a Bill Moves", icon:"📜", blurb:"Follow an idea through the legislative process.",
+  title:"Follow a Bill", icon:"📜", teaser:"Idea → law",
+  intro:"Now we'll follow one proposal through the path. Each slide is one stop.",
   slides:[
-    {kicker:"Idea → Bill",title:"A proposal must become a bill.",text:"A proposal for a new state law or a change to an existing law begins as a bill in the General Assembly.",icon:"💡",label:"Idea → introduced bill",guide:"The first important distinction: an idea is not a law. It has to enter the formal legislative process.",source:"legislature"},
-    {kicker:"Committee",title:"Committees examine bills.",text:"Committee hearings can include sponsor testimony and testimony from supporters, opponents, and interested parties.",icon:"👥",label:"Hearings + testimony",guide:"This is one of the places where the Health Committee game connects directly to the real process.",source:"legislature"},
-    {kicker:"Chambers",title:"Both chambers must act.",text:"Most bills need approval in both the Ohio House and Ohio Senate before being presented to the governor.",process:["House","Senate","Governor"],guide:"The exact path can vary, but a bill normally has to clear both chambers before it reaches the governor.",source:"legislature"},
-    {kicker:"Check Yourself",title:"Where would testimony happen?",text:"Choose the best answer.",choices:["During a committee hearing","Only after a bill becomes law","Only in a courtroom"],correct:0,feedback:"Yes. Ohio legislative committee pages show testimony submitted during committee hearings.",guide:"Try it. This is the same kind of decision point you will see in the games.",source:"legislature"}
+    {type:"icon",kicker:"Step 1",title:"An idea becomes a bill.",text:"A legislator introduces proposed language so the legislature can consider it.",icon:"💡",caption:"Idea → drafted bill",guide:"An idea is not a law yet. Introduction starts the formal process.",source:"process"},
+    {type:"map",kicker:"Step 2",title:"The bill enters committee.",text:"Committees hold hearings, hear testimony, and can recommend changes.",steps:["Introduced","Committee","Hearings"],guide:"This is the stage you'll explore much more deeply in the Health Committee game.",source:"process"},
+    {type:"map",kicker:"Step 3",title:"Both chambers have to act.",text:"The House and Senate consider the bill. If their versions differ, they must resolve the differences.",steps:["House","Senate","Agreement"],guide:"Think of this as two checkpoints that must end with the same text.",source:"process"},
+    {type:"real",kicker:"Real Ohio Example",title:"H.B. 96 followed that path.",text:"Ohio's 2025 operating budget moved through the House, Senate, a conference committee, and then to the Governor.",realTitle:"H.B. 96 • 136th General Assembly",realText:"The official status page shows House passage, Senate passage, a conference report, and the Governor's signature on June 30, 2025.",realFlow:["House","Senate","Conference","Governor"],source:"hb96",guide:"Real bills leave a public trail. You can actually follow the steps instead of only reading a diagram."}
   ]
 },
 {
-  title:"Where People Enter", icon:"🗣️", blurb:"See where residents and groups can participate.",
+  title:"Inside Committee", icon:"🎤", teaser:"Hear the arguments",
+  intro:"Committees are where a bill gets a closer look. This level shows what that room is really doing.",
   slides:[
-    {kicker:"Participation",title:"The process has entry points.",text:"Residents and organizations can follow bills, contact lawmakers, and participate in public committee processes.",icon:"🗣️",label:"Watch • contact • testify",guide:"Civic participation is not one single action. Different stages create different opportunities.",source:"legislature"},
-    {kicker:"Committee",title:"Public testimony becomes part of the record.",text:"Ohio committee activity pages list witnesses and submitted testimony for many hearings.",icon:"🎤",label:"Committee testimony",guide:"That makes committees useful for learning who is trying to influence a bill and what arguments they present.",source:"legislature"},
-    {kicker:"Research",title:"Read the actual text.",text:"Ohio's official law site publishes the Ohio Constitution, Revised Code, and Administrative Code.",icon:"🔎",label:"Check primary sources",guide:"Before reacting to a summary, look for the underlying bill, law, rule, or official record.",source:"laws"},
-    {kicker:"Mini Challenge",title:"You hear a claim about a new Ohio rule.",text:"What is the strongest first move?",choices:["Find the official text or agency record","Assume a viral post is complete","Judge it only by the headline"],correct:0,feedback:"Right. Start with the primary source, then compare explanations and reporting.",guide:"Source-checking is a civic skill. The goal is to understand the evidence before deciding what you think.",source:"laws"}
+    {type:"people",kicker:"Hearing Room",title:"Different people bring evidence.",text:"Hearings can include sponsor, proponent, opponent, and interested-party testimony.",people:[["🧑‍💼","Sponsor","Explains the bill"],["👍","Proponent","Supports it"],["👎","Opponent","Opposes it"]],guide:"A committee isn't just lawmakers talking to each other. Witnesses can build the public record.",source:"process"},
+    {type:"real",kicker:"Real Ohio Example",title:"A 2026 Health Committee bill drew multiple views.",text:"H.B. 750 had sponsor and proponent testimony, and later opponent testimony, in the House Health Committee.",realTitle:"H.B. 750 • House Health Committee",realText:"The official committee record lists hearings from March through June 2026 and the testimony submitted for them.",realFlow:["Sponsor","Proponents","Opponent","More hearings"],source:"hb750",guide:"This is exactly why our game should show characters with different perspectives instead of one generic stat bar."},
+    {type:"real",kicker:"Another Example",title:"One hearing can show disagreement.",text:"H.B. 561's 2026 Health Committee record includes both proponent and opponent testimony.",realTitle:"H.B. 561 • House Health Committee",realText:"The committee page lists supportive testimony at one hearing and opposing testimony at another.",realFlow:["Hear","Compare","Question","Revise?"] ,source:"hb561",guide:"The important civic skill is understanding what each side is arguing and what evidence they use — not being told which side to choose."},
+    {type:"quiz",kicker:"Your Turn",title:"What is committee testimony for?",text:"Choose the best description.",answers:["Give lawmakers information and arguments","Automatically pass the bill","Replace the final vote"],correct:0,success:"Exactly. Testimony informs the committee; it does not itself pass the bill.",guide:"Good. Now the Health Committee game has a real-world purpose.",source:"process"}
   ]
 },
 {
-  title:"Use It in the Games", icon:"🎮", blurb:"Turn the process into decisions inside OH! Civics.",
+  title:"Words Become Policy", icon:"✍️", teaser:"Draft + revise",
+  intro:"A policy can change a lot without changing its title. The wording is the policy.",
   slides:[
-    {kicker:"Health Committee",title:"Watch one bill, not the whole government.",text:"In the Health Committee game, focus on testimony, amendments, tradeoffs, and the committee's next action.",icon:"🩺",label:"A deeper look at one stage",guide:"The course gives you the map. The game lets you practice one part of that map in more detail.",source:"legislature"},
-    {kicker:"Culture Drafting",title:"Turn goals into legislative language.",text:"In Culture Drafting, compare how wording, scope, funding, and implementation choices change a proposal.",icon:"🎨",label:"Draft • revise • compare",guide:"The point is not to pick a political side. It is to see how policy details change what a proposal actually does.",source:"laws"},
-    {kicker:"Connection",title:"Course knowledge changes how you play.",text:"When a character mentions testimony, an amendment, an agency, or a court, you should know where it fits.",process:["Learn","Recognize","Decide","See impact"],guide:"Now the game mechanics have a civic meaning instead of feeling like disconnected buttons and stats.",source:"legislature"},
-    {kicker:"Level Complete",title:"You have the map.",text:"You can now identify the branches, trace a bill, find participation points, and connect those ideas to the games.",games:true,guide:"That is the foundation. The games can now focus on depth without making you relearn the entire system every time.",source:"legislature"}
+    {type:"compare",kicker:"Drafting",title:"Small wording changes can matter.",text:"Definitions, eligibility, funding, dates, and agency instructions can change what a bill actually does.",guide:"This is the core idea behind Culture Drafting: don't just choose a goal — shape the language."},
+    {type:"compare",kicker:"Revisions",title:"Bills can have multiple versions.",text:"As a bill moves, lawmakers can amend it. That means the text you started with may not be the text that finishes.",guide:"So when you hear 'the bill,' always ask: which version?",source:"process"},
+    {type:"real",kicker:"Real Ohio Example",title:"H.B. 96 has a visible version history.",text:"The Ohio Legislature posts versions as introduced, passed by the House, passed by the Senate, reported by conference, and enrolled.",realTitle:"One bill • several official versions",realText:"Comparing those documents shows how legislative text can evolve through the process.",realFlow:["Introduced","House","Senate","Conference","Enrolled"],source:"hb96docs",guide:"That is a real example of why drafting choices matter. The details are not decoration — they are the policy."},
+    {type:"quiz",kicker:"Quick Check",title:"A bill's title stayed the same. Are you done checking?",text:"Pick the strongest answer.",answers:["No — check the current version","Yes — titles tell the whole story","Only check social media summaries"],correct:0,success:"Right. Version changes can alter the substance even when the title stays the same.",guide:"That's the habit we want the drafting game to teach.",source:"hb96docs"}
+  ]
+},
+{
+  title:"Use It in the Games", icon:"🎮", teaser:"Practice the process",
+  intro:"You now have the map. The games can focus on one part at a time instead of explaining everything at once.",
+  slides:[
+    {type:"games",kicker:"Game Connection",title:"Two games. Two skills.",text:"Each game zooms in on one part of the process.",guide:"The point is depth, not dozens of moving parts."},
+    {type:"map",kicker:"Health Committee",title:"Practice the hearing stage.",text:"Meet witnesses, compare testimony, question assumptions, and decide what the committee does next.",steps:["Witnesses","Testimony","Questions","Amend?","Vote"],guide:"Now every character and decision should connect to something you just learned.",source:"process"},
+    {type:"map",kicker:"Culture Drafting",title:"Practice writing the policy.",text:"Choose language, scope, funding, and implementation details — then see what changes.",steps:["Goal","Draft","Revise","Tradeoffs","Final text"],guide:"This game is about how wording turns a broad goal into something government can actually implement."},
+    {type:"icon",kicker:"Course Complete",title:"You have the map.",text:"Now you can recognize the process while you play.",icon:"✅",caption:"Learn → recognize → practice",guide:"You're ready. The games can now teach through decisions instead of long explanations."}
   ]
 }
 ];
 
-let unlocked = Number(localStorage.getItem("ohCivicsUnlocked") || 0);
-let completed = JSON.parse(localStorage.getItem("ohCivicsCompleted") || "[]");
-let activeModule = 0;
+let unlocked = Number(localStorage.getItem("ohCourseUnlockedV2") || 0);
+let completed = JSON.parse(localStorage.getItem("ohCourseCompletedV2") || "[]");
+let activeLevel = 0;
 let activeSlide = 0;
 
-const grid = document.getElementById("moduleGrid");
+const modulesEl = document.getElementById("modules");
+const trackEl = document.getElementById("courseTrack");
+const progressCopy = document.getElementById("progressCopy");
 const lesson = document.getElementById("lesson");
-const slideEl = document.getElementById("slide");
+const lessonTitle = document.getElementById("lessonTitle");
+const lessonCount = document.getElementById("lessonCount");
+const slide = document.getElementById("slide");
 const guideText = document.getElementById("guideText");
-const lessonName = document.getElementById("lessonName");
-const counter = document.getElementById("counter");
-const backBtn = document.getElementById("backBtn");
+const dots = document.getElementById("slideDots");
+const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
-const progress = document.getElementById("courseProgress");
-const sourceLine = document.getElementById("sourceLine");
+const intro = document.getElementById("moduleIntro");
+const introSmall = document.getElementById("introSmall");
+const introTitle = document.getElementById("introTitle");
+const introText = document.getElementById("introText");
 
-function renderModules(){
-  grid.innerHTML = "";
-  modules.forEach(function(m,i){
-    const locked = i > unlocked;
-    const done = completed.includes(i);
-    const btn = document.createElement("button");
-    btn.className = "module" + (locked ? " locked" : "") + (done ? " done" : "");
-    btn.innerHTML =
-      '<div><div class="num">0'+(i+1)+'</div><div class="icon">'+m.icon+'</div><h2>'+m.title+'</h2><p>'+m.blurb+'</p></div>'+
-      '<div class="status">'+(done ? "✓ Complete" : locked ? "🔒 Complete Level "+i : "Start level →")+'</div>';
-    btn.addEventListener("click",function(){ if(!locked) openModule(i); });
-    grid.appendChild(btn);
+function renderHome(){
+  modulesEl.innerHTML="";
+  trackEl.innerHTML="";
+  course.forEach((m,i)=>{
+    const locked=i>unlocked, done=completed.includes(i);
+    const b=document.createElement("button");
+    b.className="module"+(locked?" locked":"")+(done?" done":"");
+    b.innerHTML='<div><div class="module-num">0'+(i+1)+'</div><div class="module-icon">'+m.icon+'</div><h2>'+m.title+'</h2><p>'+m.teaser+'</p></div><div class="module-status">'+(done?"✓ Complete":locked?"🔒 Locked":"Open level →")+'</div>';
+    b.onclick=()=>{if(!locked)openLevel(i)};
+    modulesEl.appendChild(b);
+
+    const dot=document.createElement("div");
+    dot.className="track-dot"+(done?" done":i<=unlocked?" on":"");
+    trackEl.appendChild(dot);
   });
-  progress.style.width = (completed.length / modules.length * 100) + "%";
+  const current=Math.min(unlocked+1,course.length);
+  progressCopy.textContent=completed.length===course.length?"Course complete":("Level "+current+" of "+course.length);
 }
 
-function openModule(i){
-  activeModule = i;
-  activeSlide = 0;
+function openLevel(i){
+  activeLevel=i; activeSlide=0;
   lesson.classList.add("open");
+  lessonTitle.textContent="Level "+(i+1)+" — "+course[i].title;
+  introSmall.textContent="Level "+(i+1)+" of "+course.length;
+  introTitle.textContent=course[i].title;
+  introText.textContent=course[i].intro;
+  intro.classList.add("show");
   renderSlide();
 }
 
-function closeLesson(){
-  lesson.classList.remove("open");
+function makeVisual(s){
+  if(s.type==="icon"){
+    return '<div class="visual"><div class="big-icon">'+s.icon+'</div><div class="visual-caption">'+s.caption+'</div></div>';
+  }
+  if(s.type==="map"){
+    return '<div class="visual"><div class="map">'+s.steps.map((x,i)=>'<div class="map-step">'+x+'</div>'+(i<s.steps.length-1?'<div class="map-arrow">→</div>':'')).join("")+'</div></div>';
+  }
+  if(s.type==="real"){
+    return '<div class="visual"><div class="real"><div class="real-tag">Real Ohio example</div><h3>'+s.realTitle+'</h3><p>'+s.realText+'</p><div class="real-flow">'+s.realFlow.map(x=>'<span>'+x+'</span>').join("")+'</div>'+(s.source?'<a class="source-link" href="'+SOURCE[s.source]+'" target="_blank" rel="noreferrer">View official Ohio record ↗</a>':'')+'</div></div>';
+  }
+  if(s.type==="people"){
+    return '<div class="visual"><div class="people">'+s.people.map(p=>'<div class="person"><div class="emoji">'+p[0]+'</div><b>'+p[1]+'</b><span>'+p[2]+'</span></div>').join("")+'</div></div>';
+  }
+  if(s.type==="compare"){
+    return '<div class="visual"><div class="compare"><div class="doc"><b>Earlier draft</b><div class="line"></div><div class="line short"></div><div class="line"></div><div class="line short"></div></div><div class="compare-arrow">→</div><div class="doc"><b>Revised draft</b><div class="line"></div><div class="line changed"></div><div class="line"></div><div class="line changed short"></div></div></div></div>';
+  }
+  if(s.type==="quiz"){
+    return '<div class="visual"><div class="quiz">'+s.answers.map((a,i)=>'<button data-answer="'+i+'">'+a+'</button>').join("")+'<div class="quiz-feedback" id="quizFeedback"></div></div></div>';
+  }
+  if(s.type==="games"){
+    return '<div class="visual"><div class="game-pair"><div class="game"><div><div class="emoji">🩺</div><h3>Health Committee</h3><p>Listen, question, amend, decide.</p></div></div><div class="game alt"><div><div class="emoji">🎨</div><h3>Culture Drafting</h3><p>Write, revise, compare, implement.</p></div></div></div></div>';
+  }
+  return '<div class="visual"></div>';
 }
 
 function renderSlide(){
-  const m = modules[activeModule];
-  const s = m.slides[activeSlide];
-  lessonName.textContent = "Level "+(activeModule+1)+" — "+m.title;
-  counter.textContent = (activeSlide+1)+" / "+m.slides.length;
-  guideText.textContent = s.guide;
-  backBtn.style.visibility = activeSlide === 0 ? "hidden" : "visible";
-  nextBtn.textContent = activeSlide === m.slides.length-1 ? "Finish Level ✓" : "Next →";
-  nextBtn.classList.toggle("finish", activeSlide === m.slides.length-1);
-  sourceLine.innerHTML = s.source ? 'Official reference: <a href="'+SOURCES[s.source]+'" target="_blank" rel="noreferrer">Ohio primary source ↗</a>' : "";
+  const s=course[activeLevel].slides[activeSlide];
+  lessonCount.textContent=(activeSlide+1)+" / "+course[activeLevel].slides.length;
+  guideText.textContent=s.guide;
+  const chips=s.chips?'<div class="micro">'+s.chips.map(x=>'<span>'+x+'</span>').join("")+'</div>':"";
+  slide.innerHTML='<div class="slide-copy"><div class="kicker">'+s.kicker+'</div><h2>'+s.title+'</h2><p>'+s.text+'</p>'+chips+(s.source&&s.type!=="real"?'<a class="source-link" href="'+SOURCE[s.source]+'" target="_blank" rel="noreferrer">Official Ohio source ↗</a>':'')+'</div>'+makeVisual(s);
 
-  let right = "";
-  if(s.process){
-    right = '<div class="visual"><div class="process">'+s.process.map(function(x,n){return '<div class="process-step">'+x+'</div>'+(n<s.process.length-1?'<div class="arrow">→</div>':'');}).join("")+'</div></div>';
-  } else if(s.choices){
-    right = '<div class="visual" style="align-items:stretch;text-align:left"><div class="choices">'+s.choices.map(function(x,n){return '<button class="choice" data-choice="'+n+'">'+x+'</button>';}).join("")+'</div><div class="feedback" id="feedback"></div></div>';
-  } else if(s.games){
-    right = '<div class="visual" style="align-items:stretch;text-align:left"><div class="game-grid"><div class="game-card"><b>🩺 Health Committee</b><span>Hear testimony, weigh amendments, and decide the committee's next move.</span></div><div class="game-card alt"><b>🎨 Culture Drafting</b><span>Shape policy language and see how drafting choices change implementation.</span></div></div></div>';
-  } else {
-    right = '<div class="visual"><div class="visual-icon">'+s.icon+'</div><div class="visual-label">'+s.label+'</div></div>';
-  }
-
-  slideEl.innerHTML = '<div class="copy"><div class="kicker">'+s.kicker+'</div><h2>'+s.title+'</h2><p>'+s.text+'</p></div>'+right;
-
-  if(s.choices){
-    slideEl.querySelectorAll(".choice").forEach(function(btn){
-      btn.addEventListener("click",function(){
-        const pick = Number(btn.dataset.choice);
-        slideEl.querySelectorAll(".choice").forEach(function(b){b.classList.remove("correct","wrong");});
-        btn.classList.add(pick === s.correct ? "correct" : "wrong");
-        document.getElementById("feedback").textContent = pick === s.correct ? s.feedback : "Not quite. Look for the point where the public record or primary source is created.";
-      });
+  if(s.type==="quiz"){
+    slide.querySelectorAll("[data-answer]").forEach(btn=>{
+      btn.onclick=()=>{
+        slide.querySelectorAll("[data-answer]").forEach(b=>b.classList.remove("right","wrong"));
+        const pick=Number(btn.dataset.answer);
+        btn.classList.add(pick===s.correct?"right":"wrong");
+        document.getElementById("quizFeedback").textContent=pick===s.correct?s.success:"Not quite — try the option that best matches the legislative process.";
+      };
     });
   }
+
+  dots.innerHTML=course[activeLevel].slides.map((_,i)=>'<i class="'+(i===activeSlide?"on":"")+'"></i>').join("");
+  prevBtn.style.visibility=activeSlide===0?"hidden":"visible";
+  const last=activeSlide===course[activeLevel].slides.length-1;
+  nextBtn.textContent=last?"Finish level ✓":"Next →";
+  nextBtn.classList.toggle("finish",last);
 }
 
-function finishModule(){
-  if(!completed.includes(activeModule)) completed.push(activeModule);
-  completed.sort(function(a,b){return a-b;});
-  if(activeModule < modules.length-1) unlocked = Math.max(unlocked, activeModule+1);
-  localStorage.setItem("ohCivicsCompleted", JSON.stringify(completed));
-  localStorage.setItem("ohCivicsUnlocked", String(unlocked));
-  renderModules();
-  closeLesson();
+function finishLevel(){
+  if(!completed.includes(activeLevel)) completed.push(activeLevel);
+  completed.sort((a,b)=>a-b);
+  if(activeLevel<course.length-1) unlocked=Math.max(unlocked,activeLevel+1);
+  localStorage.setItem("ohCourseUnlockedV2",String(unlocked));
+  localStorage.setItem("ohCourseCompletedV2",JSON.stringify(completed));
+  renderHome();
+  lesson.classList.remove("open");
 }
 
-backBtn.addEventListener("click",function(){
-  if(activeSlide>0){activeSlide--;renderSlide();}
+document.getElementById("startBtn").onclick=()=>intro.classList.remove("show");
+document.getElementById("closeBtn").onclick=()=>lesson.classList.remove("open");
+prevBtn.onclick=()=>{if(activeSlide>0){activeSlide--;renderSlide()}};
+nextBtn.onclick=()=>{
+  if(activeSlide<course[activeLevel].slides.length-1){activeSlide++;renderSlide()}
+  else finishLevel();
+};
+document.addEventListener("keydown",e=>{
+  if(!lesson.classList.contains("open")||intro.classList.contains("show"))return;
+  if(e.key==="Escape")lesson.classList.remove("open");
+  if(e.key==="ArrowRight")nextBtn.click();
+  if(e.key==="ArrowLeft"&&activeSlide>0)prevBtn.click();
 });
 
-nextBtn.addEventListener("click",function(){
-  const last = modules[activeModule].slides.length-1;
-  if(activeSlide<last){activeSlide++;renderSlide();}else{finishModule();}
-});
-
-document.getElementById("closeLesson").addEventListener("click",closeLesson);
-document.addEventListener("keydown",function(e){
-  if(!lesson.classList.contains("open")) return;
-  if(e.key==="Escape") closeLesson();
-  if(e.key==="ArrowRight") nextBtn.click();
-  if(e.key==="ArrowLeft" && activeSlide>0) backBtn.click();
-});
-
-renderModules();
+renderHome();
 </script>
 </body>
 </html>
