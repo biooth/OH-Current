@@ -1245,16 +1245,92 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
   .door-window{height:120px}
 }
 </style>
+<style id="structure-overlap-fix">
+/* Header: all modules visible, no horizontal scrolling */
+.topbar{position:sticky;top:0}
+.topbar .shell.nav{max-width:1500px;height:auto;min-height:68px;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:18px;padding-top:8px;padding-bottom:8px}
+.brand-lockup{min-width:max-content}
+.tabs{display:flex;justify-content:flex-end;align-items:center;gap:4px;overflow:visible!important;flex-wrap:wrap;padding:0}
+.tab{padding:8px 10px;font-size:12px;line-height:1.1}
+@media(max-width:1050px){
+  .topbar .shell.nav{grid-template-columns:1fr;gap:6px}
+  .tabs{justify-content:flex-start;width:100%}
+  .tab{flex:1 1 auto;text-align:center}
+  .brand-copy small{display:none}
+}
+@media(max-width:650px){
+  .topbar .shell.nav{padding-left:10px;padding-right:10px}
+  .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+  .tab{width:100%;padding:7px 5px;font-size:10px}
+}
+
+/* Compact module entry so the game begins higher on screen */
+#health .module-hero,#arts .module-hero{display:block!important;margin-bottom:10px!important}
+#health .module-hero>aside,#arts .module-hero>aside{display:none!important}
+#health .module-hero>div,#arts .module-hero>div{padding:17px 20px!important;border-radius:18px!important}
+#health .module-hero h1,#arts .module-hero h1{font-size:clamp(30px,4vw,44px)!important;margin:5px 0 7px!important}
+#health .module-hero p,#arts .module-hero p{margin:0!important;max-width:800px;font-size:13px!important}
+#health .module-hero .actions,#arts .module-hero .actions{margin-top:12px!important}
+
+/* No competing horizontal blocks in the active game header */
+#health .deep-game-top,#arts .deep-game-top{display:block!important;padding:13px 16px!important}
+#health .deep-game-top .law-guide,#arts .deep-game-top .law-guide{max-width:none!important;margin-top:9px!important}
+.game-module-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.game-module-heading>div{min-width:0;flex:1 1 420px}
+.game-guide-line{display:grid;grid-template-columns:36px 1fr;gap:9px;align-items:center;margin-top:9px;padding:9px 11px;border-radius:12px;background:var(--game-accent-soft);border:1px solid color-mix(in srgb,var(--game-accent) 18%,transparent)}
+.game-guide-line .law-guide-avatar{width:34px;height:34px}
+.game-guide-line b{display:block;font-size:11px}.game-guide-line span{display:block;font-size:10px;line-height:1.35;color:var(--muted);margin-top:2px}
+
+/* Progress and record always stay in normal flow */
+#health .deep-progress,#arts .deep-progress{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;overflow:visible!important}
+#health .deep-step,#arts .deep-step{white-space:normal!important;min-width:0!important}
+.hearing-objective{display:block!important}
+.record-tray{margin-top:8px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;width:100%}
+.record-slot{min-width:0!important;justify-content:flex-start!important}
+.civic-gameboard,.gameboard-work,.game-intro-grid,.hearing-grid,.markup-grid-clean,.member-grid-clean,.review-grid-clean,.print-grid-clean,.bill-builder-clean,
+.witness-focus,.decision-panel,.clean-bill,.choice-panel,.draft-doc,.draft-choice-panel,.review-doc,.review-options,.print-doc,.print-summary{min-width:0!important}
+.gameboard-bar{height:auto!important;min-height:58px;display:block!important;padding:11px 14px!important}
+.member-mini-row{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;margin-top:8px!important;width:100%}
+.member-mini{min-width:0!important;justify-content:center!important;padding:5px!important}
+.member-mini span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gameboard-work{padding:14px!important;min-height:0!important}
+.hearing-grid,.markup-grid-clean,.review-grid-clean,.print-grid-clean,.bill-builder-clean{grid-template-columns:minmax(0,1fr) minmax(0,.82fr)!important}
+.witness-quote{overflow-wrap:anywhere}
+.clean-choice,.amendment-card-clean,.draft-option,.review-option-clean{width:100%;overflow-wrap:anywhere}
+.member-grid-clean{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.member-card-clean{min-width:0!important}
+.member-card-clean span{overflow-wrap:anywhere}
+@media(max-width:1100px){
+  .hearing-grid,.markup-grid-clean,.review-grid-clean,.print-grid-clean,.bill-builder-clean,.game-intro-grid{grid-template-columns:1fr!important}
+  .member-grid-clean{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:720px){
+  #health .deep-progress,#arts .deep-progress{grid-template-columns:1fr!important}
+  .record-tray,.member-mini-row,.member-grid-clean{grid-template-columns:1fr!important}
+  .member-mini{justify-content:flex-start!important}
+  .game-instruction{align-items:flex-start!important;flex-wrap:wrap}
+}
+
+/* Civic course guide controls */
+.level-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.course-guide-trigger{border:1px solid #cbd5e1;background:#fff;color:var(--navy);border-radius:999px;padding:8px 10px;font-size:10px;font-weight:900;cursor:pointer;white-space:nowrap}
+.course-guide-trigger:hover{background:#f4f7fb}
+.game-bridge{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin-top:12px;padding:11px 12px;border:1px solid var(--line);border-radius:14px;background:#f8fafc}
+.game-bridge i{width:34px;height:34px;border-radius:10px;background:#edf2ff;display:grid;place-items:center;font-style:normal;font-weight:950;color:var(--blue)}
+.game-bridge b{display:block;font-size:11px}.game-bridge span{display:block;font-size:10px;line-height:1.35;color:var(--muted);margin-top:2px}
+.game-bridge button{border:0;background:var(--navy);color:#fff;padding:8px 10px;border-radius:9px;font-size:10px;font-weight:900;cursor:pointer}
+@media(max-width:700px){.level-tools{grid-column:1/-1;justify-content:flex-start}.game-bridge{grid-template-columns:auto 1fr}.game-bridge button{grid-column:1/-1;width:100%}}
+</style>
 </head>
 <body>
-<header class="topbar"><div class="shell nav"><div class="brand-lockup" aria-label="OH! Civics"><div class="logo-mark">OH!</div><div class="brand-copy"><strong>OH! CIVICS</strong><small>Ohio government, one move at a time</small></div></div><nav class="tabs" aria-label="Primary"><button class="tab active" data-page="today">Home</button><button class="tab" data-page="learn">Civic Course</button><button class="tab" data-page="games">Lawmaking Lab</button><button class="tab" data-page="health">Health Committee</button><button class="tab" data-page="arts">Culture Bill</button><button class="tab" data-page="explorer">Map</button><button class="tab" data-page="sources">Sources</button></nav></div></header>
+<header class="topbar"><div class="shell nav"><div class="brand-lockup" aria-label="OH! Civics"><div class="logo-mark">OH!</div><div class="brand-copy"><strong>OH! CIVICS</strong><small>Ohio government, one move at a time</small></div></div><nav class="tabs" aria-label="Primary"><button class="tab active" data-page="today">Home</button><button class="tab" data-page="learn">Civic Course</button><button class="tab" data-page="health">Health Committee</button><button class="tab" data-page="arts">Culture Drafting</button><button class="tab" data-page="explorer">Map</button><button class="tab" data-page="sources">Sources</button></nav></div></header>
 <main>
 <section id="today" class="page active"><div class="shell">
   <div class="law-hero deep-home-hero">
-    <div class="law-hero-copy"><h1>Learn Ohio government by doing the work.</h1><p>Each module uses a different kind of challenge. Hear testimony, solve a drafting puzzle, explore districts, and inspect real sources without turning every activity into the same points-and-meters game.</p><div class="actions"><button class="primary" onclick="startCivicPath()">Start the 4-level Civic Path →</button><button class="secondary" onclick="go('games')">Explore lawmaking games</button></div></div>
+    <div class="law-hero-copy"><h1>Learn Ohio government by doing the work.</h1><p>Each module uses a different kind of challenge. Hear testimony, solve a drafting puzzle, explore districts, and inspect real sources without turning every activity into the same points-and-meters game.</p><div class="actions"><button class="primary" onclick="startCivicPath()">Start the 4-level Civic Path →</button><button class="secondary" onclick="go('health')">Open Health Committee</button><button class="secondary" onclick="go('arts')">Open Culture Drafting</button></div></div>
     <aside class="law-hero-side"><span class="section-kicker">Design rule</span><h3>Stay in one governmental process long enough to understand it.</h3><div class="law-rule"><b>1</b><span>Enter one richly illustrated civic setting.</span></div><div class="law-rule"><b>2</b><span>Meet people whose concerns change the bill.</span></div><div class="law-rule"><b>3</b><span>Watch the document and room evolve as the process moves.</span></div></aside>
   </div>
-  <div class="section-head"><div><span class="section-kicker">Two modules · two deep games</span><h2>Choose the process you want to inhabit.</h2><p>Health stays entirely inside a legislative committee. Culture stays entirely inside bill drafting. Each playthrough has several acts, but they are acts of one game—not separate minigames.</p></div></div>
+  <div class="section-head"><div><span class="section-kicker">Two applied games</span><h2>Practice the skills in context.</h2><p>Health Committee teaches committee hearings and amendments. Culture Drafting teaches how needs become bill language.</p></div></div>
   <div class="deep-module-grid">
     <article class="deep-module-card health-room"><div class="room-miniature"><div class="mini-dais"><i></i><i></i><i></i><i></i></div><div class="mini-table"></div><div class="mini-people"><i></i><i></i><i></i></div></div><div><span class="pill green">Health · committee process</span><h3>Committee Hearing</h3><p>Walk a fictional health bill through one committee hearing: briefing, testimony, amendment, member discussion, and a committee vote.</p><div class="deep-card-rule objective-rule"><b>Objective: build the hearing record</b><span>Identify concerns, choose an amendment, then see the committee vote.</span></div><button onclick="go('health')">Enter the hearing →</button></div></article>
     <article class="deep-module-card culture-room"><div class="desk-miniature"><div class="mini-paper"></div><div class="mini-note n1"></div><div class="mini-note n2"></div><div class="mini-pen"></div></div><div><span class="pill purple">Culture · drafting process</span><h3>Build the Bill</h3><p>Turn a fictional arts-policy idea into a bill: hear the need, choose clauses, fit the bill together, survive a sponsor review, and print the draft.</p><div class="deep-card-rule objective-rule"><b>Objective: complete the bill puzzle</b><span>Fill four clause jobs, resolve one sponsor redline, and print the draft.</span></div><button onclick="go('arts')">Open the drafting desk →</button></div></article>
@@ -1284,7 +1360,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
 
   <div class="civic-level-panel active" data-civic-panel="0">
     <div class="level-shell">
-      <div class="level-head"><div class="level-no">01</div><div><h2>Foundations of Government & Systems</h2><p>Learn the vocabulary of political ideas, then trace where power actually sits in Ohio and the United States.</p></div><span class="level-goal">Goal: locate power before taking a position</span></div>
+      <div class="level-head"><div class="level-no">01</div><div><h2>Foundations of Government & Systems</h2><p>Learn the vocabulary of political ideas, then trace where power actually sits in Ohio and the United States.</p></div><div class="level-tools"><span class="level-goal">Goal: locate power before taking a position</span><button class="course-guide-trigger" type="button" onclick="showCivicGuideLevel(0,true)">👋 Guide me</button></div></div>
       <div class="level-body">
         <div class="learn-arc"><span>LEARN · political ideas</span><span>UNDERSTAND · power structure</span><span>APPLY · route a real issue</span></div>
         <div class="civic-two-col">
@@ -1317,6 +1393,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
           </div>
         </div>
         <div class="practice-box"><small>PRACTICE · WHO HAS THE POWER?</small><h3 id="powerCaseQuestion">A public school district is considering a change to district policy. Which institution should you watch first?</h3><div class="practice-actions" id="powerCaseActions"><button type="button" onclick="answerPowerCase('local')">Local / school board</button><button type="button" class="alt" onclick="answerPowerCase('state')">Ohio General Assembly</button><button type="button" class="alt" onclick="answerPowerCase('federal')">Congress</button></div><div class="practice-feedback" id="powerCaseFeedback">Choose the institution with the most direct authority over the decision described.</div></div>
+        <div class="game-bridge"><i>H</i><div><b>Use this in Health Committee</b><span>Power mapping helps you understand why a committee can hear, amend, and report a bill—but does not itself enact the whole law.</span></div><button type="button" onclick="go('health')">Open Health Committee</button></div>
         <div class="level-footer"><div class="course-sources"><a href="https://www.legislature.ohio.gov/publications/organizational-chart" target="_blank" rel="noopener">Ohio government chart ↗</a><a href="https://www.ohiosos.gov/elections/voting-schedule-text-only" target="_blank" rel="noopener">2026 voting schedule ↗</a><a href="https://www.ohiosos.gov/elections/district-maps" target="_blank" rel="noopener">District maps ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(0)">Complete Level 1 →</button></div>
       </div>
     </div>
@@ -1324,7 +1401,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
 
   <div class="civic-level-panel" data-civic-panel="1">
     <div class="level-shell">
-      <div class="level-head"><div class="level-no">02</div><div><h2>Media Literacy & Information Evaluation</h2><p>Learn how framing, recommendation systems, and source types affect what reaches you—and how to verify before reacting.</p></div><span class="level-goal">Goal: trace claims back to evidence</span></div>
+      <div class="level-head"><div class="level-no">02</div><div><h2>Media Literacy & Information Evaluation</h2><p>Learn how framing, recommendation systems, and source types affect what reaches you—and how to verify before reacting.</p></div><div class="level-tools"><span class="level-goal">Goal: trace claims back to evidence</span><button class="course-guide-trigger" type="button" onclick="showCivicGuideLevel(1,true)">👋 Guide me</button></div></div>
       <div class="level-body">
         <div class="learn-arc"><span>LEARN · framing & algorithms</span><span>UNDERSTAND · source hierarchy</span><span>APPLY · verify a claim</span></div>
         <div class="civic-two-col">
@@ -1346,6 +1423,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
         </div>
         <div class="course-card" style="margin-top:12px"><h3>Three reasoning traps to notice</h3><div class="civic-three-col"><div class="source-step"><i>A</i><div><b>Ad hominem</b><span>Attacking the person instead of evaluating the claim or evidence.</span></div></div><div class="source-step"><i>2</i><div><b>False dilemma</b><span>Presenting only two options when more possibilities may exist.</span></div></div><div class="source-step"><i>↔</i><div><b>Correlation ≠ causation</b><span>Two things moving together does not by itself show that one caused the other.</span></div></div></div></div>
         <div class="practice-box claim-card"><small>CLAIM LAB · FICTIONAL POST</small><div class="claim-post">“Ohio lawmakers passed this bill yesterday, so it is already state law today.” The post includes a cropped screenshot but no link.</div><h3>What is the best first move?</h3><div class="practice-actions"><button type="button" onclick="verifyCivicClaim('official')">Open the official legislation page</button><button type="button" class="alt" onclick="verifyCivicClaim('comments')">Read the comments</button><button type="button" class="alt" onclick="verifyCivicClaim('repost')">Find a more popular repost</button></div><div class="practice-feedback" id="claimFeedback">Use lateral reading: leave the post, find the underlying source, and check the bill’s actual status and effective-date information.</div></div>
+        <div class="game-bridge"><i>H</i><div><b>Use this in Health Committee</b><span>Witness testimony is evidence of concerns; bill text and official status are different source types. The game asks you to separate them.</span></div><button type="button" onclick="go('health')">Try the hearing</button></div>
         <div class="level-footer"><div class="course-sources"><a href="https://www.legislature.ohio.gov/legislation/search?generalAssembly=136" target="_blank" rel="noopener">Current Ohio legislation ↗</a><a href="https://ed.stanford.edu/news/how-spot-fake-news-online" target="_blank" rel="noopener">Lateral reading ↗</a><a href="https://newslit.org/news-and-research/fact-check-it/" target="_blank" rel="noopener">Verification skills ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(1)">Complete Level 2 →</button></div>
       </div>
     </div>
@@ -1353,7 +1431,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
 
   <div class="civic-level-panel" data-civic-panel="2">
     <div class="level-shell">
-      <div class="level-head"><div class="level-no">03</div><div><h2>Civic Rights, Responsibilities & Engagement</h2><p>Connect constitutional rights to the practical places where Ohioans can observe, question, petition, comment, organize, vote, and request records.</p></div><span class="level-goal">Goal: choose an avenue that matches the issue</span></div>
+      <div class="level-head"><div class="level-no">03</div><div><h2>Civic Rights, Responsibilities & Engagement</h2><p>Connect constitutional rights to the practical places where Ohioans can observe, question, petition, comment, organize, vote, and request records.</p></div><div class="level-tools"><span class="level-goal">Goal: choose an avenue that matches the issue</span><button class="course-guide-trigger" type="button" onclick="showCivicGuideLevel(2,true)">👋 Guide me</button></div></div>
       <div class="level-body">
         <div class="learn-arc"><span>LEARN · rights</span><span>UNDERSTAND · local institutions</span><span>APPLY · route your action</span></div>
         <div class="rights-row">
@@ -1374,6 +1452,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
           </div>
         </div>
         <div class="practice-box"><small>PRACTICALITY · 10-MINUTE CIVIC CHECK</small><h3>Before contacting anyone, answer three questions</h3><div class="civic-three-col"><div class="course-card"><h3>1. Who decides?</h3><p>Name the body or office with authority.</p></div><div class="course-card"><h3>2. What is the record?</h3><p>Find the agenda, bill, vote, budget, minutes, or policy.</p></div><div class="course-card"><h3>3. What action fits?</h3><p>Comment, petition, contact, attend, organize, request a record, or vote.</p></div></div></div>
+        <div class="game-bridge"><i>M</i><div><b>Use this with the Map</b><span>Once you know which level of government matters, the district map helps you identify the relevant representative.</span></div><button type="button" onclick="go('explorer')">Open the Map</button></div>
         <div class="level-footer"><div class="course-sources"><a href="https://codes.ohio.gov/ohio-constitution/article-1" target="_blank" rel="noopener">Ohio Bill of Rights ↗</a><a href="https://www.ohioattorneygeneral.gov/Sunshine" target="_blank" rel="noopener">Ohio Sunshine Laws ↗</a><a href="https://www.ohioschoolboards.org/understanding-your-school-board" target="_blank" rel="noopener">School board role ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(2)">Complete Level 3 →</button></div>
       </div>
     </div>
@@ -1381,7 +1460,7 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
 
   <div class="civic-level-panel" data-civic-panel="3">
     <div class="level-shell">
-      <div class="level-head"><div class="level-no">04</div><div><h2>Critical Thinking & Public Policy Analysis</h2><p>Build a policy, identify tradeoffs, apply an economic lens, and practice disagreement without turning the exercise into a “correct ideology” test.</p></div><span class="level-goal">Goal: explain tradeoffs without scoring sides</span></div>
+      <div class="level-head"><div class="level-no">04</div><div><h2>Critical Thinking & Public Policy Analysis</h2><p>Build a policy, identify tradeoffs, apply an economic lens, and practice disagreement without turning the exercise into a “correct ideology” test.</p></div><div class="level-tools"><span class="level-goal">Goal: explain tradeoffs without scoring sides</span><button class="course-guide-trigger" type="button" onclick="showCivicGuideLevel(3,true)">👋 Guide me</button></div></div>
       <div class="level-body">
         <div class="learn-arc"><span>LEARN · policy process & economics</span><span>UNDERSTAND · tradeoffs</span><span>APPLY · build a policy memo</span></div>
         <div class="course-card" style="margin-bottom:12px"><h3>Who shapes policy before the final vote?</h3><p>Formal authority belongs to public institutions, but policy development also includes testimony, constituents, organized interests, lobbyists, experts, agencies, news coverage, and public opinion. Ohio maintains a public lobbying database where registered lobbying activity and employer reports can be searched.</p><div class="power-stack" style="margin-top:10px"><div class="power-layer"><small>Public</small><b>Constituents</b><span>Calls, testimony, elections, petitions, meetings.</span></div><div class="power-layer"><small>Organized</small><b>Interest groups</b><span>Research, advocacy, coalitions, lobbying.</span></div><div class="power-layer"><small>Institutional</small><b>Agencies & experts</b><span>Implementation, data, technical analysis.</span></div><div class="power-layer"><small>Political</small><b>Legislators & executive</b><span>Draft, amend, enact, veto, administer.</span></div></div></div>
@@ -1400,20 +1479,11 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
           <div class="policy-memo" id="policyMemo"><small class="section-kicker">YOUR POLICY MEMO</small><h3>Three-county pilot</h3><div class="memo-line"><b>Funding:</b> State appropriation. The legislature would authorize public spending; the key questions include amount, duration, and competing uses of the same revenue.</div><div class="memo-line"><b>Accountability:</b> Two-year sunset and report. This creates a scheduled review point but may also create uncertainty for longer-term planning.</div><div class="memo-line"><b>Implementation question:</b> Which state or local entity administers the program, and what evidence will determine whether it continues?</div></div>
         </div>
         <div class="discourse-box"><small class="section-kicker">CIVIL DISCOURSE · FIND THE SHARED QUESTION</small><div class="voice-pair"><div class="voice-mini"><b>Resident A</b><br>“Weekend service would make it easier to reach work and appointments. I want the state to move quickly.”</div><div class="voice-mini"><b>Resident B</b><br>“I want better access too, but I want to know the cost and whether the service will actually be used before committing long-term funds.”</div></div><div class="practice-actions"><button type="button" onclick="showCommonGround()">Find common ground</button></div><div class="common-ground" id="commonGround">Both residents care about access. Their disagreement is mainly about pace, evidence, and fiscal commitment. A productive next question is: <b>What pilot design would measure usage and cost well enough to inform a longer-term decision?</b></div></div>
+        <div class="game-bridge"><i>C</i><div><b>Use this in Culture Drafting</b><span>Policy tradeoffs become legislative language. The drafting game makes you turn goals into eligibility, mechanisms, and accountability rules.</span></div><button type="button" onclick="go('arts')">Open Culture Drafting</button></div>
         <div class="level-footer"><div class="course-sources"><a href="https://www.legislature.ohio.gov/publications/the-legislative-process" target="_blank" rel="noopener">How an Ohio bill becomes law ↗</a><a href="https://www.legislature.ohio.gov/laws/ohio-constitution?Part=18&Section=01" target="_blank" rel="noopener">Ohio Constitution & laws ↗</a><a href="https://www2.jlec-olig.state.oh.us/olac/" target="_blank" rel="noopener">Ohio lobbying records ↗</a></div><button class="course-action" type="button" onclick="completeCivicLevel(3)">Finish Civic Path ✓</button></div>
       </div>
     </div>
   </div>
-</div></section>
-
-<section id="games" class="page"><div class="shell">
-  <div class="section-head"><div><span class="section-kicker">Ohio Lawmaking Lab</span><h2>Choose a legislative skill.</h2><p>Committee Hearing teaches how testimony changes a bill. Build the Bill teaches how a policy idea becomes legislative language.</p></div><div class="law-max-note">1 game / module</div></div>
-  <div class="game-hallway">
-    <button class="hall-door health-door" onclick="go('health')"><span class="door-window"><i></i><i></i><i></i></span><small>ROOM 01 · COMMITTEE</small><strong>Committee Hearing</strong><em>Listen → classify → amend → vote</em></button>
-    <div class="hall-center"><div class="statehouse-medallion">OH!</div><b>Two games. Two different jobs.</b><span>Pick the process you want to practice.</span></div>
-    <button class="hall-door culture-door" onclick="go('arts')"><span class="door-window paper"><i></i></span><small>ROOM 02 · DRAFTING</small><strong>Build the Bill</strong><em>Collect clues → fit clauses → redline → print</em></button>
-  </div>
-  <div class="law-process-note"><b>Why this structure?</b><span>The learning target is no longer “manage the whole legislature.” The Health module teaches what happens inside committee work; the Culture module teaches how a policy idea becomes clearer legislative language. The procedural depth remains, while the number of simultaneous systems is kept low.</span></div>
 </div></section>
 
 <section id="health" class="page"><div class="shell">
@@ -1494,7 +1564,7 @@ function showCasePath(kind){
  if(document.getElementById('judiciary') && !document.getElementById('judiciary').classList.contains('active')) go('judiciary');
 }
 
-function openGame(name){ go('games'); setTimeout(()=>launchGame(name),80); }
+function openGame(name){ if(name==='culture')go('arts'); else go('health'); }
 function backToGameMenu(){ document.getElementById('gameStage').hidden=true; document.getElementById('gameMenu').hidden=false; document.getElementById('gameMount').innerHTML=''; window.scrollTo({top:0,behavior:'smooth'}); }
 function clamp(n,min=0,max=100){ return Math.max(min,Math.min(max,n)); }
 function meter(label,value){ const v=Math.round(clamp(value)); return `<div class="hud-card"><small>${label}</small><strong>${v}</strong><div class="meter"><span style="width:${v}%"></span></div></div>`; }
@@ -1511,7 +1581,8 @@ const advisers={
  battle:{name:'Lena Ortiz',role:'Election Strategy Editor',initials:'LO'},
  coalition:{name:'Marcus Bell',role:'Coalition Organizer',initials:'MB'},
  judiciary:{name:'Avery Monroe',role:'Court Clerk & Civic Guide',initials:'AM'},
- health:{name:'Nia Carter',role:'Ohio Health Policy Guide',initials:'NC'}
+ health:{name:'Nia Carter',role:'Ohio Health Policy Guide',initials:'NC'},
+ civic:{name:'Maya Brooks',role:'OH! Civics Learning Guide',initials:'MB'}
 };
 let advisorAction=null,advisorTypingTimer=null,advisorFullText='';
 function impactClass(v){ const t=String(v); if(t.includes('+')||t.toLowerCase().includes('helps')||t.toLowerCase().includes('protect'))return 'good'; if(t.includes('−')||t.includes('-')||t.toLowerCase().includes('cost')||t.toLowerCase().includes('risk'))return 'bad'; return 'neutral'; }
@@ -3099,8 +3170,8 @@ judImpactStage=function(){const c=judCase(),h=c.holdings.find(x=>x[0]===courtGam
   function healthMarkupScene(s){const c=s.case;return committeeBase(`<div class="game-instruction"><i>MARKUP</i><b>Choose the amendment that best responds to the hearing record.</b></div><div class="markup-grid-clean"><article class="clean-bill"><small class="section-kicker">BILL BEFORE MARKUP</small><h3>${c.title}</h3><div class="bill-line-clean">${microText(c.clauses[0],115)}</div><div class="bill-line-clean highlight">${microText(c.clauses[1],115)}</div><div class="bill-line-clean">${microText(c.clauses[2],115)}</div></article><aside class="choice-panel"><small>COMMITTEE AMENDMENTS</small><h4>Pick one change</h4><p>No support meter is shown. Read the language and compare it to the testimony.</p><div class="clean-choice-list">${c.amendments.map((a,i)=>`<button class="amendment-card-clean" onclick="healthChooseAmendment(${i})"><b>${a.title}</b><span>${microText(a.text,120)}</span></button>`).join('')}</div></aside></div>`);}
   function healthDiscussionScene(s){const a=s.case.amendments[s.amendment];const likely=2+a.support;const lines=[`This amendment responds to the record by ${a.title.toLowerCase()}.`,likely>=4?'This version answers my biggest concern.':'I still have a concern the amendment does not resolve.',s.recordHits>=2?'The hearing made the tradeoff easier to explain.':'I heard the testimony differently, so I want more discussion.',a.support>0?'The change is specific enough for me to consider.':'I think too much is still being left for later.'];return committeeBase(`<div class="game-instruction"><i>DISCUSS</i><b>Open two reactions before the committee votes.</b></div><div class="member-grid-clean">${lines.map((line,i)=>`<button class="member-card-clean ${s.heardMembers.includes(i)?'heard':''}" onclick="healthHearMember(${i})"><div class="talk-avatar" style="--skin:${members[i+1].skin};--hair:${members[i+1].hair}"></div><div><b>${members[i+1].name}</b><span>${s.heardMembers.includes(i)?line:'Tap to hear this member’s reaction.'}</span></div></button>`).join('')}<div class="member-action-row"><span class="micro-lesson">${s.heardMembers.length}/2 reactions heard</span><button class="deep-primary" ${s.heardMembers.length<2?'disabled':''} onclick="healthCallVote()">Call committee vote →</button></div></div>`);}
   function healthVoteScene(s){const a=s.case.amendments[s.amendment];const yes=Math.max(1,Math.min(5,2+a.support));const passed=yes>=3;return committeeBase(`<div class="vote-board-clean"><small class="section-kicker">COMMITTEE ACTION</small><h3>${passed?'Reported from committee':'Not reported from committee'}</h3><p>${yes}–${5-yes} fictional practice vote</p><div class="vote-chips-clean">${members.map((m,i)=>`<div class="vote-chip-clean ${i<yes?'yes':'no'}"><i>${i<yes?'YES':'NO'}</i><b>${m.name}</b></div>`).join('')}</div><div class="civic-two-col" style="text-align:left"><div class="course-card"><small class="section-kicker">HEARING READ</small><h3>${s.recordHits}/3 on first classification</h3><p>This is diagnostic feedback about reading testimony, not a points score.</p></div><div class="course-card"><small class="section-kicker">AMENDMENT USED</small><h3>${a.title}</h3><p>${microText(a.effect,130)}</p></div></div><div class="practice-actions" style="justify-content:center"><button class="deep-primary" onclick="startHealthDeepGame(true)">New hearing</button><button class="deep-secondary" onclick="jumpHealthStage('brief')">Replay case</button></div></div>`,yes);}
-  function renderHealth(){const m=document.getElementById('healthDeepGame');if(!m||!healthState)return;const s=healthState,c=s.case;const scene=[healthBriefScene,healthTestimonyScene,healthMarkupScene,healthDiscussionScene,healthVoteScene][s.stage](s);const action=['Open the case','Build the hearing record','Choose an amendment','Hear member reactions','See the vote'][s.stage];const slots=c.witnesses.map((w,i)=>`<span class="record-slot ${s.marked.includes(i)?'filled':''}"><i>${s.marked.includes(i)?'✓':i+1}</i>${s.marked.includes(i)?w.tag:'Witness '+(i+1)}</span>`).join('');m.innerHTML=`<div class="deep-game-shell"><div class="deep-game-top"><div><span class="section-kicker" style="color:#aee4d4">HEALTH · HEARING GAME</span><h2>${c.title}</h2><p class="module-action">${action}</p></div><div class="law-guide"><div class="law-guide-avatar">M</div><div><b>Maya · committee aide</b><span>${s.stage===0?'Your job is to build a record, not maximize a dashboard.':s.stage===1?'Classify what each witness adds to the record.':s.stage===2?'Use the record to choose one amendment.':s.stage===3?'Now see how legislators react to the same change.':'The committee vote is an outcome, not a score meter.'}</span></div></div></div>${stageBar(healthStages,s.stage)}<div class="deep-game-body"><div class="hearing-objective"><div><b>Hearing record</b><span>Fill each witness slot, then use the record during markup.</span></div><div class="record-tray">${slots}</div></div>${scene}</div></div>`;}
-  const cultureCases=[
+  function renderHealth(){const m=document.getElementById('healthDeepGame');if(!m||!healthState)return;const s=healthState,c=s.case;const scene=[healthBriefScene,healthTestimonyScene,healthMarkupScene,healthDiscussionScene,healthVoteScene][s.stage](s);const action=['Open the case','Build the hearing record','Choose an amendment','Hear member reactions','See the vote'][s.stage];const guide=s.stage===0?'Build a hearing record, then use it.':s.stage===1?'Classify the concern in each witness statement.':s.stage===2?'Compare amendment language directly to the record.':s.stage===3?'Hear how members react before the vote.':'The committee vote is the outcome of this simulation.';const slots=c.witnesses.map((w,i)=>`<span class="record-slot ${s.marked.includes(i)?'filled':''}"><i>${s.marked.includes(i)?'✓':i+1}</i>${s.marked.includes(i)?w.tag:'Witness '+(i+1)}</span>`).join('');m.innerHTML=`<div class="deep-game-shell"><div class="deep-game-top"><div class="game-module-heading"><div><span class="section-kicker">HEALTH COMMITTEE</span><h2>${c.title}</h2><p class="module-action">${action}</p></div></div><div class="game-guide-line"><div class="law-guide-avatar">M</div><div><b>Maya · committee aide</b><span>${guide}</span></div></div></div>${stageBar(healthStages,s.stage)}<div class="deep-game-body"><div class="hearing-objective"><div><b>Hearing record</b><span>These three witness slots are the only persistent tracker.</span></div><div class="record-tray">${slots}</div></div>${scene}</div></div>`;}
+const cultureCases=[
     {
       title:'Neighborhood Arts Access Bill',code:'CULTURE FILE 17 · FICTIONAL',brief:'Small community arts organizations say state programs are difficult to access because eligibility rules assume larger staffs and formal grant-writing capacity.',question:'How can a bill widen access without making eligibility so vague that the program becomes impossible to administer?',clarity:42,support:48,
       voices:[
@@ -3165,12 +3236,39 @@ judImpactStage=function(){const c=judCase(),h=c.holdings.find(x=>x[0]===courtGam
   function cultureBuildScene(s){const c=s.case,idx=s.clauses.length,current=c.clauses[idx];return draftingBase(`<div class="game-instruction"><i>BUILD</i><b>Fill one job at a time. The document is the game board.</b></div><div class="bill-builder-clean"><article class="draft-doc"><small class="section-kicker">WORKING DRAFT</small><h3>${c.title}</h3><div class="clause-list-clean">${c.clauses.map((cl,i)=>{const filled=i<s.clauses.length,txt=filled?cl.opts[s.clauses[i]][0]:'';return `<div class="clause-row-clean ${filled?'filled':''}"><small>Clause ${i+1}</small><b>${cl.name}</b><span>${filled?microText(txt,100):'Empty — choose language for this job.'}</span></div>`}).join('')}</div></article><aside class="draft-choice-panel">${current?`<small class="section-kicker">CLAUSE ${idx+1} OF 4</small><h4>${current.name}</h4><p>${current.prompt}</p>${current.opts.map((o,i)=>`<button class="draft-option" onclick="cultureChooseClause(${i})"><b>${i===0?'Option A':'Option B'}</b><span>${microText(o[0],115)}</span></button>`).join('')}`:`<small class="section-kicker">DRAFT ASSEMBLED</small><h4>All four clause jobs are filled.</h4><p>One sponsor review remains before the document is ready.</p><button class="deep-primary" onclick="cultureGoReview()">Open sponsor review →</button>`}</aside></div>`);}
   function cultureReviewScene(s){const c=s.case;return draftingBase(`<div class="game-instruction"><i>REVISE</i><b>Resolve one sponsor redline.</b></div><div class="review-grid-clean"><article class="review-doc"><small class="section-kicker">SPONSOR MARKUP</small><h3>${c.title}</h3>${c.clauses.map((cl,i)=>`<div class="review-line-clean ${i===1?'problem':''}"><b>${cl.name}.</b> ${microText(cl.opts[s.clauses[i]][0],105)}</div>`).join('')}</article><aside class="review-options"><small>ONE MORE PASS</small><h4>Choose the revision</h4><p>The highlighted language is the sponsor’s concern.</p>${c.review.map((r,i)=>`<button class="review-option-clean" onclick="cultureChooseReview(${i})"><b>${r[0]}</b><br><span>${microText(r[1],110)}</span></button>`).join('')}</aside></div>`);}
   function culturePrintScene(s){const c=s.case,r=c.review[s.review];return draftingBase(`<div class="game-instruction"><i>DONE</i><b>Your practice bill has a complete structure.</b></div><div class="print-grid-clean"><article class="print-doc"><small class="section-kicker">PRACTICE BILL</small><h3>${c.title}</h3>${c.clauses.map((cl,i)=>`<div class="final-section-clean"><b>SECTION ${i+1} · ${cl.name.toUpperCase()}</b><br>${microText(cl.opts[s.clauses[i]][0],115)}</div>`).join('')}<div class="final-section-clean"><b>REVISION</b><br>${microText(r[1],110)}</div><span class="finish-stamp">DRAFT COMPLETE</span></article><aside class="print-summary"><small>WHAT YOU BUILT</small><h4>Four clause jobs + one revision</h4><p>The learning objective is document structure and revision—not maximizing a number.</p><div class="clean-choice-list"><div class="clean-choice"><b>Purpose</b><span>What the policy is for.</span></div><div class="clean-choice"><b>Eligibility</b><span>Who or what qualifies.</span></div><div class="clean-choice"><b>Mechanism</b><span>How the policy operates.</span></div><div class="clean-choice"><b>Accountability</b><span>How implementation is checked.</span></div></div><div class="practice-actions"><button class="deep-primary" onclick="startCultureDeepGame(true)">New drafting case</button><button class="deep-secondary" onclick="jumpCultureStage('brief')">Replay</button></div></aside></div>`);}
-  function renderCulture(){const m=document.getElementById('cultureDeepGame');if(!m||!cultureState)return;const s=cultureState,c=s.case;const scene=[cultureBriefScene,cultureVoicesScene,cultureBuildScene,cultureReviewScene,culturePrintScene][s.stage](s);const action=['Read the assignment','Collect drafting clues','Fit the clause pieces','Resolve the redline','Print the bill'][s.stage];const names=['Purpose','Eligibility','Mechanism','Accountability'];const puzzle=names.map((n,i)=>`<div class="puzzle-chip ${i<s.clauses.length?'done':''}"><b>${n}</b><span>${i<s.clauses.length?'piece placed':'empty slot'}</span></div>`).join('');m.innerHTML=`<div class="deep-game-shell"><div class="deep-game-top"><div><span class="section-kicker" style="color:#6f512c">CULTURE · BILL PUZZLE</span><h2>${c.title}</h2><p class="module-action">${action}</p></div><div class="law-guide"><div class="law-guide-avatar">M</div><div><b>Maya · drafting aide</b><span>${s.stage===0?'This game has no score meters. Complete the bill structure.':s.stage===1?'Community voices give you clues about what the language must do.':s.stage===2?'Fill each clause job to assemble the bill.':s.stage===3?'A sponsor redline asks you to tighten one piece.':'You completed the construction puzzle.'}</span></div></div></div>${stageBar(cultureStages,s.stage)}<div class="deep-game-body"><div class="puzzle-progress">${puzzle}</div>${scene}</div></div>`;}
-  window.renderCulture=renderCulture;
+  function renderCulture(){const m=document.getElementById('cultureDeepGame');if(!m||!cultureState)return;const s=cultureState,c=s.case;const scene=[cultureBriefScene,cultureVoicesScene,cultureBuildScene,cultureReviewScene,culturePrintScene][s.stage](s);const action=['Read the assignment','Collect drafting clues','Fit the clause pieces','Resolve the redline','Print the bill'][s.stage];const names=['Purpose','Eligibility','Mechanism','Accountability'];const puzzle=names.map((n,i)=>`<div class="puzzle-chip ${i<s.clauses.length?'done':''}"><b>${n}</b><span>${i<s.clauses.length?'piece placed':'empty slot'}</span></div>`).join('');const guide=s.stage===0?'Complete the four jobs of a bill.':s.stage===1?'Collect needs before writing rules.':s.stage===2?'Fill the document one clause job at a time.':s.stage===3?'Resolve the sponsor redline.':'Your draft now has a complete structure.';m.innerHTML=`<div class="deep-game-shell"><div class="deep-game-top"><div class="game-module-heading"><div><span class="section-kicker">CULTURE DRAFTING</span><h2>${c.title}</h2><p class="module-action">${action}</p></div></div><div class="game-guide-line"><div class="law-guide-avatar">M</div><div><b>Maya · drafting aide</b><span>${guide}</span></div></div></div>${stageBar(cultureStages,s.stage)}<div class="deep-game-body"><div class="puzzle-progress">${puzzle}</div>${scene}</div></div>`;}
+window.renderCulture=renderCulture;
   window.renderHealth=renderHealth;
 
 
   // Four-level Ohio Civic Path
+
+  const civicGuideSeen=[false,false,false,false];
+  const civicGuideScripts=[
+    [
+      {title:'Level 1 · Start with a real situation',message:'Example: your school district is considering a new attendance policy. Before arguing about the policy, ask one question: who actually has authority to make this decision?',quote:'Start with the institution, not the opinion.',impacts:[{label:'Local',value:'School board'},{label:'State',value:'Sets legal boundaries'},{label:'Federal',value:'May constrain'}]},
+      {title:'Now map the power',message:'Political ideas tell you what people value. Government structure tells you who can act. In this level, separate ideology from authority, then trace local, Ohio, and federal power.',impacts:[{label:'Idea',value:'What should happen?'},{label:'Authority',value:'Who can act?'},{label:'Election',value:'How representatives are chosen'}]},
+      {title:'Where this appears in the games',message:'In Health Committee, a committee can hear testimony, amend a bill, and vote on whether to report it. That is real procedural power—but it is not the entire lawmaking process.',impacts:[{label:'Game link',value:'Health Committee'}]}
+    ],
+    [
+      {title:'Level 2 · Start with a viral claim',message:'Example: a post says, “Ohio passed this yesterday, so it is law today,” but only shows a cropped screenshot. Do not begin with the comments. Leave the post and find the underlying record.',quote:'Popularity is not verification.',impacts:[{label:'First move',value:'Open official record'},{label:'Then',value:'Check reporting'},{label:'Last',value:'Interpret commentary'}]},
+      {title:'Now separate source types',message:'A bill page, vote, budget document, court opinion, or meeting record is a primary source. Reporting adds context. Commentary tells you how someone interprets the evidence. Each can be useful, but they do different jobs.',impacts:[{label:'Primary',value:'Underlying record'},{label:'Secondary',value:'Reported context'},{label:'Commentary',value:'Interpretation'}]},
+      {title:'Where this appears in the games',message:'Health Committee deliberately separates witness testimony from the bill language. A witness can identify a problem, but the amendment text is the rule the committee is actually considering.',impacts:[{label:'Game link',value:'Health Committee'}]}
+    ],
+    [
+      {title:'Level 3 · Start with the problem you want to change',message:'Example: a city service is not working for your neighborhood. Voting is one civic tool, but it may not be the first tool for this problem. Find the office, meeting, record, or official with direct authority.',quote:'Match the action to the institution.',impacts:[{label:'Observe',value:'Meetings / agendas'},{label:'Ask',value:'Records / contact'},{label:'Act',value:'Comment / petition / vote'}]},
+      {title:'Now choose an avenue',message:'Civil rights protect important forms of participation. Practical civic engagement adds another skill: identifying the venue where your participation can actually reach the decision.',impacts:[{label:'Right',value:'What government must respect'},{label:'Venue',value:'Where decision happens'},{label:'Action',value:'What you can do'}]},
+      {title:'Where this appears in OH! Civics',message:'The Map becomes useful after you know which office matters. The goal is not just to find a politician—it is to connect a public issue to the correct level of representation.',impacts:[{label:'Module link',value:'Ohio Map'}]}
+    ],
+    [
+      {title:'Level 4 · Start with a policy choice',message:'Example: communities want more weekend transit. “More transit” is a goal, not yet a complete policy. Someone still has to decide scope, funding, administration, and how success will be measured.',quote:'Every policy design answers practical questions.',impacts:[{label:'Scope',value:'Who is covered?'},{label:'Funding',value:'How is it paid?'},{label:'Accountability',value:'How is it reviewed?'}]},
+      {title:'Now look for tradeoffs',message:'Policy analysis does not require picking a political team. Ask what each design changes, who administers it, what resources it uses, what uncertainty remains, and what evidence would help later decisions.',impacts:[{label:'Benefit',value:'What improves?'},{label:'Cost',value:'What resources?'},{label:'Tradeoff',value:'What changes elsewhere?'}]},
+      {title:'Where this appears in the games',message:'Culture Drafting turns those choices into bill structure. Purpose states the goal; eligibility defines who qualifies; the mechanism says what government does; accountability says how implementation is checked.',impacts:[{label:'Game link',value:'Culture Drafting'}]}
+    ]
+  ];
+  window.showCivicGuideLevel=function(level,force=false){const i=Math.max(0,Math.min(3,Number(level)||0));if(civicGuideSeen[i]&&!force)return;civicGuideSeen[i]=true;showCivicGuideStep(i,0);};
+  function showCivicGuideStep(level,step){const item=civicGuideScripts[level][step];if(!item)return;const last=step===civicGuideScripts[level].length-1;showAdvisor('civic',item.title,item.message,item.impacts||[],last?'Show me the level →':'Next →',()=>{if(last){const el=document.querySelector('[data-civic-panel="'+level+'"] .level-body');el?.scrollIntoView({behavior:'smooth',block:'start'});}else showCivicGuideStep(level,step+1);},item.quote||'');}
+
   let civicLevel=0;
   const civicDone=[false,false,false,false];
   const civicIdeologies={
@@ -3184,6 +3282,7 @@ judImpactStage=function(){const c=judCase(),h=c.holdings.find(x=>x[0]===courtGam
     civicLevel=Math.max(0,Math.min(3,Number(i)||0));
     document.querySelectorAll('[data-civic-panel]').forEach((x,n)=>x.classList.toggle('active',n===civicLevel));
     document.querySelectorAll('[data-civic-level]').forEach((x,n)=>{x.classList.toggle('active',n===civicLevel);x.classList.toggle('done',!!civicDone[n]);});
+    setTimeout(()=>showCivicGuideLevel(civicLevel,false),120);
   };
   window.completeCivicLevel=function(i){
     civicDone[i]=true;
@@ -3257,7 +3356,7 @@ judImpactStage=function(){const c=judCase(),h=c.holdings.find(x=>x[0]===courtGam
 
   // Final page router: legacy game engines remain dormant; only the deep single-game modules initialize.
   window.go=function(id){
-    if(id==='judiciary') id='games';
+    if(id==='judiciary'||id==='games') id='health';
     document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===id));
     document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.page===id));
     window.scrollTo({top:0,behavior:'smooth'});
