@@ -1051,6 +1051,81 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
   .voice-pair{grid-template-columns:1fr}
 }
 </style>
+<style id="civic-presenter-style">
+/* Guided, no-scroll slideshow modules for the Civic Course. */
+#learn .civic-level-panel{display:none!important}
+#learn .civic-course-hero{margin-bottom:20px}
+#learn .civic-course-hero p{max-width:680px}
+#learn .civic-level-rail{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0}
+#learn .civic-level-btn{min-height:148px;padding:22px 22px 52px;border:2px solid rgba(24,33,58,.14);border-radius:22px;background:#fffdf8;overflow:hidden;transition:transform .18s,border-color .18s,box-shadow .18s}
+#learn .civic-level-btn:before{content:'';position:absolute;inset:0 0 auto;height:7px;background:var(--blue)}
+#learn .civic-level-btn:nth-child(2):before{background:var(--purple)}
+#learn .civic-level-btn:nth-child(3):before{background:var(--green)}
+#learn .civic-level-btn:nth-child(4):before{background:var(--red)}
+#learn .civic-level-btn:hover{transform:translateY(-3px);border-color:#8c99b0;box-shadow:0 16px 34px rgba(24,33,58,.1)}
+#learn .civic-level-btn.active{background:#fffdf8;color:var(--navy);border-color:rgba(24,33,58,.14)}
+#learn .civic-level-btn small{font-size:10px;color:#67748a;opacity:1}
+#learn .civic-level-btn b{font-size:24px;letter-spacing:-.035em;margin-top:9px;max-width:300px}
+#learn .civic-level-btn:after{content:'Open module \2192';position:absolute;left:22px;bottom:18px;font-size:12px;font-weight:950;color:var(--blue)}
+#learn .civic-level-btn.done:after{content:'\2713  Complete \00b7 Replay';width:auto;height:auto;border-radius:0;background:transparent;color:#176947;right:auto;top:auto;display:block}
+.civic-map-note{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:16px 0 0;padding:14px 17px;border-radius:16px;background:#eef4ff;border:1px solid #cfdbef;color:#465775;font-size:13px;line-height:1.45}
+.civic-map-note b{color:var(--navy)}
+.civic-map-note span:last-child{white-space:nowrap;font-size:11px;font-weight:900;color:#315aa8}
+.civic-presenter{position:fixed;inset:0;z-index:200;background:rgba(8,15,30,.76);display:grid;place-items:center;padding:12px;backdrop-filter:blur(8px)}
+.civic-presenter[hidden]{display:none}
+.civic-presenter-frame{width:min(1120px,100%);height:min(760px,calc(100dvh - 24px));background:#f8f6ef;border:2px solid #101a32;border-radius:26px;box-shadow:0 28px 90px rgba(4,9,19,.42);overflow:hidden;display:grid;grid-template-rows:auto 5px minmax(0,1fr) auto}
+.civic-presenter-head{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:13px 17px;background:var(--navy);color:#fff}
+.civic-presenter-title small{display:block;font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:#b8c5dd;font-weight:950}
+.civic-presenter-title b{display:block;font-size:18px;margin-top:2px;letter-spacing:-.02em}
+.civic-slide-count{font-size:11px;font-weight:900;color:#d9e0ee;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:7px 10px}
+.civic-close{width:38px;height:38px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:rgba(255,255,255,.08);color:white;font-size:23px;line-height:1;cursor:pointer}
+.civic-progress{background:#dfe3eb;overflow:hidden}.civic-progress i{display:block;height:100%;background:var(--sun);transition:width .25s}
+.civic-slide-stage{min-height:0;padding:clamp(16px,3vw,34px);display:grid;place-items:stretch;overflow:hidden}
+.civic-slide{height:100%;min-height:0;display:grid;grid-template-columns:minmax(0,.88fr) minmax(340px,1.12fr);gap:clamp(18px,3vw,38px);align-items:center;animation:civicIn .24s ease-out}
+@keyframes civicIn{from{opacity:.25;transform:translateX(14px)}to{opacity:1;transform:none}}
+.civic-slide-copy{max-width:510px}
+.civic-eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#526fa4;font-weight:950}
+.civic-slide h2{font-size:clamp(35px,5vw,65px);letter-spacing:-.058em;line-height:.95;margin:12px 0 16px;color:var(--navy)}
+.civic-slide-copy>p{font-size:clamp(16px,1.7vw,20px);line-height:1.48;color:#556176;margin:0;max-width:560px}
+.civic-callout{margin-top:18px;border-left:5px solid var(--sun);padding:11px 13px;background:#fff8dc;border-radius:0 12px 12px 0;font-size:13px;line-height:1.45;color:#655522}
+.civic-visual{min-height:0;height:100%;max-height:510px;display:grid;place-items:center;background:#fffdf8;border:1.5px solid rgba(24,33,58,.14);border-radius:24px;padding:clamp(16px,2.6vw,28px);overflow:hidden;position:relative}
+.civic-visual.dark{background:linear-gradient(145deg,#17223f,#2f426c);color:white;border-color:#17223f}
+.civic-mission{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;width:100%}
+.civic-mission-card{border:1px solid rgba(24,33,58,.13);background:#fff;border-radius:17px;padding:18px 14px;text-align:center;min-height:150px;display:flex;flex-direction:column;justify-content:center}
+.civic-mission-card i{width:48px;height:48px;border-radius:15px;background:#eef3ff;display:grid;place-items:center;margin:0 auto 12px;font-style:normal;font-size:22px;font-weight:950;color:#2f58a6}
+.civic-mission-card b{font-size:14px}.civic-mission-card span{font-size:11px;line-height:1.4;color:#697386;margin-top:5px}
+.power-pyramid{display:grid;gap:9px;width:min(460px,100%)}
+.power-tier{margin:auto;border-radius:15px;padding:14px 18px;text-align:center;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1)}
+.power-tier b{display:block;font-size:16px}.power-tier span{display:block;font-size:10px;color:#d3dced;margin-top:4px}.power-tier.federal{width:58%}.power-tier.state{width:76%}.power-tier.local{width:94%;background:#ffd56a;color:#17223f}.power-tier.local span{color:#5d4b1b}
+.slide-question{width:min(610px,100%)}
+.slide-question>small{display:block;text-transform:uppercase;letter-spacing:.1em;color:#68758c;font-size:9px;font-weight:950}.slide-question>h3{font-size:clamp(21px,3vw,30px);line-height:1.16;margin:8px 0 16px;letter-spacing:-.035em}
+.civic-answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.civic-answer{border:1.5px solid rgba(24,33,58,.16);background:white;border-radius:13px;padding:13px;text-align:left;font-weight:900;color:var(--navy);cursor:pointer;min-height:52px}
+.civic-answer:hover{border-color:#5977ae}.civic-answer.correct{background:#e8f6ef;border-color:#4c9a76;color:#1c6147}.civic-answer.incorrect{background:#fff2ef;border-color:#d38c82;color:#7e3e36}
+.civic-answer-feedback{min-height:56px;margin-top:11px;padding:11px 13px;border-radius:12px;background:#eef2f7;color:#4e5d73;font-size:12px;line-height:1.4}
+.source-steps{display:grid;gap:10px;width:min(560px,100%)}
+.source-rung{display:grid;grid-template-columns:44px 1fr;gap:11px;align-items:center;background:white;border:1px solid rgba(24,33,58,.13);border-radius:14px;padding:12px}
+.source-rung i{width:42px;height:42px;border-radius:12px;background:#edf2fb;display:grid;place-items:center;font-style:normal;font-weight:950;color:#315aa8}.source-rung b{font-size:14px}.source-rung span{display:block;font-size:10px;line-height:1.35;color:#687389;margin-top:3px}
+.fictional-post{width:min(590px,100%);background:#fff;border:1px solid rgba(24,33,58,.15);border-radius:20px;padding:20px;box-shadow:0 14px 30px rgba(24,33,58,.08)}
+.fictional-post small{font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:#7a8698;font-weight:950}.fictional-post blockquote{margin:13px 0 16px;border-left:5px solid #7184a3;padding:12px 14px;background:#f5f7fa;border-radius:0 12px 12px 0;font-size:17px;line-height:1.4;color:#344157}
+.rights-wheel{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(560px,100%)}
+.rights-wheel div{border:1px solid rgba(24,33,58,.13);border-radius:15px;padding:16px;background:#fff}.rights-wheel b{display:block;font-size:14px}.rights-wheel span{display:block;font-size:10px;color:#687389;line-height:1.38;margin-top:5px}
+.route-board{width:min(610px,100%);display:grid;grid-template-columns:1fr 1fr;gap:9px}.route-board button{border:1px solid rgba(24,33,58,.15);background:white;border-radius:13px;padding:12px;text-align:left;cursor:pointer}.route-board button b{display:block;font-size:13px}.route-board button span{display:block;font-size:10px;color:#6a7587;line-height:1.35;margin-top:4px}.route-board button.selected{background:#eaf2ff;border-color:#5977ae}.route-result{grid-column:1/-1;min-height:61px;background:#17223f;color:#fff;border-radius:13px;padding:12px 14px;font-size:12px;line-height:1.4}
+.policy-stack{width:min(590px,100%);display:grid;gap:10px}.policy-row{border:1px solid rgba(24,33,58,.13);border-radius:14px;background:#fff;padding:12px}.policy-row small{display:block;font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:#68758b;font-weight:950;margin-bottom:7px}.policy-options{display:flex;gap:7px;flex-wrap:wrap}.policy-options button{border:1px solid rgba(24,33,58,.14);background:#f7f5ef;border-radius:9px;padding:8px 10px;font-size:10px;font-weight:850;cursor:pointer}.policy-options button.selected{background:#17223f;color:#fff;border-color:#17223f}.policy-summary{border-radius:14px;background:#fff6d9;border:1px solid #ead78d;padding:13px;font-size:11px;line-height:1.45;color:#62531e}
+.civic-finish{width:min(620px,100%);text-align:center}.civic-finish-mark{width:92px;height:92px;border-radius:28px;background:#dff3e8;color:#176947;display:grid;place-items:center;margin:0 auto 18px;font-size:44px;font-weight:950}.civic-finish h3{font-size:31px;margin:0 0 9px;letter-spacing:-.04em}.civic-finish p{font-size:13px;line-height:1.5;color:#617086;margin:0 auto 18px;max-width:470px}.civic-finish button{border:0;background:#17223f;color:#fff;border-radius:12px;padding:12px 16px;font-weight:950;cursor:pointer}
+.civic-presenter-foot{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 17px;border-top:1px solid rgba(24,33,58,.13);background:#fffdf8}
+.civic-nav-btn{min-width:110px;border:1px solid rgba(24,33,58,.18);border-radius:11px;background:#fff;color:var(--navy);padding:10px 14px;font-weight:950;cursor:pointer}.civic-nav-btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}.civic-nav-btn:disabled{opacity:.38;cursor:not-allowed}.civic-hint{font-size:10px;color:#788397;text-align:center}
+body.civic-modal-open{overflow:hidden}
+@media(max-width:820px){
+ #learn .civic-level-rail{grid-template-columns:1fr 1fr}
+ #learn .civic-level-btn{min-height:132px;padding:18px 17px 48px}#learn .civic-level-btn b{font-size:20px}#learn .civic-level-btn:after{left:17px}
+ .civic-slide{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:14px}.civic-slide-copy{max-width:none}.civic-slide h2{font-size:clamp(28px,7vw,46px);margin:8px 0 10px}.civic-slide-copy>p{font-size:15px}.civic-visual{max-height:none}.civic-callout{display:none}
+}
+@media(max-width:560px){
+ #learn .civic-level-rail{grid-template-columns:1fr}.civic-map-note span:last-child{display:none}
+ .civic-presenter{padding:0}.civic-presenter-frame{height:100dvh;border:0;border-radius:0}.civic-presenter-head{grid-template-columns:1fr auto auto;padding:10px 12px}.civic-presenter-title b{font-size:15px}.civic-slide-stage{padding:12px}.civic-slide{gap:9px}.civic-slide h2{font-size:30px}.civic-slide-copy>p{font-size:13px;line-height:1.38}.civic-visual{padding:12px;border-radius:17px}.civic-mission{gap:6px}.civic-mission-card{padding:9px 6px;min-height:98px}.civic-mission-card i{width:34px;height:34px;margin-bottom:6px;font-size:16px}.civic-mission-card span{font-size:8px}.civic-answer{padding:9px;min-height:42px;font-size:11px}.civic-answer-feedback{font-size:10px;min-height:48px;padding:8px}.rights-wheel div{padding:10px}.route-board button{padding:8px}.source-rung{padding:8px;grid-template-columns:35px 1fr}.source-rung i{width:34px;height:34px}.fictional-post{padding:13px}.fictional-post blockquote{font-size:13px;padding:9px}.civic-presenter-foot{padding:9px 11px}.civic-nav-btn{min-width:84px;padding:9px 10px;font-size:11px}.civic-hint{display:none}
+}
+</style>
 </head>
 <body>
 <header class="topbar"><div class="shell nav"><div class="brand-lockup" aria-label="OH! Civics"><div class="logo-mark">OH!</div><div class="brand-copy"><strong>OH! CIVICS</strong><small>Ohio government, one move at a time</small></div></div><nav class="tabs" aria-label="Primary"><button class="tab active" data-page="today">Home</button><button class="tab" data-page="learn">Civic Course</button><button class="tab" data-page="games">Lawmaking Lab</button><button class="tab" data-page="health">Health Committee</button><button class="tab" data-page="arts">Culture Bill</button><button class="tab" data-page="explorer">Map</button><button class="tab" data-page="sources">Sources</button></nav></div></header>
@@ -1082,10 +1157,28 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
   </div>
 
   <div class="civic-level-rail" role="tablist" aria-label="Civic course levels">
-    <button class="civic-level-btn active" type="button" data-civic-level="0" onclick="setCivicLevel(0)"><small>Level 1</small><b>Power & Systems</b></button>
-    <button class="civic-level-btn" type="button" data-civic-level="1" onclick="setCivicLevel(1)"><small>Level 2</small><b>Information Defense</b></button>
-    <button class="civic-level-btn" type="button" data-civic-level="2" onclick="setCivicLevel(2)"><small>Level 3</small><b>Rights & Action</b></button>
-    <button class="civic-level-btn" type="button" data-civic-level="3" onclick="setCivicLevel(3)"><small>Level 4</small><b>Policy & Tradeoffs</b></button>
+    <button class="civic-level-btn" type="button" data-civic-level="0" onclick="openCivicModule(0)"><small>Level 1 · 5 slides</small><b>Power & Systems</b></button>
+    <button class="civic-level-btn" type="button" data-civic-level="1" onclick="openCivicModule(1)"><small>Level 2 · 5 slides</small><b>Information Defense</b></button>
+    <button class="civic-level-btn" type="button" data-civic-level="2" onclick="openCivicModule(2)"><small>Level 3 · 5 slides</small><b>Rights & Action</b></button>
+    <button class="civic-level-btn" type="button" data-civic-level="3" onclick="openCivicModule(3)"><small>Level 4 · 5 slides</small><b>Policy & Tradeoffs</b></button>
+  </div>
+  <div class="civic-map-note"><span><b>Choose a level.</b> Each opens as a guided presentation with one idea, one visual, and one action per slide.</span><span>No scrolling inside modules</span></div>
+
+  <div class="civic-presenter" id="civicPresenter" role="dialog" aria-modal="true" aria-labelledby="civicPresenterTitle" hidden>
+    <div class="civic-presenter-frame">
+      <header class="civic-presenter-head">
+        <div class="civic-presenter-title"><small id="civicPresenterLevel">Level 1</small><b id="civicPresenterTitle">Power &amp; Systems</b></div>
+        <span class="civic-slide-count" id="civicSlideCount">1 / 5</span>
+        <button class="civic-close" id="civicClose" type="button" aria-label="Close module">&times;</button>
+      </header>
+      <div class="civic-progress" aria-hidden="true"><i id="civicProgressBar" style="width:20%"></i></div>
+      <div class="civic-slide-stage" id="civicSlideStage" aria-live="polite"></div>
+      <footer class="civic-presenter-foot">
+        <button class="civic-nav-btn" id="civicPrev" type="button">&larr; Previous</button>
+        <span class="civic-hint" id="civicHint">Use the buttons or arrow keys</span>
+        <button class="civic-nav-btn primary" id="civicNext" type="button">Next &rarr;</button>
+      </footer>
+    </div>
   </div>
 
   <div class="civic-level-panel active" data-civic-panel="0">
@@ -3077,6 +3170,240 @@ judImpactStage=function(){const c=judCase(),h=c.holdings.find(x=>x[0]===courtGam
   document.querySelectorAll('.tab[data-page="arts"]').forEach(x=>x.textContent='Culture Drafting');
   if(document.getElementById('healthDeepGame'))window.startHealthDeepGame(false);
   if(document.getElementById('cultureDeepGame'))window.startCultureDeepGame(false);
+})();
+</script>
+
+<script id="civic-presenter-runtime">
+(()=>{
+  const modules=[
+    {
+      title:'Power & Systems',
+      slides:[
+        {
+          eyebrow:'Level 1 · Mission',
+          title:'Find who can act.',
+          text:'Before debating an issue, identify the institution with the authority to make the decision.',
+          callout:'Your mission: follow a school-policy question to the correct level of government.',
+          visual:`<div class="civic-mission"><div class="civic-mission-card"><i>1</i><b>Locate</b><span>Name the decision-maker.</span></div><div class="civic-mission-card"><i>2</i><b>Check</b><span>Find the official record.</span></div><div class="civic-mission-card"><i>3</i><b>Act</b><span>Choose the matching civic tool.</span></div></div>`
+        },
+        {
+          eyebrow:'One system · several levels',
+          title:'Power is divided.',
+          text:'Federal, state, and local institutions have different responsibilities. A single issue can involve more than one level.',
+          visualClass:'dark',
+          visual:`<div class="power-pyramid"><div class="power-tier federal"><b>Federal</b><span>National laws and institutions</span></div><div class="power-tier state"><b>Ohio</b><span>State laws, agencies, and courts</span></div><div class="power-tier local"><b>Local</b><span>Cities, counties, and school districts</span></div></div>`
+        },
+        {
+          eyebrow:'Real-world scenario',
+          title:'Who acts first?',
+          text:'A public school district is considering a change to its own district policy.',
+          gate:true,
+          success:'Correct. Start with the school board or district because the scenario describes a district policy decision. State and federal law can still set limits.',
+          incorrect:'Look for the institution named as the decision-maker. The district itself is considering the policy.',
+          visual:`<div class="slide-question"><small>Choose the best first place to watch</small><h3>Which institution is making this decision?</h3><div class="civic-answer-grid"><button class="civic-answer" onclick="civicAnswer(this,false)">U.S. Congress</button><button class="civic-answer" onclick="civicAnswer(this,false)">Ohio Governor</button><button class="civic-answer" onclick="civicAnswer(this,true)">School board / district</button><button class="civic-answer" onclick="civicAnswer(this,false)">U.S. Supreme Court</button></div><div class="civic-answer-feedback" data-civic-feedback>Choose an answer to continue.</div></div>`
+        },
+        {
+          eyebrow:'Apply the skill',
+          title:'Match the record to the action.',
+          text:'Once you identify the institution, find the document that shows what it is actually considering.',
+          gate:true,
+          success:'Correct. An agenda or proposed district policy is a strong first record for this scenario.',
+          incorrect:'Choose the record created by the institution making the decision.',
+          visual:`<div class="slide-question"><small>Checkpoint</small><h3>What should you inspect first?</h3><div class="civic-answer-grid"><button class="civic-answer" onclick="civicAnswer(this,true)">Meeting agenda or proposed policy</button><button class="civic-answer" onclick="civicAnswer(this,false)">A viral reaction video</button><button class="civic-answer" onclick="civicAnswer(this,false)">An unrelated federal bill</button><button class="civic-answer" onclick="civicAnswer(this,false)">A campaign advertisement</button></div><div class="civic-answer-feedback" data-civic-feedback>Choose the record closest to the decision.</div></div>`
+        },
+        {
+          eyebrow:'Level 1 complete',
+          title:'Authority comes first.',
+          text:'You practiced the sequence: identify the institution, inspect its record, then choose an action that matches its authority.',
+          finish:true,
+          visual:`<div class="civic-finish"><div class="civic-finish-mark">✓</div><h3>Power located</h3><p>Official references: <a href="https://www.legislature.ohio.gov/publications/the-legislative-process" target="_blank" rel="noopener">Ohio legislative process</a> · <a href="https://codes.ohio.gov/ohio-constitution" target="_blank" rel="noopener">Ohio Constitution</a></p><button type="button" onclick="finishCivicModule()">Complete Level 1</button></div>`
+        }
+      ]
+    },
+    {
+      title:'Information Defense',
+      slides:[
+        {
+          eyebrow:'Level 2 · Mission',
+          title:'Trace claims to evidence.',
+          text:'Political information moves quickly. Your job is to slow down long enough to locate the underlying record.',
+          callout:'Your mission: verify a fictional post about an Ohio bill.',
+          visual:`<div class="civic-mission"><div class="civic-mission-card"><i>◉</i><b>Notice</b><span>Separate attention from accuracy.</span></div><div class="civic-mission-card"><i>↗</i><b>Leave</b><span>Open a new source.</span></div><div class="civic-mission-card"><i>✓</i><b>Verify</b><span>Check the official record.</span></div></div>`
+        },
+        {
+          eyebrow:'How feeds work',
+          title:'Repeated is not verified.',
+          text:'Recommendations can respond to what you watch, click, or share. Repetition can show engagement without proving a claim is accurate.',
+          visual:`<div class="source-steps"><div class="source-rung"><i>1</i><div><b>You watch or share</b><span>The platform receives an interest signal.</span></div></div><div class="source-rung"><i>2</i><div><b>You see more related posts</b><span>Similarity and engagement shape recommendations.</span></div></div><div class="source-rung"><i>≠</i><div><b>Accuracy is still unproven</b><span>Verify the claim independently.</span></div></div></div>`
+        },
+        {
+          eyebrow:'Source ladder',
+          title:'Move closer to the record.',
+          text:'For a claim about government action, begin with the official document. Then use reporting and analysis for context.',
+          visual:`<div class="source-steps"><div class="source-rung"><i>1</i><div><b>Primary record</b><span>Bill text, status page, vote, opinion, budget, agenda, or minutes.</span></div></div><div class="source-rung"><i>2</i><div><b>Reported context</b><span>Quality reporting explains what changed and who is affected.</span></div></div><div class="source-rung"><i>3</i><div><b>Commentary or post</b><span>Useful for reactions, but not a substitute for the record.</span></div></div></div>`
+        },
+        {
+          eyebrow:'Real-world verification pattern',
+          title:'Do not stop at the screenshot.',
+          text:'A fictional post claims an Ohio bill “passed yesterday” and is already law, but it gives no source.',
+          gate:true,
+          success:'Correct. The official legislation page can show the current text and status. A post may blur different stages of the legislative process.',
+          incorrect:'Comments and reposts show reactions, not the bill’s official status.',
+          visual:`<div class="fictional-post"><small>Fictional social post</small><blockquote>“Ohio lawmakers passed this bill yesterday, so it is already state law today.”</blockquote><div class="civic-answer-grid"><button class="civic-answer" onclick="civicAnswer(this,true)">Open the official bill page</button><button class="civic-answer" onclick="civicAnswer(this,false)">Read the comments</button><button class="civic-answer" onclick="civicAnswer(this,false)">Find a popular repost</button><button class="civic-answer" onclick="civicAnswer(this,false)">Count how often it appears</button></div><div class="civic-answer-feedback" data-civic-feedback>Choose the strongest first verification step.</div></div>`
+        },
+        {
+          eyebrow:'Level 2 complete',
+          title:'Verify before reacting.',
+          text:'You practiced lateral reading: leave the post, find the primary record, and check what the document actually says.',
+          finish:true,
+          visual:`<div class="civic-finish"><div class="civic-finish-mark">✓</div><h3>Claim checked</h3><p>Official reference: <a href="https://www.legislature.ohio.gov/legislation/search?generalAssembly=136" target="_blank" rel="noopener">Ohio legislation search</a></p><button type="button" onclick="finishCivicModule()">Complete Level 2</button></div>`
+        }
+      ]
+    },
+    {
+      title:'Rights & Action',
+      slides:[
+        {
+          eyebrow:'Level 3 · Mission',
+          title:'Choose an action that fits.',
+          text:'Civic participation works best when the right, institution, record, and action line up.',
+          callout:'Your mission: route a local concern to a practical next step.',
+          visual:`<div class="civic-mission"><div class="civic-mission-card"><i>§</i><b>Right</b><span>Know the protected civic tool.</span></div><div class="civic-mission-card"><i>⌂</i><b>Venue</b><span>Find the public institution.</span></div><div class="civic-mission-card"><i>→</i><b>Action</b><span>Use the matching process.</span></div></div>`
+        },
+        {
+          eyebrow:'Civic tools',
+          title:'Rights become practices.',
+          text:'Speech, press, peaceable assembly, petition, public meetings, and public records connect people to government processes.',
+          visual:`<div class="rights-wheel"><div><b>Speak & publish</b><span>Share views and information within applicable law.</span></div><div><b>Assemble & petition</b><span>Gather peaceably and ask government to act.</span></div><div><b>Observe</b><span>Attend or review many public meetings.</span></div><div><b>Request records</b><span>Ask the office that keeps the government record.</span></div></div>`
+        },
+        {
+          eyebrow:'Real-world route',
+          title:'Where would you begin?',
+          text:'Choose a scenario. The module will match it to a practical first venue.',
+          gate:true,
+          routes:{
+            school:'Start with the school board or district: inspect the agenda or proposed policy and use the published meeting process.',
+            city:'Start with city council or the relevant department: find the ordinance, agenda item, permit, or service record.',
+            bill:'Start with the Ohio General Assembly: open the bill page and identify its current chamber, status, and committee.',
+            record:'Start with the public office that keeps the document: make a specific request using its published process.'
+          },
+          visual:`<div class="route-board"><button type="button" onclick="civicRoute(this,'school')"><b>School district policy</b><span>A board is considering a district rule.</span></button><button type="button" onclick="civicRoute(this,'city')"><b>City service or zoning</b><span>A local service or land-use decision.</span></button><button type="button" onclick="civicRoute(this,'bill')"><b>Pending Ohio bill</b><span>A proposal moving through the legislature.</span></button><button type="button" onclick="civicRoute(this,'record')"><b>Government record</b><span>You need the document behind a claim.</span></button><div class="route-result" data-route-result>Choose one scenario to see its first venue.</div></div>`
+        },
+        {
+          eyebrow:'10-minute civic check',
+          title:'Ask three questions.',
+          text:'A short checklist can turn a broad concern into a specific, evidence-based civic action.',
+          visual:`<div class="source-steps"><div class="source-rung"><i>1</i><div><b>Who decides?</b><span>Name the body or office with authority.</span></div></div><div class="source-rung"><i>2</i><div><b>What is the record?</b><span>Find the agenda, policy, bill, vote, budget, or minutes.</span></div></div><div class="source-rung"><i>3</i><div><b>What action fits?</b><span>Attend, comment, contact, petition, organize, request, or vote.</span></div></div></div>`
+        },
+        {
+          eyebrow:'Level 3 complete',
+          title:'Match the action to the venue.',
+          text:'You practiced moving from a concern to the institution, record, and civic process connected to it.',
+          finish:true,
+          visual:`<div class="civic-finish"><div class="civic-finish-mark">✓</div><h3>Route found</h3><p>Official references: <a href="https://www.ohioattorneygeneral.gov/Legal/Sunshine-Laws" target="_blank" rel="noopener">Ohio Sunshine Laws</a> · <a href="https://codes.ohio.gov/ohio-constitution/article-1" target="_blank" rel="noopener">Ohio Bill of Rights</a></p><button type="button" onclick="finishCivicModule()">Complete Level 3</button></div>`
+        }
+      ]
+    },
+    {
+      title:'Policy & Tradeoffs',
+      slides:[
+        {
+          eyebrow:'Level 4 · Mission',
+          title:'Build, compare, explain.',
+          text:'Public policy choices combine goals, authority, funding, implementation, and evidence. Each design creates tradeoffs.',
+          callout:'Your mission: shape a fictional transit pilot and explain what your choices change.',
+          visual:`<div class="civic-mission"><div class="civic-mission-card"><i>◎</i><b>Goal</b><span>Define the problem.</span></div><div class="civic-mission-card"><i>$</i><b>Design</b><span>Choose scope and funding.</span></div><div class="civic-mission-card"><i>?</i><b>Review</b><span>Decide what evidence matters.</span></div></div>`
+        },
+        {
+          eyebrow:'From idea to implementation',
+          title:'A policy needs a mechanism.',
+          text:'A goal becomes operational only when a proposal names who acts, who is eligible, how it is funded, and how results will be reviewed.',
+          visual:`<div class="source-steps"><div class="source-rung"><i>1</i><div><b>Problem and goal</b><span>What condition should change?</span></div></div><div class="source-rung"><i>2</i><div><b>Authority and mechanism</b><span>Which institution acts, and how?</span></div></div><div class="source-rung"><i>3</i><div><b>Funding and evidence</b><span>What resources and review process are required?</span></div></div></div>`
+        },
+        {
+          eyebrow:'Fictional Ohio practice file',
+          title:'Build a transit pilot.',
+          text:'Several communities want more weekend transit access. Choose one option in each row; there is no ideological “correct answer.”',
+          gate:true,
+          visual:`<div class="policy-stack"><div class="policy-row"><small>Scope</small><div class="policy-options" data-policy-group="scope"><button onclick="civicPolicyPick(this,'scope','Three-county pilot')">Three-county pilot</button><button onclick="civicPolicyPick(this,'scope','Statewide eligibility')">Statewide eligibility</button><button onclick="civicPolicyPick(this,'scope','Local opt-in grants')">Local opt-in</button></div></div><div class="policy-row"><small>Funding</small><div class="policy-options" data-policy-group="funding"><button onclick="civicPolicyPick(this,'funding','State appropriation')">State appropriation</button><button onclick="civicPolicyPick(this,'funding','State-local match')">State-local match</button><button onclick="civicPolicyPick(this,'funding','Dedicated fee')">Dedicated fee</button></div></div><div class="policy-row"><small>Review</small><div class="policy-options" data-policy-group="review"><button onclick="civicPolicyPick(this,'review','Two-year sunset and report')">Sunset + report</button><button onclick="civicPolicyPick(this,'review','Annual performance report')">Annual report</button><button onclick="civicPolicyPick(this,'review','Independent audit trigger')">Audit trigger</button></div></div><div class="policy-summary" data-policy-summary>Select one choice in each row to generate a short policy outline.</div></div>`
+        },
+        {
+          eyebrow:'Civil discourse',
+          title:'Find the shared question.',
+          text:'Two residents can share a goal while disagreeing about pace, cost, administration, or the evidence required before expansion.',
+          gate:true,
+          success:'Correct. The question names the shared goal and the evidence needed to compare approaches without pretending the disagreement has disappeared.',
+          incorrect:'Look for a question that both residents could use to evaluate the proposal.',
+          visual:`<div class="slide-question"><small>Resident A wants faster access. Resident B wants cost and usage evidence.</small><h3>Which question creates useful common ground?</h3><div class="civic-answer-grid"><button class="civic-answer" onclick="civicAnswer(this,true)">What pilot would measure access, use, and cost?</button><button class="civic-answer" onclick="civicAnswer(this,false)">Which resident cares more?</button><button class="civic-answer" onclick="civicAnswer(this,false)">Which side should win immediately?</button><button class="civic-answer" onclick="civicAnswer(this,false)">Which slogan is more popular?</button></div><div class="civic-answer-feedback" data-civic-feedback>Choose the question that tests the proposal.</div></div>`
+        },
+        {
+          eyebrow:'Level 4 complete',
+          title:'Explain the mechanism and tradeoff.',
+          text:'You practiced turning a goal into a proposal, then naming how scope, funding, implementation, and review change the result.',
+          finish:true,
+          visual:`<div class="civic-finish"><div class="civic-finish-mark">✓</div><h3>Policy analyzed</h3><p>Official references: <a href="https://www.legislature.ohio.gov/publications/the-legislative-process" target="_blank" rel="noopener">Ohio legislative process</a> · <a href="https://www2.jlec-olig.state.oh.us/olac/" target="_blank" rel="noopener">Ohio lobbying records</a></p><button type="button" onclick="finishCivicModule()">Complete Level 4</button></div>`
+        }
+      ]
+    }
+  ];
+
+  let moduleIndex=0,slideIndex=0,slideUnlocked=true,lastFocus=null;
+  const policyChoice={scope:null,funding:null,review:null};
+  const completed=(()=>{try{return JSON.parse(localStorage.getItem('ohCivicPresenterDone')||'[false,false,false,false]')}catch(e){return[false,false,false,false]}})();
+
+  function currentSlide(){return modules[moduleIndex].slides[slideIndex]}
+  function setProgressCards(){document.querySelectorAll('[data-civic-level]').forEach((b,i)=>b.classList.toggle('done',!!completed[i]))}
+  function renderSlide(){
+    const mod=modules[moduleIndex],s=currentSlide(),stage=document.getElementById('civicSlideStage');
+    slideUnlocked=!s.gate;
+    document.getElementById('civicPresenterLevel').textContent=`Level ${moduleIndex+1}`;
+    document.getElementById('civicPresenterTitle').textContent=mod.title;
+    document.getElementById('civicSlideCount').textContent=`${slideIndex+1} / ${mod.slides.length}`;
+    document.getElementById('civicProgressBar').style.width=`${((slideIndex+1)/mod.slides.length)*100}%`;
+    stage.innerHTML=`<article class="civic-slide"><div class="civic-slide-copy"><span class="civic-eyebrow">${s.eyebrow}</span><h2>${s.title}</h2><p>${s.text}</p>${s.callout?`<div class="civic-callout">${s.callout}</div>`:''}</div><div class="civic-visual ${s.visualClass||''}">${s.visual}</div></article>`;
+    const prev=document.getElementById('civicPrev'),next=document.getElementById('civicNext');
+    prev.disabled=slideIndex===0;
+    next.disabled=!slideUnlocked;
+    next.textContent=s.finish?'Finish level':(slideIndex===mod.slides.length-1?'Finish level':'Next →');
+    document.getElementById('civicHint').textContent=s.gate?'Complete the slide to continue':'Use the buttons or arrow keys';
+  }
+  function moveSlide(delta){
+    const slides=modules[moduleIndex].slides;
+    if(delta>0&&!slideUnlocked)return;
+    if(delta>0&&slideIndex===slides.length-1){finishCivicModule();return}
+    slideIndex=Math.max(0,Math.min(slides.length-1,slideIndex+delta));renderSlide();
+  }
+  window.openCivicModule=function(i){
+    moduleIndex=Math.max(0,Math.min(modules.length-1,Number(i)||0));slideIndex=0;lastFocus=document.activeElement;
+    const modal=document.getElementById('civicPresenter');modal.hidden=false;document.body.classList.add('civic-modal-open');renderSlide();document.getElementById('civicClose').focus();
+  };
+  window.closeCivicModule=function(){const modal=document.getElementById('civicPresenter');if(!modal||modal.hidden)return;modal.hidden=true;document.body.classList.remove('civic-modal-open');if(lastFocus&&lastFocus.focus)lastFocus.focus()};
+  window.finishCivicModule=function(){completed[moduleIndex]=true;try{localStorage.setItem('ohCivicPresenterDone',JSON.stringify(completed))}catch(e){}setProgressCards();closeCivicModule()};
+  window.civicAnswer=function(btn,correct){
+    const s=currentSlide(),visual=btn.closest('.civic-visual');
+    visual.querySelectorAll('.civic-answer').forEach(x=>x.classList.remove('correct','incorrect'));
+    btn.classList.add(correct?'correct':'incorrect');
+    const feedback=visual.querySelector('[data-civic-feedback]');if(feedback)feedback.textContent=correct?s.success:s.incorrect;
+    if(correct){slideUnlocked=true;document.getElementById('civicNext').disabled=false;document.getElementById('civicHint').textContent='Ready for the next slide'}
+  };
+  window.civicRoute=function(btn,key){
+    const s=currentSlide(),board=btn.closest('.route-board');board.querySelectorAll('button').forEach(x=>x.classList.toggle('selected',x===btn));board.querySelector('[data-route-result]').textContent=s.routes[key];slideUnlocked=true;document.getElementById('civicNext').disabled=false;document.getElementById('civicHint').textContent='Route selected';
+  };
+  window.civicPolicyPick=function(btn,group,value){
+    policyChoice[group]=value;btn.closest('[data-policy-group]').querySelectorAll('button').forEach(x=>x.classList.toggle('selected',x===btn));
+    const summary=document.querySelector('[data-policy-summary]'),ready=policyChoice.scope&&policyChoice.funding&&policyChoice.review;
+    summary.textContent=ready?`${policyChoice.scope} · ${policyChoice.funding} · ${policyChoice.review}. Next, identify the administering agency and the evidence used for review.`:'Keep going: select one choice in each row.';
+    if(ready){slideUnlocked=true;document.getElementById('civicNext').disabled=false;document.getElementById('civicHint').textContent='Policy outline complete'}
+  };
+  document.getElementById('civicClose')?.addEventListener('click',closeCivicModule);
+  document.getElementById('civicPrev')?.addEventListener('click',()=>moveSlide(-1));
+  document.getElementById('civicNext')?.addEventListener('click',()=>moveSlide(1));
+  document.getElementById('civicPresenter')?.addEventListener('click',e=>{if(e.target.id==='civicPresenter')closeCivicModule()});
+  document.addEventListener('keydown',e=>{
+    const modal=document.getElementById('civicPresenter');if(!modal||modal.hidden)return;
+    if(e.key==='Escape')closeCivicModule();else if(e.key==='ArrowLeft')moveSlide(-1);else if(e.key==='ArrowRight')moveSlide(1);
+  });
+  setProgressCards();
 })();
 </script>
 

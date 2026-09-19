@@ -2,6 +2,10 @@
 
 Interactive Ohio civic-education website focused on political literacy and civic engagement for young voters.
 
+## Civic Course
+
+The four-level Civic Path now opens each level as a full-screen, no-scroll slideshow. Every five-slide module uses short explanations, a visual, a real-world or fictional practice scenario, an interaction, and a completion checkpoint.
+
 ## Current game structure
 
 ### Health — The Committee Room
