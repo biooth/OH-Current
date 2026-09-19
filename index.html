@@ -1204,6 +1204,46 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
   .member-mini span{display:none}
   .vote-chips-clean{grid-template-columns:repeat(5,minmax(52px,1fr));overflow:auto}
 }
+
+/* Entry screens now use the same product UI as the games */
+.deep-module-grid{gap:12px}
+.deep-module-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;grid-template-columns:minmax(155px,.55fr) minmax(0,1.45fr);box-shadow:none}
+.deep-module-card.health-room{border-top:5px solid var(--green)}
+.deep-module-card.culture-room{border-top:5px solid var(--purple)}
+.room-miniature,.desk-miniature{min-height:190px;border:1px solid var(--line);border-radius:15px}
+.room-miniature{background:#eef7f2}
+.desk-miniature{background:#f4f0ff}
+.room-miniature:before{color:var(--green)}
+.mini-dais{background:#fff;border:2px solid #c8d9d1;box-shadow:none}
+.mini-dais i{border:2px solid #334155}
+.mini-table{background:#dde9e3;border:2px solid #a9c6b8}
+.desk-miniature .mini-paper{background:#fff;border-color:#d7d9e0;box-shadow:none}
+.deep-card-rule.objective-rule{background:#f8f9fb;border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:12px}
+.deep-module-card button{background:var(--navy);box-shadow:none}
+.game-hallway{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:transparent;border:0;border-radius:0;padding:0;overflow:visible}
+.game-hallway:before{display:none}
+.hall-center{grid-column:1/-1;grid-row:1;align-items:flex-start;text-align:left;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.statehouse-medallion{display:none}
+.hall-center b{font-size:16px;letter-spacing:-.02em;margin:0;color:var(--ink)}
+.hall-center span{font-size:12px;color:var(--muted);margin-top:3px}
+.hall-door{grid-row:2;min-height:230px;border:1px solid var(--line);border-radius:18px;padding:16px;background:#fff!important;color:var(--ink);box-shadow:none;display:grid;grid-template-columns:150px 1fr;grid-template-rows:auto auto auto;column-gap:16px;align-content:center}
+.hall-door:hover{transform:none;border-color:#b9c0cc;box-shadow:0 8px 24px rgba(16,19,26,.06)}
+.hall-door small{color:var(--muted);grid-column:2;font-size:9px}
+.hall-door strong{grid-column:2;font-size:26px;margin-top:5px}
+.hall-door em{grid-column:2;color:var(--muted);font-size:11px;margin-top:5px}
+.health-door{border-top:5px solid var(--green)}
+.culture-door{border-top:5px solid var(--purple)}
+.door-window{grid-column:1;grid-row:1/4;height:145px;margin:0;background:#eef7f2;border:1px solid var(--line);border-radius:13px}
+.door-window i{background:linear-gradient(#d3a17e 0 28%,#34475f 29% 100%);border:1px solid #334155}
+.door-window.paper{background:#f4f0ff}
+.door-window.paper i{background:#fff;border:1px solid #d7d9e0}
+@media(max-width:780px){
+  .deep-module-grid,.game-hallway{grid-template-columns:1fr}
+  .hall-center,.hall-door{grid-column:1}
+  .hall-center{grid-row:auto}
+  .hall-door{grid-row:auto;grid-template-columns:110px 1fr}
+  .door-window{height:120px}
+}
 </style>
 </head>
 <body>
@@ -1216,8 +1256,8 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
   </div>
   <div class="section-head"><div><span class="section-kicker">Two modules · two deep games</span><h2>Choose the process you want to inhabit.</h2><p>Health stays entirely inside a legislative committee. Culture stays entirely inside bill drafting. Each playthrough has several acts, but they are acts of one game—not separate minigames.</p></div></div>
   <div class="deep-module-grid">
-    <article class="deep-module-card health-room"><div class="room-miniature"><div class="mini-dais"><i></i><i></i><i></i><i></i></div><div class="mini-table"></div><div class="mini-people"><i></i><i></i><i></i></div></div><div><span class="pill green">Health · committee process</span><h3>The Committee Room</h3><p>Walk a fictional health bill through one committee hearing: briefing, testimony, amendment, member discussion, and a committee vote.</p><div class="deep-card-rule objective-rule"><b>Objective: build the hearing record</b><span>Identify concerns, choose an amendment, then see the committee vote.</span></div><button onclick="go('health')">Enter the hearing →</button></div></article>
-    <article class="deep-module-card culture-room"><div class="desk-miniature"><div class="mini-paper"></div><div class="mini-note n1"></div><div class="mini-note n2"></div><div class="mini-pen"></div></div><div><span class="pill purple">Culture · drafting process</span><h3>The Drafting Desk</h3><p>Turn a fictional arts-policy idea into a bill: hear the need, choose clauses, fit the bill together, survive a sponsor review, and print the draft.</p><div class="deep-card-rule objective-rule"><b>Objective: complete the bill puzzle</b><span>Fill four clause jobs, resolve one sponsor redline, and print the draft.</span></div><button onclick="go('arts')">Open the drafting desk →</button></div></article>
+    <article class="deep-module-card health-room"><div class="room-miniature"><div class="mini-dais"><i></i><i></i><i></i><i></i></div><div class="mini-table"></div><div class="mini-people"><i></i><i></i><i></i></div></div><div><span class="pill green">Health · committee process</span><h3>Committee Hearing</h3><p>Walk a fictional health bill through one committee hearing: briefing, testimony, amendment, member discussion, and a committee vote.</p><div class="deep-card-rule objective-rule"><b>Objective: build the hearing record</b><span>Identify concerns, choose an amendment, then see the committee vote.</span></div><button onclick="go('health')">Enter the hearing →</button></div></article>
+    <article class="deep-module-card culture-room"><div class="desk-miniature"><div class="mini-paper"></div><div class="mini-note n1"></div><div class="mini-note n2"></div><div class="mini-pen"></div></div><div><span class="pill purple">Culture · drafting process</span><h3>Build the Bill</h3><p>Turn a fictional arts-policy idea into a bill: hear the need, choose clauses, fit the bill together, survive a sponsor review, and print the draft.</p><div class="deep-card-rule objective-rule"><b>Objective: complete the bill puzzle</b><span>Fill four clause jobs, resolve one sponsor redline, and print the draft.</span></div><button onclick="go('arts')">Open the drafting desk →</button></div></article>
   </div>
 </div></section>
 
@@ -1367,11 +1407,11 @@ body{background:radial-gradient(circle at 12% 10%,rgba(255,213,106,.18),transpar
 </div></section>
 
 <section id="games" class="page"><div class="shell">
-  <div class="section-head"><div><span class="section-kicker">Ohio Lawmaking Lab</span><h2>Different processes should feel like different games.</h2><p>The committee room is an evidence-and-reaction game. The drafting desk is a construction puzzle. Neither asks you to chase the same pair of meters.</p></div><div class="law-max-note">1 game / module</div></div>
+  <div class="section-head"><div><span class="section-kicker">Ohio Lawmaking Lab</span><h2>Choose a legislative skill.</h2><p>Committee Hearing teaches how testimony changes a bill. Build the Bill teaches how a policy idea becomes legislative language.</p></div><div class="law-max-note">1 game / module</div></div>
   <div class="game-hallway">
-    <button class="hall-door health-door" onclick="go('health')"><span class="door-window"><i></i><i></i><i></i></span><small>ROOM 01 · COMMITTEE</small><strong>The Committee Room</strong><em>Listen → classify → amend → vote</em></button>
-    <div class="hall-center"><div class="statehouse-medallion">OH!</div><b>OHIO LAWMAKING LAB</b><span>Choose one process and stay with it.</span></div>
-    <button class="hall-door culture-door" onclick="go('arts')"><span class="door-window paper"><i></i></span><small>ROOM 02 · DRAFTING</small><strong>The Drafting Desk</strong><em>Collect clues → fit clauses → redline → print</em></button>
+    <button class="hall-door health-door" onclick="go('health')"><span class="door-window"><i></i><i></i><i></i></span><small>ROOM 01 · COMMITTEE</small><strong>Committee Hearing</strong><em>Listen → classify → amend → vote</em></button>
+    <div class="hall-center"><div class="statehouse-medallion">OH!</div><b>Two games. Two different jobs.</b><span>Pick the process you want to practice.</span></div>
+    <button class="hall-door culture-door" onclick="go('arts')"><span class="door-window paper"><i></i></span><small>ROOM 02 · DRAFTING</small><strong>Build the Bill</strong><em>Collect clues → fit clauses → redline → print</em></button>
   </div>
   <div class="law-process-note"><b>Why this structure?</b><span>The learning target is no longer “manage the whole legislature.” The Health module teaches what happens inside committee work; the Culture module teaches how a policy idea becomes clearer legislative language. The procedural depth remains, while the number of simultaneous systems is kept low.</span></div>
 </div></section>
