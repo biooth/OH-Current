@@ -205,6 +205,53 @@ button:focus-visible,a:focus-visible{outline:3px solid rgba(37,99,235,.30);outli
 .slide-dots{display:flex;gap:5px;margin-right:5px}
 .slide-dots i{display:block;width:7px;height:7px;border-radius:50%;background:#cfd8e5}.slide-dots i.on{background:var(--blue)}
 
+
+.deep-open{
+  margin-top:18px;align-self:flex-start;border:0;border-radius:13px;background:var(--navy);color:#fff;
+  padding:11px 14px;font-size:11px;font-weight:950;cursor:pointer;box-shadow:0 8px 18px rgba(17,33,63,.15)
+}
+.deep-open:hover{transform:translateY(-1px);background:#1b3159}
+.deep-modal{
+  position:absolute;inset:0;z-index:45;display:none;align-items:center;justify-content:center;
+  background:rgba(15,29,54,.58);backdrop-filter:blur(10px);padding:clamp(12px,2.5vw,30px)
+}
+.deep-modal.show{display:flex}
+.deep-card{
+  width:min(1040px,96vw);height:min(690px,92%);min-height:0;background:#fff;border:1px solid rgba(255,255,255,.7);
+  border-radius:30px;box-shadow:0 30px 90px rgba(9,22,45,.30);display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden
+}
+.deep-head{
+  padding:22px 26px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:start;
+  border-bottom:1px solid var(--line);background:linear-gradient(135deg,#f8fbff,#eef5ff)
+}
+.deep-label{font-size:10px;font-weight:950;letter-spacing:.13em;text-transform:uppercase;color:var(--blue)}
+.deep-head h2{margin:6px 0 0;color:var(--navy);font-size:clamp(25px,3.4vw,40px);line-height:1;letter-spacing:-.04em;max-width:22ch}
+.deep-close{width:38px;height:38px;border:0;border-radius:50%;background:#fff;color:var(--navy);font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(20,33,61,.08)}
+.deep-grid{min-height:0;padding:22px 26px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;background:#f7f9fc}
+.deep-section{
+  min-height:0;border:1px solid var(--line);border-radius:19px;background:#fff;padding:18px 19px;overflow:hidden;
+  display:flex;flex-direction:column
+}
+.deep-section:nth-child(2){background:#f4f8ff}.deep-section:nth-child(3){background:#fffaf0}.deep-section:nth-child(4){background:#f3fbf7}
+.deep-section small{font-size:9px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:7px}
+.deep-section:nth-child(3) small{color:#996a09}.deep-section:nth-child(4) small{color:#17765d}
+.deep-section h3{font-size:16px;letter-spacing:-.02em;color:var(--navy);margin:0 0 7px}
+.deep-section p{font-size:12.5px;line-height:1.48;color:#53627a;margin:0}
+.deep-foot{
+  min-height:66px;padding:12px 20px 12px 26px;border-top:1px solid var(--line);background:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:18px
+}
+.deep-foot span{font-size:11px;color:var(--muted);font-weight:750}
+.deep-continue{border:0;border-radius:13px;background:var(--blue);color:#fff;padding:11px 16px;font-size:11px;font-weight:950;cursor:pointer;white-space:nowrap}
+@media(max-width:680px){
+  .deep-modal{padding:8px}.deep-card{width:100%;height:100%;border-radius:20px}
+  .deep-head{padding:15px 16px 12px}.deep-head h2{font-size:24px}
+  .deep-grid{padding:10px 12px;grid-template-columns:1fr;grid-template-rows:repeat(4,auto);gap:7px;overflow:auto}
+  .deep-section{padding:12px 13px;border-radius:13px;overflow:visible}.deep-section h3{font-size:13px}.deep-section p{font-size:10.5px;line-height:1.35}
+  .deep-foot{min-height:54px;padding:8px 10px 8px 13px}.deep-foot span{font-size:9px}.deep-continue{font-size:9.5px;padding:9px 11px}
+  .deep-open{margin-top:10px;font-size:9.5px;padding:8px 10px}
+}
+
 .module-intro{
   position:absolute;inset:0;z-index:30;background:rgba(236,242,249,.88);backdrop-filter:blur(10px);
   display:none;align-items:center;justify-content:center;padding:64px 20px 20px
@@ -338,6 +385,23 @@ button:focus-visible,a:focus-visible{outline:3px solid rgba(37,99,235,.30);outli
       <button class="next" id="nextBtn">Next →</button>
     </div>
 
+
+    <div class="deep-modal" id="deepModal" role="dialog" aria-modal="true" aria-labelledby="deepTitle">
+      <div class="deep-card">
+        <div class="deep-head">
+          <div><div class="deep-label" id="deepLabel">Deep Dive</div><h2 id="deepTitle"></h2></div>
+          <button class="deep-close" id="deepClose" aria-label="Close explanation">×</button>
+        </div>
+        <div class="deep-grid">
+          <section class="deep-section"><small>What this means</small><h3>Understand the idea</h3><p id="deepMeaning"></p></section>
+          <section class="deep-section"><small>Why it matters</small><h3>Connect it to power</h3><p id="deepWhy"></p></section>
+          <section class="deep-section"><small>Practical example</small><h3>See it in action</h3><p id="deepExample"></p></section>
+          <section class="deep-section"><small>Think like a civic researcher</small><h3>What should you ask next?</h3><p id="deepQuestion"></p></section>
+        </div>
+        <div class="deep-foot"><span>Read the explanation, then return to the visual to apply it.</span><button class="deep-continue" id="deepContinue">Continue to visual →</button></div>
+      </div>
+    </div>
+
     <div class="module-intro" id="moduleIntro">
       <div class="intro-card">
         <div class="intro-avatar">🧑🏽‍🏫</div>
@@ -428,6 +492,55 @@ const course = [
 }
 ];
 
+
+const DEEP = [
+[
+ {meaning:"Separation of powers is a way of dividing government responsibilities so that one institution does not perform every job. In Ohio, the legislature writes and passes statutes, executive institutions administer and enforce many of those laws, and courts resolve legal disputes that come before them.",why:"This matters because the same public issue can involve several institutions at different moments. If you do not identify which institution is acting, it is easy to blame or credit the wrong part of government for a decision.",example:"Imagine Ohio creates a new grant program. The General Assembly can authorize it in law and provide funding. An executive agency may design forms and administer the program. A court might later decide a dispute about how the law applies.",question:"When you hear that 'Ohio government did something,' ask: Which branch acted? What legal authority was it using? Was it making a rule, carrying out a law, or resolving a dispute?"},
+ {meaning:"Ohio's General Assembly has two chambers: the House of Representatives and the Senate. A state bill does not become law simply because one chamber supports it; the legislative process requires action that results in both chambers agreeing to the same text.",why:"This is why a headline saying a bill 'passed' can be incomplete. It may have passed a committee, one chamber, or both chambers. Those are very different procedural positions.",example:"If a House bill passes the House, that is a major step, but it still has to move through the Senate process. If the Senate changes the text, the chambers must resolve the difference before the measure can move forward.",question:"Whenever you see the word 'passed,' ask: Passed what—committee, House, Senate, or the entire legislature?"},
+ {meaning:"A statute often sets the legal framework, but implementation requires someone to carry it out. Agencies may administer programs, issue guidance or rules when authorized, process applications, collect information, enforce requirements, or distribute funds.",why:"Policy arguments often mix together two questions: what the law says and how the law is implemented. Those can produce different problems and different points of public accountability.",example:"A law might create an eligibility standard for a program. The agency administering the program may then need procedures for applications, documentation, deadlines, and appeals. Those implementation choices can shape how the law is experienced.",question:"If a policy is not working as expected, ask whether the problem comes from the statute itself, the resources provided, or the way the responsible agency is implementing it."},
+ {meaning:"Courts generally act through actual legal disputes. Their role is not to rewrite a policy because they prefer a different outcome; they interpret legal text, apply constitutions and statutes, and resolve disputes within the cases before them.",why:"Understanding this keeps judicial power distinct from legislative power. A court ruling can have major policy consequences, but the court's formal task is a legal one tied to a dispute and legal authority.",example:"If two parties disagree about whether a state law authorizes a particular government action, a court may interpret the statute or constitutional provision and decide the case. The legislature can sometimes respond by changing the law, subject to constitutional limits.",question:"When reading about a court decision, ask: What legal question was before the court? What text or precedent did the court interpret?"},
+ {meaning:"H.B. 96 is useful because its official timeline shows multiple institutions acting at different stages. The legislature debated and passed versions of the bill, the Governor signed it and issued line-item vetoes, and the legislature later voted on some vetoed items.",why:"One timeline can show why 'the government' is too vague a phrase. Different actors have different powers, and the sequence of actions matters.",example:"The official H.B. 96 status record shows House and Senate passage, conference activity, delivery to the Governor, the June 30, 2025 signature, a July line-item veto receipt, and later legislative votes on vetoed items.",question:"Look at any multi-step policy story and label each action by institution. Which actions were legislative? Which were executive? Did any later action change an earlier one?"},
+ {meaning:"Changing an Ohio statute is a legislative act. Courts can interpret statutes and agencies can implement them, but the General Assembly is the institution that considers and passes bills to create or amend statutory law.",why:"Civic participation is more effective when it is directed at the institution with the relevant authority. Sending a legislative concern to an institution that cannot enact the requested statutory change wastes effort.",example:"If a resident wants Ohio law to create a new statewide requirement, the legislative process is the place where the statutory proposal would be introduced, heard, amended, debated, and voted on.",question:"Before contacting government, ask: What exact action do I want, and which institution has legal authority to take that action?"}
+],
+[
+ {meaning:"A policy idea is not yet legislation. It becomes a bill when legislative language is drafted and formally introduced. That change matters because the text—not the slogan or goal—defines what the proposal would actually do.",why:"Broad goals can hide major design choices. Two legislators can agree on a goal and still disagree about eligibility, enforcement, funding, exceptions, or timing.",example:"A goal such as 'expand access to care' could become many different bills depending on who qualifies, what services are covered, what entity pays, and when the program begins.",question:"When you hear a policy goal, ask: What language would have to appear in law for that goal to become an enforceable program or rule?"},
+ {meaning:"Introduction gives a proposal a formal place in the legislative process. A bill receives an identifying number and can then be referred to a committee. That is the beginning of consideration, not proof that the proposal has broad support.",why:"People frequently confuse proposal, passage, and enactment. Knowing the difference helps you read political claims more precisely.",example:"A newly introduced bill can exist for months without advancing. It may receive hearings, be amended, remain in committee, or never reach a floor vote.",question:"If someone says 'Ohio is doing X' because a bill was introduced, ask whether the bill is merely proposed or has actually advanced through later stages."},
+ {meaning:"Committees are smaller working groups that examine bills in more detail. They can hear testimony, ask questions, consider amendments or substitute versions, report a bill to the full chamber, or take no further action.",why:"This stage is where technical details and stakeholder concerns often become visible. Committee inaction can be just as consequential as a recorded vote because a bill may never reach the floor.",example:"A committee might hear that a proposed program has an unclear eligibility rule. Members could amend that language before deciding whether to report the bill.",question:"When tracking a bill in committee, ask: How many hearings has it had? What testimony was submitted? Has the text changed? Has the committee reported it?"},
+ {meaning:"A committee report does not finish the process. The full chamber must still decide whether to pass the bill. Floor debate and voting move the proposal from committee work to a decision by the chamber as a whole.",why:"This creates another point where a proposal can change or fail. It also means a committee's recommendation is not equivalent to final legislative approval.",example:"A bill can be reported by committee and then fail to receive enough votes on the floor. Conversely, a heavily amended committee version may be the version the chamber ultimately debates.",question:"If a bill clears committee, ask what version was reported and whether the full chamber has actually voted on that version."},
+ {meaning:"The second chamber conducts its own review. It is not simply rubber-stamping the first chamber's work. Its committee and floor process can produce a different version of the bill.",why:"Bicameral review creates another opportunity for scrutiny and another source of disagreement. That is why the text can evolve even after a major 'passage' vote.",example:"The House might pass one version while the Senate later passes a substitute version with different provisions. The bill still cannot proceed as final legislation until the chambers resolve the differences.",question:"When a bill moves to the second chamber, compare the version it received with the version it eventually passed."},
+ {meaning:"Both chambers need to agree on the same text. If one chamber amends a bill and the other refuses to accept those amendments, lawmakers may use a conference committee to negotiate a common version.",why:"This is where the idea of 'same bill number' can be misleading. The number may remain constant while the text being negotiated changes.",example:"A conference report can contain compromises that were not present in either chamber's earlier version. Both chambers then must vote on that report.",question:"When you hear that House and Senate negotiators reached a deal, ask to see the conference report or final agreed text rather than relying only on descriptions of the deal."},
+ {meaning:"The H.B. 96 status page works like a procedural ledger. It records introduction, committee referrals, substitute reports, chamber passage, disagreement over Senate amendments, conference action, delivery to the Governor, signature, and later veto-related activity.",why:"A primary-source timeline lets you reconstruct events without depending on one narrator's interpretation. It is especially useful when public descriptions use vague terms like 'passed,' 'blocked,' or 'changed.'",example:"For H.B. 96, the official record shows the House refused to concur in Senate amendments on June 11, 2025; the Senate then asked for a conference committee on June 12; both chambers agreed to the conference report on June 25.",question:"Try reading a status page from bottom to top. Can you explain what changed at each checkpoint and why the next step became necessary?"},
+ {meaning:"When the second chamber changes a bill, the first chamber must decide whether to accept those changes. If it does not, the chambers need another mechanism—such as conference—to reach identical text.",why:"This prevents two different versions from becoming one law by accident. Agreement is about the language, not just the general policy topic.",example:"If the House approves version A and the Senate approves version B, neither version alone represents the final agreement of both chambers. A later vote must resolve that mismatch.",question:"When comparing two chamber votes, ask whether they approved identical text or different versions."}
+],
+[
+ {meaning:"Witness categories describe a person's position in the hearing record. A sponsor explains the proposal; proponents support it; opponents oppose it; interested parties may offer information or seek changes without fitting neatly into support or opposition.",why:"Labels are useful for orientation but not for evaluating truth. A proponent can make a weak factual claim, and an opponent can make a strong one—or vice versa.",example:"When reading testimony, separate the witness's position from the evidence offered. Ask what sources, data, experience, or assumptions support the argument.",question:"Could you summarize a witness's strongest claim without using the words 'proponent' or 'opponent'? If not, you may be relying too much on the label."},
+ {meaning:"A useful way to read testimony is to identify four layers: the claim being made, the evidence supporting it, the people or systems affected, and the tradeoff or uncertainty that remains.",why:"Political disagreement often becomes clearer when you discover which layer is contested. People may agree on the goal but disagree about evidence, costs, risk, or implementation.",example:"One witness might say a requirement improves safety and cite professional guidance; another might argue it creates access barriers and cite implementation data. The disagreement is more specific than simply 'for' versus 'against.'",question:"For each witness, write one sentence for claim, evidence, impact, and tradeoff. Where do the witnesses actually conflict?"},
+ {meaning:"Committees are working bodies, not just speaking venues. Testimony can expose ambiguities or implementation problems that lead members to propose amendments or a substitute bill before deciding whether to report the measure.",why:"This is where listening can translate into legislative design. The important question is not only 'who spoke?' but 'did the information change the text or the committee's decision?'",example:"If several witnesses identify the same unclear definition, a committee might revise that definition rather than accepting or rejecting the whole bill unchanged.",question:"After a hearing, compare the next available bill text. Did any language change in a way that responds to issues raised in testimony?"},
+ {meaning:"H.B. 750's 2026 committee page shows a progression across multiple hearings: sponsor testimony, a group of proponent witnesses, later opponent testimony, and continued committee activity.",why:"That record illustrates how a committee can accumulate information over time rather than deciding everything in one meeting.",example:"A learner can open the individual testimony documents and compare what different witnesses emphasize. The point is not to count supporters and opponents like votes; testimony is evidence and argument, while legislators make the decision.",question:"Choose two witnesses from different positions. What facts do they agree on? What assumptions or predicted effects lead them to different conclusions?"},
+ {meaning:"H.B. 561's committee record provides another example of a hearing process in which supporting testimony appeared at earlier hearings and opposing testimony appeared later.",why:"Looking across multiple hearings helps you avoid treating one day's witness list as the entire public record.",example:"The official page shows proponents at the February 4 and March 18, 2026 hearings and opponents at the March 25 hearing. That sequence gives a learner multiple sets of arguments to compare.",question:"If you only watched one hearing, what perspectives might you miss? How would that affect your understanding of the committee record?"},
+ {meaning:"Conflicting factual claims should trigger investigation, not an immediate choice of sides. A committee staffer or careful citizen should compare the evidence offered, the relevant bill language, and credible underlying sources.",why:"This is the difference between evaluating an argument and evaluating a speaker. Civic literacy depends on being able to test claims even when you already agree with the speaker's conclusion.",example:"If two witnesses disagree about how many people a proposal would affect, look for the source of each estimate and check whether they use the same population, timeframe, and definition.",question:"What evidence would change your mind? If the answer is 'nothing,' you are no longer evaluating the factual claim."},
+ {meaning:"Testimony contributes to the legislative record, but witnesses do not enact legislation. Committee members still decide whether to amend, report, postpone, or reject a bill, and later stages may still be required.",why:"This distinction prevents public participation from being misunderstood as direct lawmaking. Testimony can influence a decision without mechanically determining it.",example:"A hearing could contain overwhelming testimony on one side and the committee could still take a different action. That would raise questions about lawmakers' reasoning, but it would not make the vote procedurally invalid simply because witness counts differed.",question:"After reading testimony, look for the committee's actual next action. Did it hold another hearing, amend the bill, report it, or take no recorded action?"}
+],
+[
+ {meaning:"Legislative drafting turns values and goals into legal instructions. Words such as 'shall,' definitions of covered people, exceptions, dates, funding amounts, and reporting duties can determine how broad or narrow a policy becomes.",why:"Two bills can share the same title or goal while producing very different real-world results. The operational details decide who must do what and under what conditions.",example:"A grant program limited to counties below a population threshold would operate differently from a statewide program even if both are described as 'supporting local arts.'",question:"For any proposal, underline the words that define who qualifies, what is required, and who has discretion."},
+ {meaning:"A fast policy read asks five practical questions: who is affected, what action is required or authorized, what resources support it, when it takes effect, and which institution administers it.",why:"These questions convert abstract policy language into an implementation map. They also reveal gaps that a slogan cannot answer.",example:"A bill may promise a new service but provide no funding mechanism or implementing agency. That does not automatically make it impossible, but it signals important design questions.",question:"Could you explain who would receive the policy, who would deliver it, who would pay, and when it would begin? If not, keep reading the text."},
+ {meaning:"Amendments and substitute bills allow lawmakers to change legislative text while the bill keeps its identifying number. A later version can differ substantially from the introduced version.",why:"Public debate can become misleading when people quote an earlier version after the text has changed. Accurate analysis depends on matching claims to the correct version and date.",example:"A provision criticized when a bill was introduced might be narrowed, expanded, or removed in a substitute version. A fair description should say which version contains the provision.",question:"When someone quotes a bill, ask for the version or date. Is the quoted language still in the current text?"},
+ {meaning:"H.B. 96's documents page makes version change visible. The site provides official legislative documents from introduction through committee reports, chamber-passed versions, conference, and enrollment.",why:"Version history turns a vague claim like 'the bill changed' into a specific research task: identify the old language, identify the new language, and explain the difference.",example:"If a provision appears in the Senate-passed version but not in the enrolled version, the version history can show that it did not survive the final agreement.",question:"Pick one section of a bill and trace it across two versions. What words changed, and what practical effect could that wording change have?"},
+ {meaning:"A broad goal becomes a workable program only after lawmakers specify its mechanics. Eligibility defines who can participate; funding identifies resources; rules define allowable uses or duties; reporting creates information for oversight.",why:"These choices distribute benefits, burdens, discretion, and accountability. They are often where policy tradeoffs become concrete.",example:"For a fictional arts-grant bill, limiting eligibility to nonprofit organizations would exclude individual artists. Allowing both would broaden access but might require a different review process or budget.",question:"Take any policy goal and write four headings: eligibility, funding, administration, accountability. What would you put under each?"},
+ {meaning:"Eligibility language identifies the people, organizations, places, or conditions covered by a policy. Without it, administrators may not know who can participate and the public may not know who is included or excluded.",why:"Eligibility rules can quietly determine the scale and distribution of a program more than the program's title does.",example:"A program for 'small communities' needs a definition of small. Population, tax base, geography, or another measure could produce different eligible groups.",question:"When you see an eligibility threshold, ask why that threshold was chosen and which groups fall just outside it."},
+ {meaning:"A stable title does not guarantee stable substance. Bill numbers and titles help identify legislation, but amendments can change operative language throughout the process.",why:"This is essential for fact-checking. A statement that was accurate about the introduced version may become outdated after amendments.",example:"Someone may circulate a screenshot of language from an earlier draft even after a substitute bill replaces it. The screenshot can be authentic and still be misleading about the current proposal.",question:"Before sharing a quotation from legislation, can you identify the version, date, and whether it is still current?"}
+],
+[
+ {meaning:"Source selection should follow the claim. A procedural claim is best checked against a status history; a wording claim against bill text; a testimony claim against the committee record; a vote claim against the recorded vote.",why:"Using the wrong source can create false confidence. An official press release may be authoritative about what an office says, but it may not be the best evidence for the exact language of a bill.",example:"If a post says 'the bill passed the Senate yesterday,' the bill's official status or vote record is more directly relevant than a campaign email reacting to the vote.",question:"Before opening a source, state the claim in one sentence. What record would contain direct evidence for that exact claim?"},
+ {meaning:"Verification has two layers: determine whether the narrow factual statement is supported, then check whether surrounding context changes its meaning. A true sentence can still create a misleading impression if it omits later or earlier events.",why:"Political information often compresses long processes into one line. Context helps distinguish a correct fact from a complete account.",example:"The H.B. 96 status page supports the claim that the Governor signed the bill on June 30, 2025. The same page also records later veto-related legislative activity, which matters if someone implies the entire story ended at the signature.",question:"After confirming a claim, read the entries immediately before and after it. Does the larger timeline add context a short post omitted?"},
+ {meaning:"To determine whether legislation changed, compare text—not reactions to the text. Version histories, substitute bills, amendments, and committee documents can show the actual language before and after a change.",why:"Commentary can accurately describe a change, exaggerate it, or miss it. The text lets you test the description.",example:"If a summary says an eligibility requirement was removed, search both versions for the relevant definition or section and compare them directly.",question:"Can you quote the exact old language and new language? If you cannot, you probably have not yet verified the claimed change."},
+ {meaning:"A claim about who testified or how witnesses were categorized should be checked against the committee record. That record can list hearing dates, witness names, organizations, testimony categories, and submitted documents.",why:"This distinguishes evidence about participation from impressions based on clips, selected testimony, or social-media attention.",example:"The H.B. 750 committee page lists witness categories across its hearings. That lets you verify whether a named person actually testified and whether the record identifies them as a sponsor, proponent, or opponent.",question:"Does the claim concern the number of witnesses, their stated position, or what they argued? Each may require a different part of the record."},
+ {meaning:"The games are simulations of two different legislative skills. Health Committee focuses on evaluating testimony and deciding what information or revision is needed. Culture Drafting focuses on building precise language that can be implemented.",why:"Practice is more useful when the game mechanic corresponds to a real civic task. Otherwise the learner may master the game without understanding government.",example:"In the committee game, choosing an amendment after hearing a specific implementation concern mirrors the logic of committee revision. In the drafting game, adding eligibility and accountability clauses mirrors the structure of policy design.",question:"While playing, name the real-world skill behind each action. Are you gathering evidence, interpreting language, revising policy, or making a procedural decision?"},
+ {meaning:"A committee decision should connect evidence to action. The useful sequence is to hear claims, inspect evidence, identify uncertainty, ask targeted questions, and decide whether the bill needs more information, different language, or a vote.",why:"This keeps the exercise from becoming a popularity contest. Good legislative reasoning explains why the next procedural step follows from what the committee learned.",example:"If testimony reveals that a definition unintentionally excludes a group the sponsor intended to cover, an amendment may be more responsive than simply voting yes or no on the original language.",question:"Before choosing a committee action in the game, finish the sentence: 'Because the evidence showed ___, the next step should be ___.'"},
+ {meaning:"Drafting is a construction problem. A complete policy needs pieces that work together: a goal, defined scope, operational mechanism, administration, funding or authority where relevant, and accountability.",why:"A missing piece can make an otherwise appealing idea hard to implement or evaluate. The drafting game asks you to notice those structural gaps.",example:"A bill that funds a program but never identifies who administers it creates an implementation question. A bill that creates duties but no reporting may make later oversight harder.",question:"After assembling a draft, try to break it: Who is uncertain about their role? What happens if someone does not comply? How will anyone know whether the policy worked?"},
+ {meaning:"Civic literacy is not memorizing every rule of procedure. It is the ability to identify the institution, locate the record, read the relevant language, distinguish evidence from advocacy, and explain what happened in sequence.",why:"Those skills transfer to unfamiliar issues. You do not need to know every bill in advance if you know how to investigate one responsibly.",example:"A new bill you have never seen can still be approached systematically: open the official page, identify its current status, read the current version, inspect committee activity, and compare claims against those records.",question:"For the next political claim you encounter, can you name the institution, the action, the relevant primary source, and one important piece of context before deciding what you think?"}
+]
+];
 let unlocked = Number(localStorage.getItem("ohCourseUnlockedV2") || 0);
 let completed = JSON.parse(localStorage.getItem("ohCourseCompletedV2") || "[]");
 let activeLevel = 0;
@@ -448,6 +561,16 @@ const intro = document.getElementById("moduleIntro");
 const introSmall = document.getElementById("introSmall");
 const introTitle = document.getElementById("introTitle");
 const introText = document.getElementById("introText");
+const deepModal = document.getElementById("deepModal");
+const deepTitle = document.getElementById("deepTitle");
+const deepLabel = document.getElementById("deepLabel");
+const deepMeaning = document.getElementById("deepMeaning");
+const deepWhy = document.getElementById("deepWhy");
+const deepExample = document.getElementById("deepExample");
+const deepQuestion = document.getElementById("deepQuestion");
+const deepClose = document.getElementById("deepClose");
+const deepContinue = document.getElementById("deepContinue");
+const deepSeen = new Set();
 
 function renderHome(){
   modulesEl.innerHTML="";
@@ -504,12 +627,29 @@ function makeVisual(s){
   return '<div class="visual"></div>';
 }
 
+
+function openDeep(auto=false){
+  const s=course[activeLevel].slides[activeSlide];
+  const d=DEEP[activeLevel]&&DEEP[activeLevel][activeSlide];
+  if(!d)return;
+  deepLabel.textContent="Level "+(activeLevel+1)+" • Lesson "+(activeSlide+1);
+  deepTitle.textContent=s.title;
+  deepMeaning.textContent=d.meaning;
+  deepWhy.textContent=d.why;
+  deepExample.textContent=d.example;
+  deepQuestion.textContent=d.question;
+  deepModal.classList.add("show");
+  if(auto)deepSeen.add(activeLevel+"-"+activeSlide);
+}
+function closeDeep(){deepModal.classList.remove("show");}
+
 function renderSlide(){
   const s=course[activeLevel].slides[activeSlide];
   lessonCount.textContent=(activeSlide+1)+" / "+course[activeLevel].slides.length;
   guideText.textContent=s.guide;
   const chips=s.chips?'<div class="micro">'+s.chips.map(x=>'<span>'+x+'</span>').join("")+'</div>':"";
-  slide.innerHTML='<div class="slide-copy"><div class="kicker">'+s.kicker+'</div><h2>'+s.title+'</h2><p>'+s.text+'</p>'+chips+(s.source&&s.type!=="real"?'<a class="source-link" href="'+SOURCE[s.source]+'" target="_blank" rel="noreferrer">Official Ohio source ↗</a>':'')+'</div>'+makeVisual(s);
+  slide.innerHTML='<div class="slide-copy"><div class="kicker">'+s.kicker+'</div><h2>'+s.title+'</h2><p>'+s.text+'</p>'+chips+'<button class="deep-open" id="deepOpen">Open full explanation →</button>'+(s.source&&s.type!=="real"?'<a class="source-link" href="'+SOURCE[s.source]+'" target="_blank" rel="noreferrer">Official Ohio source ↗</a>':'')+'</div>'+makeVisual(s);
+  document.getElementById("deepOpen").onclick=()=>openDeep(false);
 
   if(s.type==="quiz"){
     slide.querySelectorAll("[data-answer]").forEach(btn=>{
@@ -527,6 +667,8 @@ function renderSlide(){
   const last=activeSlide===course[activeLevel].slides.length-1;
   nextBtn.textContent=last?"Finish level ✓":"Next →";
   nextBtn.classList.toggle("finish",last);
+  const deepKey=activeLevel+"-"+activeSlide;
+  if(!deepSeen.has(deepKey))setTimeout(()=>openDeep(true),80);
 }
 
 function finishLevel(){
@@ -540,7 +682,10 @@ function finishLevel(){
 }
 
 document.getElementById("startBtn").onclick=()=>intro.classList.remove("show");
-document.getElementById("closeBtn").onclick=()=>lesson.classList.remove("open");
+document.getElementById("closeBtn").onclick=()=>{closeDeep();lesson.classList.remove("open");};
+deepClose.onclick=closeDeep;
+deepContinue.onclick=closeDeep;
+deepModal.addEventListener("click",e=>{if(e.target===deepModal)closeDeep();});
 prevBtn.onclick=()=>{if(activeSlide>0){activeSlide--;renderSlide()}};
 nextBtn.onclick=()=>{
   if(activeSlide<course[activeLevel].slides.length-1){activeSlide++;renderSlide()}
@@ -548,6 +693,7 @@ nextBtn.onclick=()=>{
 };
 document.addEventListener("keydown",e=>{
   if(!lesson.classList.contains("open")||intro.classList.contains("show"))return;
+  if(e.key==="Escape"&&deepModal.classList.contains("show")){closeDeep();return;}
   if(e.key==="Escape")lesson.classList.remove("open");
   if(e.key==="ArrowRight")nextBtn.click();
   if(e.key==="ArrowLeft"&&activeSlide>0)prevBtn.click();
