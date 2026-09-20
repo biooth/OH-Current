@@ -3173,6 +3173,10 @@ judImpactStage=function(){const c=judCase(),h=c.holdings.find(x=>x[0]===courtGam
   document.querySelectorAll('.tab[data-page="arts"]').forEach(x=>x.textContent='Culture Drafting');
   if(document.getElementById('healthDeepGame'))window.startHealthDeepGame(false);
   if(document.getElementById('cultureDeepGame'))window.startCultureDeepGame(false);
+  const requestedPage=new URLSearchParams(window.location.search).get('page');
+  if(['games','health','arts','explorer','sources','today'].includes(requestedPage)){
+    setTimeout(()=>window.go(requestedPage),35);
+  }
 })();
 </script>
 
