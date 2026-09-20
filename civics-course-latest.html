@@ -19,7 +19,7 @@ button:focus-visible,a:focus-visible{outline:3px solid rgba(37,99,235,.30);outli
   height:64px;flex:0 0 64px;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);
   display:flex;align-items:center;gap:20px;padding:0 clamp(16px,3vw,42px);backdrop-filter:blur(14px)
 }
-.brand{font-size:25px;font-weight:950;letter-spacing:-.045em;color:var(--navy);white-space:nowrap}
+.brand{font-size:25px;font-weight:950;letter-spacing:-.045em;color:var(--navy);white-space:nowrap;text-decoration:none}
 .brand span{color:var(--blue)}
 .course-track{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;min-width:0}
 .track-dot{height:7px;flex:1;max-width:76px;border-radius:999px;background:#e4eaf2;transition:.25s ease}
@@ -296,7 +296,7 @@ button:focus-visible,a:focus-visible{outline:3px solid rgba(37,99,235,.30);outli
 <body>
 <div id="app">
   <header class="topbar">
-    <div class="brand">OH! <span>Civics</span></div>
+    <a class="brand" href="index.html" aria-label="Back to OH! Civics home" title="Back to OH! Civics home">OH! <span>Civics</span></a>
     <div class="course-track" id="courseTrack"></div>
     <div class="progress-copy" id="progressCopy">Level 1 of 5</div>
   </header>
