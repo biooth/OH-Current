@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OH! Civics — Culture Drafting</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+:root{--bg:#17111d;--bg2:#24182d;--panel:#2a1d33;--panel2:#362341;--ink:#fff8f0;--muted:#d0b9c9;--line:rgba(239,206,235,.16);--plum:#bd7ae8;--rose:#ef8cad;--copper:#f3a65a;--paper:#f7f0e2;--paperInk:#2f2b31;--green:#79d7aa;--shadow:0 28px 90px rgba(0,0,0,.35)}
+body{color:var(--ink);background:radial-gradient(circle at 8% -4%,rgba(239,140,173,.15),transparent 28%),radial-gradient(circle at 90% 8%,rgba(189,122,232,.15),transparent 28%),linear-gradient(180deg,#17111d,#23172c 55%,#17111d);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;background:linear-gradient(120deg,#07111f,#4a254c,#17111d);animation:enterTheme .9s ease forwards}
+@keyframes enterTheme{0%{opacity:1}100%{opacity:0;visibility:hidden}}
+.topbar{position:sticky;top:0;z-index:80;height:72px;border-bottom:1px solid var(--line);background:rgba(22,14,28,.90);backdrop-filter:blur(18px);display:flex;align-items:center}
+.nav{width:min(1460px,calc(100% - 28px));margin:auto;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:white;min-width:max-content}.logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,var(--rose),var(--plum));color:#1c1022;font-weight:1000;letter-spacing:-.08em}.brand strong{display:block;font-size:18px}.brand small{display:block;color:#ab8fa8;font-size:8px;letter-spacing:.12em;text-transform:uppercase;font-weight:900}
+.navlinks{margin-left:auto;display:flex;gap:6px;overflow:auto}.navlinks a{white-space:nowrap;text-decoration:none;color:#d5c1d2;border:1px solid transparent;border-radius:9px;padding:8px 10px;font-size:10px;font-weight:900}.navlinks a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.04)}.navlinks .active{color:#25132c;background:linear-gradient(135deg,#ef8cad,#c98af0)}
+.page{width:min(1460px,calc(100% - 28px));margin:0 auto;padding:24px 0 44px}
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:18px;margin-bottom:16px}.hero-main,.hero-side{border:1px solid var(--line);border-radius:22px;background:linear-gradient(150deg,rgba(49,31,59,.97),rgba(31,20,39,.97));box-shadow:0 18px 52px rgba(0,0,0,.18)}.hero-main{padding:26px 28px}.eyebrow{color:#ef9fc1;text-transform:uppercase;letter-spacing:.13em;font-size:9px;font-weight:950}.hero h1{margin:7px 0 9px;font-size:clamp(34px,5vw,58px);letter-spacing:-.055em;line-height:.96}.hero p{max-width:760px;margin:0;color:#cfb7c9;font-size:14px;line-height:1.6}.hero-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.btn{border-radius:10px;padding:10px 13px;border:1px solid var(--line);font-size:10px;font-weight:950;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.btn.primary{background:linear-gradient(135deg,#ce7bd8,var(--rose));color:#28162d;border-color:rgba(239,140,173,.36)}.btn.secondary{background:rgba(255,255,255,.04);color:#f4e8f1}.hero-side{padding:20px}.hero-side small{color:var(--copper);font-size:8px;font-weight:950;letter-spacing:.12em;text-transform:uppercase}.hero-side h3{font-size:18px;margin:6px 0 8px}.hero-side p{font-size:11px;line-height:1.5}
+.game{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#1b1220;box-shadow:var(--shadow)}
+.game-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;padding:16px 20px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.025)}.game-head h2{margin:3px 0 4px;font-size:20px}.game-head p{margin:0;color:#b798b1;font-size:10px;line-height:1.4}.stage-counter{font-size:9px;color:#a2839f;font-weight:900;align-self:center}
+.progress{display:grid;grid-template-columns:repeat(6,minmax(115px,1fr));overflow:auto;border-bottom:1px solid var(--line)}.progress div{padding:10px 7px;text-align:center;color:#765d76;font-size:8px;text-transform:uppercase;letter-spacing:.08em;font-weight:950;position:relative}.progress .done{color:#c3a9bd}.progress .active{color:white;background:rgba(239,140,173,.08)}.progress .active:after{content:"";position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--rose)}
+.workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.55fr);min-height:620px}
+.studio-wrap{padding:18px;min-width:0}.studio{position:relative;height:100%;min-height:580px;border:1px solid rgba(236,194,228,.14);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#4a2d4a 0 21%,#3a263c 21% 23%,#251927 23% 100%);box-shadow:inset 0 0 90px rgba(0,0,0,.24)}
+.window{position:absolute;right:7%;top:7%;width:25%;height:24%;border:8px solid #2a1b2b;background:linear-gradient(180deg,#293847,#6f5b78);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}.window:before,.window:after{content:"";position:absolute;background:#2a1b2b}.window:before{left:48%;top:0;bottom:0;width:6px}.window:after{left:0;right:0;top:48%;height:6px}.lamp{position:absolute;left:8%;top:7%;width:9px;height:120px;background:#3f3032;transform:rotate(8deg);transform-origin:bottom}.lamp:before{content:"";position:absolute;top:-2px;left:-27px;width:62px;height:32px;border-radius:50% 50% 12px 12px;background:#d18749;box-shadow:0 12px 35px rgba(243,166,90,.28)}
+.shelf{position:absolute;left:7%;top:25%;width:25%;height:10px;background:#634a3a;box-shadow:0 6px 0 #2c2023}.shelf i{position:relative;display:inline-block;width:15px;height:52px;margin:-52px 3px 0 0;border-radius:3px 3px 0 0;background:#7f5576}.shelf i:nth-child(2){background:#5b6d78;height:45px}.shelf i:nth-child(3){background:#8a6448;height:50px}.shelf i:nth-child(4){background:#485d62;height:41px}
+.desk{position:absolute;left:8%;right:8%;bottom:8%;height:35%;background:linear-gradient(180deg,#7a5137,#4f382a);border-radius:12px 12px 3px 3px;box-shadow:0 22px 35px rgba(0,0,0,.35)}.desk:after{content:"";position:absolute;left:5%;right:5%;top:12px;height:4px;background:rgba(255,255,255,.06)}
+.bill{position:absolute;z-index:5;left:50%;bottom:14%;transform:translateX(-50%) rotate(-1deg);width:min(400px,47%);height:46%;padding:18px 20px;background:var(--paper);color:var(--paperInk);border-radius:5px;box-shadow:0 22px 45px rgba(0,0,0,.33);font-family:Georgia,serif;transition:.35s ease}.bill h3{font-size:16px;text-align:center;margin:0 0 10px}.bill small{display:block;text-align:center;font:900 7px Inter,sans-serif;letter-spacing:.11em;text-transform:uppercase;color:#886758}.clause{position:relative;border-top:1px solid #d9cec1;padding:8px 4px 5px;font-size:9px;line-height:1.45;color:#60555b;transition:.3s ease}.clause b{font:900 7px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#7c6675}.clause.active{background:#fff2d9;box-shadow:inset 3px 0 0 #e39153;padding-left:10px;color:#372c30}.clause.redlined:after{content:"REVISION";position:absolute;right:-8px;top:8px;font:900 6px Inter,sans-serif;color:#b4475e;transform:rotate(-4deg)}
+.stakeholders{position:absolute;left:4%;right:4%;top:33%;height:27%;display:flex;align-items:flex-start;justify-content:space-between;pointer-events:none}.stakeholder{width:19%;text-align:center;opacity:.22;transform:translateY(14px);transition:.35s ease}.stakeholder.show{opacity:1;transform:none}.stakeholder.active{filter:drop-shadow(0 0 14px rgba(239,140,173,.20));transform:translateY(-3px)}.stakeholder .person{position:relative;width:54px;height:66px;margin:auto;--skin:#c78c6d;--hair:#342429;--coat:#6c496d}.stakeholder:nth-child(2) .person{--skin:#8e5a45;--hair:#161313;--coat:#48626e}.stakeholder:nth-child(3) .person{--skin:#ddb088;--hair:#262126;--coat:#56664d}.stakeholder:nth-child(4) .person{--skin:#b87558;--hair:#201b1b;--coat:#735b42}.head{position:absolute;top:0;left:11px;width:32px;height:34px;border-radius:48% 48% 45% 45%;background:var(--skin)}.hair{position:absolute;top:-2px;left:10px;width:34px;height:14px;border-radius:50% 50% 35% 35%;background:var(--hair)}.body{position:absolute;bottom:0;left:4px;width:46px;height:36px;border-radius:15px 15px 5px 5px;background:var(--coat)}.stakeholder b{display:inline-block;margin-top:3px;padding:4px 6px;border-radius:6px;background:rgba(17,11,19,.75);font-size:7px;color:#f3e5ef}.note{position:absolute;z-index:9;left:5%;top:7%;width:min(410px,46%);padding:13px 14px;border-radius:14px 14px 14px 3px;background:#fff6e7;color:#3f3136;box-shadow:0 18px 40px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);transition:.3s ease}.note.show{opacity:1;transform:none}.note small{display:block;color:#b05d6e;font-size:7px;font-weight:950;text-transform:uppercase;letter-spacing:.1em}.note strong{display:block;font-size:12px;margin:4px 0}.note p{font-size:10px;line-height:1.45;margin:0;color:#5d4b52}.pen{position:absolute;z-index:8;left:68%;bottom:19%;width:9px;height:140px;border-radius:6px;background:linear-gradient(180deg,#e08b5c,#7a3d3b);transform:rotate(28deg);box-shadow:0 10px 20px rgba(0,0,0,.2);opacity:.25;transition:.35s ease}.pen.active{opacity:1;transform:rotate(10deg) translateY(-12px)}
+.studio-caption{position:absolute;right:10px;bottom:9px;padding:6px 8px;border-radius:8px;background:rgba(18,10,20,.68);font-size:7px;color:#c5aabd;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.learning{border-left:1px solid var(--line);padding:18px;background:linear-gradient(180deg,rgba(43,27,51,.98),rgba(27,18,34,.98));display:flex;flex-direction:column;gap:10px;min-width:0}.lesson-card,.action-card{border:1px solid var(--line);border-radius:15px;padding:14px;background:rgba(255,255,255,.03)}.lesson-card small,.action-card small{display:block;color:#ef9fc1;font-size:7.5px;font-weight:950;text-transform:uppercase;letter-spacing:.12em}.lesson-card h3,.action-card h3{font-size:15px;margin:5px 0;color:white}.lesson-card p,.action-card p{font-size:11px;line-height:1.52;color:#cdb7c8;margin:0}.action-card{flex:1}.choices{display:grid;gap:7px;margin-top:11px}.choice{width:100%;text-align:left;border:1px solid var(--line);border-radius:11px;padding:10px;background:rgba(255,255,255,.035);color:#f2e7f0;cursor:pointer}.choice:hover{border-color:rgba(239,140,173,.38);background:rgba(239,140,173,.055)}.choice.selected{border-color:rgba(239,140,173,.58);background:rgba(239,140,173,.10)}.choice b{display:block;font-size:10px}.choice span{display:block;margin-top:3px;color:#b69db1;font-size:8.5px;line-height:1.4}.bottom-actions{display:flex;align-items:center;justify-content:space-between;gap:8px}.next{border:0;border-radius:10px;padding:10px 13px;background:linear-gradient(135deg,#cf7bd8,var(--rose));color:#28152d;font-size:9px;font-weight:1000;cursor:pointer}.next[disabled]{opacity:.3;cursor:not-allowed}.back{border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:rgba(255,255,255,.03);color:#eadce8;font-size:9px;font-weight:900;cursor:pointer}
+.guide{position:fixed;z-index:90;right:20px;bottom:20px;width:min(390px,calc(100vw - 28px));display:grid;grid-template-columns:52px 1fr;gap:10px;padding:12px;border:1px solid rgba(239,140,173,.28);border-radius:18px;background:rgba(35,20,42,.96);box-shadow:0 24px 70px rgba(0,0,0,.32);transform:translateY(130%);transition:.38s cubic-bezier(.2,.8,.2,1)}.guide.show{transform:none}.guide-face{width:50px;height:58px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,var(--copper),var(--rose));font-size:30px}.guide small{color:#ef9fc1;font-size:7px;text-transform:uppercase;letter-spacing:.12em;font-weight:950}.guide p{margin:4px 0 8px;color:#f7edf5;font-size:10px;line-height:1.45}.guide button{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#f1e3ef;border-radius:8px;padding:6px 8px;font-size:8px;font-weight:900;cursor:pointer}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.learning{border-left:0;border-top:1px solid var(--line)}.studio{min-height:520px}.progress{grid-template-columns:repeat(6,125px)}}@media(max-width:620px){.brand small{display:none}.navlinks a:nth-child(3){display:none}.page{width:min(100% - 16px,1460px)}.hero-main{padding:20px}.studio-wrap{padding:8px}.studio{min-height:480px}.bill{width:62%;height:48%}.stakeholder{width:23%}.stakeholder:nth-child(4){display:none}.note{width:70%}.workspace{min-height:0}.learning{padding:12px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="nav"><a class="brand" href="index.html"><div class="logo">OH!</div><div><strong>OH! Civics</strong><small>Culture Drafting Simulation</small></div></a><nav class="navlinks"><a href="index.html">Main site</a><a href="civics-course-latest.html">Civic Course</a><a href="health-committee.html">Health Committee</a><a class="active" href="culture-drafting.html">Culture Drafting</a></nav></div></header>
+<main class="page">
+<section class="hero"><div class="hero-main"><span class="eyebrow">Separate simulation · connected course</span><h1>Inside the Drafting Studio</h1><p>Turn one broad culture-policy goal into usable legislative language. Stakeholders reveal drafting problems, the bill changes on the desk, and a sponsor redline forces you to test whether the final text can actually be implemented.</p><div class="hero-actions"><button class="btn primary" id="newDraft">Start a new draft</button><a class="btn secondary" href="civics-course-latest.html">Review drafting lesson</a></div></div><aside class="hero-side"><small>Visual mode</small><h3>The document is the game board.</h3><p>People feed requirements into the bill. Clause sections light up as they are written. Redlines appear where ambiguity remains, and the final implementation test shows what the words would require in practice.</p></aside></section>
+<section class="game"><div class="game-head"><div><span class="eyebrow" id="caseCode"></span><h2 id="caseTitle"></h2><p id="caseQuestion"></p></div><div class="stage-counter" id="stageCounter"></div></div><div class="progress" id="progress"></div><div class="workspace"><div class="studio-wrap"><div class="studio">
+<div class="window"></div><div class="lamp"></div><div class="shelf"><i></i><i></i><i></i><i></i></div>
+<div class="note" id="note"><small id="noteTag"></small><strong id="noteName"></strong><p id="noteText"></p></div>
+<div class="stakeholders" id="stakeholders"></div>
+<div class="bill" id="bill"><small id="billCode"></small><h3 id="billTitle"></h3><div id="billClauses"></div></div>
+<div class="pen" id="pen"></div><div class="desk"></div><div class="studio-caption" id="studioCaption">Legislative drafting studio · fictional practice room</div></div></div>
+<aside class="learning"><div class="lesson-card"><small>What this stage teaches</small><h3 id="lessonTitle"></h3><p id="lessonText"></p></div><div class="action-card"><small>Your move</small><h3 id="actionTitle"></h3><p id="actionText"></p><div class="choices" id="choices"></div></div><div class="bottom-actions"><button class="back" id="backBtn">← Back</button><button class="next" id="nextBtn">Next →</button></div></aside></div></section>
+</main>
+<div class="guide" id="guide"><div class="guide-face">🧑🏽‍💼</div><div><small>Renee · legislative drafter</small><p id="guideText"></p><button id="guideDismiss">Got it</button></div></div>
+<script>
+(function(){
+const stages=['Draft request','Stakeholder needs','Clause drafting','Sponsor redline','Implementation test','Final text'];
+const people=[['Sponsor Vale','Sponsor'],['Ari Monroe','Arts director'],['Cam Price','Grant administrator'],['Leah Soto','Auditor']];
+const cases=[
+ {code:'Fictional H.B. 502',title:'Community Arts Access Grant',question:'Can a broad goal become clear enough that an agency knows who qualifies, what may be funded, and what must be reported?',goal:'Create a state grant that helps communities provide low-cost arts programming.',
+ needs:[
+  {name:'Ari Monroe',role:'Small-town arts director',need:'Small organizations need to know whether they qualify before spending time on an application.',clue:'The eligibility clause needs a clear organizational or geographic rule.'},
+  {name:'Cam Price',role:'State grants administrator',need:'The agency needs to know which expenses are allowed and how award size is limited.',clue:'The mechanism clause needs eligible-use and award rules.'},
+  {name:'Leah Soto',role:'Legislative auditor',need:'Lawmakers will need information later to judge whether the program reached communities.',clue:'The accountability clause needs reporting or evaluation requirements.'}
+ ],
+ clauses:[
+  {name:'Purpose',prompt:'What is the program trying to accomplish?',opts:[['The program shall expand public access to community arts programming through competitive grants.','Specific: names both the outcome and the tool.'],['The state supports the arts.','Broad: expresses a value but gives administrators little operating direction.']]},
+  {name:'Eligibility',prompt:'Who may apply?',opts:[['Ohio nonprofit arts organizations and local governments serving communities under 100,000 residents may apply.','Specific: administrators can identify who qualifies, but some groups are excluded.'],['Any organization contributing to culture may apply.','Flexible: broader access, but the agency must decide what “contributing to culture” means.']]},
+  {name:'Mechanism',prompt:'What may the grant pay for?',opts:[['Awards may cover teaching artists, venue costs, accessibility services, and program materials up to a stated cap.','Specific: identifies allowable costs and limits award size.'],['The agency may award funds for appropriate cultural uses.','Flexible: easier to adapt, but more policy detail shifts to agency judgment.']]},
+  {name:'Accountability',prompt:'How will anyone know what happened?',opts:[['The agency shall publish annual award, geography, participation, and expenditure data.','Creates a recurring public record for oversight.'],['The agency shall administer the program efficiently.','Sets an expectation but creates little concrete information for later review.']]}
+ ],
+ redlines:[
+  ['Define community arts programming','Add a definition covering public performances, exhibitions, instruction, and participatory arts activities.','This narrows uncertainty about which activities count.'],
+  ['Add a two-year pilot','End new awards after two years unless lawmakers continue the program.','This creates a scheduled review point but less long-term certainty.']
+ ],
+ tests:[
+  ['Rural nonprofit asks if it qualifies','Use the eligibility clause to decide whether a small nonprofit in a community of 40,000 can apply.','A clear eligibility clause should let the applicant and agency reach the same answer without inventing a new rule.'],
+  ['Agency reviews an accessibility invoice','Use the mechanism clause to decide whether accessibility services are an eligible cost.','Specific allowable-use language reduces the amount of policy discretion left to the administrator.']
+ ]},
+ {code:'Fictional S.B. 178',title:'Historic Venue Accessibility Credit',question:'Can an incentive be drafted clearly enough to distinguish qualifying accessibility work from ordinary renovation?',goal:'Encourage older cultural venues to make accessibility improvements.',
+ needs:[
+  {name:'Ari Monroe',role:'Historic theater manager',need:'Older venues often renovate in phases rather than all at once.',clue:'Eligibility and timing rules should say whether phased projects count.'},
+  {name:'Cam Price',role:'Accessibility consultant',need:'The incentive should distinguish genuine accessibility work from unrelated renovation.',clue:'The mechanism needs a definition of eligible expenses.'},
+  {name:'Leah Soto',role:'Tax administrator',need:'The agency needs records that support certification and later review.',clue:'Accountability needs documentation and certification rules.'}
+ ],
+ clauses:[
+  {name:'Purpose',prompt:'What is the incentive for?',opts:[['Create a credit for qualifying accessibility improvements to eligible Ohio cultural venues.','Specific: ties the incentive to a defined kind of improvement.'],['Support historic venues.','Broad: does not identify the mechanism or qualifying activity.']]},
+  {name:'Eligibility',prompt:'Which venues qualify?',opts:[['A venue open to the public and used primarily for performing, visual, museum, or cultural programming may apply if it meets the age requirement.','Defined scope with identifiable conditions.'],['Any older building with cultural value may apply.','Flexible but leaves “cultural value” undefined.']]},
+  {name:'Mechanism',prompt:'Which costs count?',opts:[['Eligible expenditures include ramps, lifts, accessible seating, restroom alterations, assistive-listening systems, and related design costs.','Specific: connects the credit to identifiable accessibility work.'],['The credit may cover reasonable renovation expenses.','Flexible but may include work unrelated to accessibility without more guidance.']]},
+  {name:'Accountability',prompt:'What records must be kept?',opts:[['Applicants shall retain invoices, project certifications, and proof of public use for agency review.','Creates a concrete verification record.'],['Applicants shall provide information requested by the agency.','Flexible but gives applicants less advance clarity about required records.']]}
+ ],
+ redlines:[
+  ['Clarify phased projects','Permit qualifying expenditures across a defined multi-year project window.','Addresses phased renovation while requiring a clear timeframe.'],
+  ['Define public use','Specify a minimum schedule or percentage of public cultural programming.','Makes an eligibility concept measurable but may exclude irregular venues.']
+ ],
+ tests:[
+  ['Theater renovates in three phases','Use the eligibility and redline language to decide whether costs from more than one year may qualify.','A time-window rule determines whether phased projects can be treated as one qualifying project.'],
+  ['Venue submits decorative renovation costs','Use the mechanism clause to decide whether decorative work belongs in the eligible-expense calculation.','The more specific the definition, the less interpretive discretion the administrator needs.']
+ ]}
+];
+let state={caseIndex:0,stage:0,heard:new Set(),activePerson:null,clauseIndex:0,choices:[],redline:null,test:null};
+const el=id=>document.getElementById(id),current=()=>cases[state.caseIndex];
+function guide(text){el('guideText').textContent=text;el('guide').classList.add('show')}
+function progress(){el('progress').innerHTML=stages.map((s,i)=>'<div class="'+(i<state.stage?'done':i===state.stage?'active':'')+'">'+(i+1)+'. '+s+'</div>').join('')}
+function renderPeople(){
+ el('stakeholders').innerHTML=people.map((p,i)=>'<div class="stakeholder '+(state.stage>=1?'show ':'')+(state.activePerson===i?'active':'')+'"><div class="person"><div class="head"></div><div class="hair"></div><div class="body"></div></div><b>'+p[0]+'</b></div>').join('');
+}
+function showNote(tag,name,text){el('noteTag').textContent=tag;el('noteName').textContent=name;el('noteText').textContent=text;el('note').classList.add('show')}
+function hideNote(){el('note').classList.remove('show')}
+function renderBill(activeClause){
+ const c=current();el('billCode').textContent=c.code;el('billTitle').textContent=c.title;
+ el('billClauses').innerHTML=c.clauses.map((cl,i)=>{const chosen=state.choices[i];const text=chosen==null?'[Drafting needed]':cl.opts[chosen][0];return '<div class="clause '+(activeClause===i?'active ':'')+(state.stage===3&&activeClause===i?'redlined':'')+'"><b>'+cl.name+'</b><br>'+text+'</div>'}).join('');
+}
+function choiceButton(title,sub,index,selected,kind){return '<button class="choice '+(selected?'selected':'')+'" data-kind="'+kind+'" data-index="'+index+'"><b>'+title+'</b><span>'+sub+'</span></button>'}
+function render(){
+ const c=current();progress();renderPeople();hideNote();el('pen').classList.remove('active');el('caseCode').textContent=c.code;el('caseTitle').textContent=c.title;el('caseQuestion').textContent=c.question;el('stageCounter').textContent='Stage '+(state.stage+1)+' / '+stages.length;el('backBtn').disabled=state.stage===0;el('studioCaption').textContent=stages[state.stage]+' · legislative drafting studio';
+ let lessonTitle='',lessonText='',actionTitle='',actionText='',choices='',nextDisabled=false,nextLabel='Next →',activeClause=-1;
+ if(state.stage===0){
+  lessonTitle='A policy goal is not yet a bill.';lessonText='Drafting converts a goal into legal instructions. A usable bill eventually has to answer who is covered, what government may or must do, what resources or conditions apply, and how implementation can be reviewed.';
+  actionTitle='Read the sponsor request';actionText=c.goal+' The words are still missing. Your job is to build an operating structure rather than polish a slogan.';
+  choices='<div class="lesson-card" style="margin-top:10px"><small>Drafting question</small><p>'+c.question+'</p></div>';guide('Look at the paper: every section begins as “Drafting needed.” The visual is showing you that a policy goal has not yet answered the legal questions an administrator would face.');
+ } else if(state.stage===1){
+  if(state.activePerson!=null&&state.activePerson>0){const n=c.needs[state.activePerson-1];showNote('Stakeholder need',n.name,n.need)}
+  lessonTitle='Stakeholders reveal missing rules.';lessonText='A stakeholder does not write the law for you. Their experience can reveal where the draft lacks a definition, eligibility rule, administrative mechanism, or accountability structure.';
+  actionTitle='Open every stakeholder note';actionText='Each character feeds a different drafting requirement into the bill.';
+  choices=c.needs.map((n,i)=>choiceButton(n.name,n.role+' · '+(state.heard.has(i)?n.clue:'Open note'),i,state.heard.has(i),'need')).join('');nextDisabled=state.heard.size<c.needs.length;guide('The characters are not decoration. Each one exposes a different job the bill text has to perform. Watch which clause their concern points toward.');
+ } else if(state.stage===2){
+  activeClause=Math.min(state.clauseIndex,c.clauses.length-1);const cl=c.clauses[state.clauseIndex];const selected=state.choices[state.clauseIndex];
+  if(state.clauseIndex>=c.clauses.length){
+    lessonTitle='The draft now has a complete structure.';lessonText='Purpose, eligibility, mechanism, and accountability are different legal jobs. A bill can be rhetorically clear while still failing one of those jobs.';
+    actionTitle='Review the assembled bill';actionText='The paper now contains language in all four sections. Notice how the visual changed from blanks to an operating structure.';
+    choices='<div class="lesson-card"><small>Structure check</small><p>Can you explain what each clause does without relying on the bill title?</p></div>';activeClause=-1;
+  }else{
+    lessonTitle='Every clause has a different job.';lessonText='Specific language usually reduces administrative discretion; broader language can preserve flexibility. The tradeoff matters because later implementation depends on what the text actually delegates or defines.';
+    actionTitle=cl.name+' clause';actionText=cl.prompt;
+    choices=cl.opts.map((o,i)=>choiceButton(i===0?'More specific':'More flexible',o[0]+' '+o[1],i,selected===i,'clause')).join('');nextDisabled=selected==null;nextLabel=state.clauseIndex===c.clauses.length-1?'Review full draft →':'Next clause →';el('pen').classList.add('active');
+  }
+ } else if(state.stage===3){
+  const picked=state.redline==null?null:c.redlines[state.redline];activeClause=state.redline===0?1:3;el('pen').classList.add('active');if(picked)showNote('Sponsor redline','Sponsor Vale',picked[1]);
+  lessonTitle='Revision is part of legislating.';lessonText='A redline matters because the words change, not because a meter moves. The drafter should be able to identify the ambiguity, the replacement language, and the practical consequence.';
+  actionTitle='Choose a sponsor redline to resolve';actionText='The pen and marked clause show exactly where the policy artifact changes.';
+  choices=c.redlines.map((r,i)=>choiceButton(r[0],r[1],i,state.redline===i,'redline')).join('')+(picked?'<div class="lesson-card" style="margin-top:10px"><small>Drafting effect</small><p>'+picked[2]+'</p></div>':'');nextDisabled=state.redline==null;
+  guide('Now the visual focus is the marked clause. That is the learning point: when a problem becomes specific, the bill should change in a specific place.');
+ } else if(state.stage===4){
+  const picked=state.test==null?null:c.tests[state.test];if(picked)showNote('Implementation test','Agency reviewer',picked[0]+': '+picked[1]);
+  lessonTitle='Test the text against a real decision.';lessonText='Implementation testing asks whether two reasonable readers could use the text and reach the same result. Ambiguity is easiest to see when a real applicant, agency, or deadline forces the language to produce an answer.';
+  actionTitle='Run an implementation test';actionText='Pick a scenario and use the draft as if you were the administrator.';
+  choices=c.tests.map((t,i)=>choiceButton(t[0],t[1],i,state.test===i,'test')).join('')+(picked?'<div class="lesson-card" style="margin-top:10px"><small>What this test reveals</small><p>'+picked[2]+'</p></div>':'');nextDisabled=state.test==null;guide('This is where drafting becomes concrete. The question is no longer “does the sentence sound good?” It is “can this sentence actually decide the case in front of the administrator?”');
+ } else {
+  lessonTitle='The final text is the policy artifact.';lessonText='The durable skill is tracing every final clause back to a policy-design question and then checking whether the text can be implemented without inventing a new rule.';
+  actionTitle='What the studio taught';actionText='People exposed missing rules; the bill sections answered them; a redline refined one ambiguity; an implementation test forced the words to produce a result.';
+  const r=c.redlines[state.redline];choices='<div class="lesson-card"><small>Final revision</small><h3>'+r[0]+'</h3><p>'+r[2]+'</p></div><div class="hero-actions"><a class="btn secondary" href="civics-course-latest.html">Return to course</a><a class="btn secondary" href="health-committee.html">Try committee simulation</a></div>';nextLabel='Replay draft ↻';guide('If you can point at each section of the paper and explain the job it performs, you understand more than the bill title—you understand the policy structure.');
+ }
+ renderBill(activeClause);el('lessonTitle').textContent=lessonTitle;el('lessonText').textContent=lessonText;el('actionTitle').textContent=actionTitle;el('actionText').textContent=actionText;el('choices').innerHTML=choices;el('nextBtn').disabled=nextDisabled;el('nextBtn').textContent=nextLabel;
+}
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-kind]');if(!b)return;const i=Number(b.dataset.index),k=b.dataset.kind;
+ if(k==='need'){state.heard.add(i);state.activePerson=i+1}
+ if(k==='clause')state.choices[state.clauseIndex]=i;
+ if(k==='redline')state.redline=i;
+ if(k==='test')state.test=i;
+ render();
+});
+el('nextBtn').onclick=()=>{
+ if(state.stage===5){state.stage=0;state.heard=new Set();state.activePerson=null;state.clauseIndex=0;state.choices=[];state.redline=null;state.test=null}
+ else if(state.stage===2&&state.clauseIndex<c.clauses.length){state.clauseIndex++;if(state.clauseIndex>c.clauses.length)state.clauseIndex=c.clauses.length}
+ else if(state.stage===2&&state.clauseIndex>=c.clauses.length){state.stage++}
+ else state.stage++;
+ render();
+};
+el('backBtn').onclick=()=>{if(state.stage===2&&state.clauseIndex>0){state.clauseIndex--}else if(state.stage>0){state.stage--;if(state.stage===2)state.clauseIndex=Math.min(c.clauses.length,state.choices.length)}render()};
+el('newDraft').onclick=()=>{state={caseIndex:(state.caseIndex+1)%cases.length,stage:0,heard:new Set(),activePerson:null,clauseIndex:0,choices:[],redline:null,test:null};render()};
+el('guideDismiss').onclick=()=>el('guide').classList.remove('show');
+render();
+})();
+</script>
+</body>
+</html>
