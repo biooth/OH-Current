@@ -155,13 +155,14 @@ document.addEventListener('click',e=>{
  render();
 });
 el('nextBtn').onclick=()=>{
+ const draft=current();
  if(state.stage===5){state.stage=0;state.heard=new Set();state.activePerson=null;state.clauseIndex=0;state.choices=[];state.redline=null;state.test=null}
- else if(state.stage===2&&state.clauseIndex<c.clauses.length){state.clauseIndex++;if(state.clauseIndex>c.clauses.length)state.clauseIndex=c.clauses.length}
- else if(state.stage===2&&state.clauseIndex>=c.clauses.length){state.stage++}
+ else if(state.stage===2&&state.clauseIndex<draft.clauses.length){state.clauseIndex++;if(state.clauseIndex>draft.clauses.length)state.clauseIndex=draft.clauses.length}
+ else if(state.stage===2&&state.clauseIndex>=draft.clauses.length){state.stage++}
  else state.stage++;
  render();
 };
-el('backBtn').onclick=()=>{if(state.stage===2&&state.clauseIndex>0){state.clauseIndex--}else if(state.stage>0){state.stage--;if(state.stage===2)state.clauseIndex=Math.min(c.clauses.length,state.choices.length)}render()};
+el('backBtn').onclick=()=>{const draft=current();if(state.stage===2&&state.clauseIndex>0){state.clauseIndex--}else if(state.stage>0){state.stage--;if(state.stage===2)state.clauseIndex=Math.min(draft.clauses.length,state.choices.length)}render()};
 el('newDraft').onclick=()=>{state={caseIndex:(state.caseIndex+1)%cases.length,stage:0,heard:new Set(),activePerson:null,clauseIndex:0,choices:[],redline:null,test:null};render()};
 el('guideDismiss').onclick=()=>el('guide').classList.remove('show');
 render();
