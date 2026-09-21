@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OH! Civics — Health Committee</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+:root{--bg:#06151a;--bg2:#0b2228;--panel:#0e2930;--panel2:#12343d;--ink:#effcfb;--muted:#a7c3c1;--line:rgba(177,224,219,.16);--teal:#56e0c1;--cyan:#4fc8ef;--gold:#ffd06c;--red:#ff7e8a;--shadow:0 28px 90px rgba(0,0,0,.34)}
+body{color:var(--ink);background:radial-gradient(circle at 10% -5%,rgba(79,200,239,.17),transparent 30%),radial-gradient(circle at 90% 5%,rgba(86,224,193,.14),transparent 26%),linear-gradient(180deg,#06151a,#0a2026 55%,#06151a);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;background:linear-gradient(120deg,#07111f,#0b3b3d,#07111f);animation:enterTheme .9s ease forwards}
+@keyframes enterTheme{0%{opacity:1}100%{opacity:0;visibility:hidden}}
+.topbar{position:sticky;top:0;z-index:80;height:72px;border-bottom:1px solid var(--line);background:rgba(5,18,22,.90);backdrop-filter:blur(18px);display:flex;align-items:center}
+.nav{width:min(1460px,calc(100% - 28px));margin:auto;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:white;min-width:max-content}.logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,var(--cyan),var(--teal));color:#07181d;font-weight:1000;letter-spacing:-.08em}.brand strong{display:block;font-size:18px}.brand small{display:block;color:#7fa6a7;font-size:8px;letter-spacing:.12em;text-transform:uppercase;font-weight:900}
+.navlinks{margin-left:auto;display:flex;gap:6px;overflow:auto}.navlinks a{white-space:nowrap;text-decoration:none;color:#b6d0d0;border:1px solid transparent;border-radius:9px;padding:8px 10px;font-size:10px;font-weight:900}.navlinks a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.04)}.navlinks .active{color:#06171b;background:linear-gradient(135deg,var(--teal),#7bf0d8)}
+.page{width:min(1460px,calc(100% - 28px));margin:0 auto;padding:24px 0 44px}
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:18px;margin-bottom:16px}.hero-main,.hero-side{border:1px solid var(--line);border-radius:22px;background:linear-gradient(150deg,rgba(15,42,49,.96),rgba(7,27,33,.96));box-shadow:0 18px 52px rgba(0,0,0,.18)}.hero-main{padding:26px 28px}.eyebrow{color:var(--teal);text-transform:uppercase;letter-spacing:.13em;font-size:9px;font-weight:950}.hero h1{margin:7px 0 9px;font-size:clamp(34px,5vw,58px);letter-spacing:-.055em;line-height:.96}.hero p{max-width:760px;margin:0;color:#a7c3c1;font-size:14px;line-height:1.6}.hero-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.btn{border-radius:10px;padding:10px 13px;border:1px solid var(--line);font-size:10px;font-weight:950;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.btn.primary{background:linear-gradient(135deg,#1ea98e,var(--teal));color:#042019;border-color:rgba(86,224,193,.35)}.btn.secondary{background:rgba(255,255,255,.04);color:#d8eeee}.hero-side{padding:20px}.hero-side small{color:var(--gold);font-size:8px;font-weight:950;letter-spacing:.12em;text-transform:uppercase}.hero-side h3{font-size:18px;margin:6px 0 8px}.hero-side p{font-size:11px;line-height:1.5}
+.game{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#071a1f;box-shadow:var(--shadow)}
+.game-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;padding:16px 20px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.025)}.game-head h2{margin:3px 0 4px;font-size:20px}.game-head p{margin:0;color:#86aaab;font-size:10px;line-height:1.4}.stage-counter{font-size:9px;color:#82a6a7;font-weight:900;align-self:center}
+.progress{display:grid;grid-template-columns:repeat(7,minmax(105px,1fr));overflow:auto;border-bottom:1px solid var(--line)}.progress div{padding:10px 7px;text-align:center;color:#547d7e;font-size:8px;text-transform:uppercase;letter-spacing:.08em;font-weight:950;position:relative}.progress .done{color:#9fbfc0}.progress .active{color:white;background:rgba(86,224,193,.08)}.progress .active:after{content:"";position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--teal)}
+.workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.55fr);min-height:610px}
+.room-wrap{padding:18px;min-width:0}.room{position:relative;height:100%;min-height:570px;border:1px solid rgba(154,213,210,.14);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#173a40 0 20%,#20444a 20% 22%,#162f34 22% 70%,#11262b 70%);box-shadow:inset 0 0 80px rgba(0,0,0,.22)}
+.wall-panel{position:absolute;left:8%;right:8%;top:6%;height:25%;border:1px solid rgba(210,245,240,.08);background:linear-gradient(180deg,#254b50,#1a3b41);box-shadow:inset 0 0 40px rgba(0,0,0,.16)}.seal{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:78px;height:78px;border-radius:50%;display:grid;place-items:center;border:2px solid rgba(255,208,108,.55);box-shadow:0 0 0 7px rgba(255,208,108,.07);color:var(--gold);font-family:Georgia,serif;font-size:25px;font-weight:900}.seal small{position:absolute;bottom:-18px;font:800 7px Inter,sans-serif;letter-spacing:.15em;color:#8da7a5}
+.dais{position:absolute;left:7%;right:7%;top:28%;height:22%;border-radius:14px 14px 6px 6px;background:linear-gradient(180deg,#583e2c,#32271f);border:1px solid rgba(255,220,170,.13);box-shadow:0 14px 28px rgba(0,0,0,.28);display:flex;align-items:flex-start;justify-content:space-around;padding:10px 3% 0}
+.member{width:16%;min-width:78px;text-align:center;transition:.3s ease;opacity:.68}.member.active{opacity:1;transform:translateY(-4px)}.member .person{margin:auto;--skin:#9d684e;--hair:#241e1b}.member:nth-child(2) .person{--skin:#d29a75;--hair:#6e5141}.member:nth-child(3) .person{--skin:#ba7654;--hair:#201b1b}.member:nth-child(4) .person{--skin:#7d513e;--hair:#171313}.member:nth-child(5) .person{--skin:#deb087;--hair:#252329}.person{position:relative;width:48px;height:56px}.head{position:absolute;top:0;left:10px;width:28px;height:30px;border-radius:48% 48% 45% 45%;background:var(--skin);box-shadow:inset 0 -3px 0 rgba(0,0,0,.08)}.hair{position:absolute;top:-2px;left:9px;width:30px;height:13px;border-radius:50% 50% 35% 35%;background:var(--hair)}.body{position:absolute;bottom:0;left:4px;width:40px;height:30px;border-radius:14px 14px 5px 5px;background:#1e4f58}.member:nth-child(2) .body{background:#405a76}.member:nth-child(3) .body{background:#5c496a}.member:nth-child(4) .body{background:#305e4f}.member:nth-child(5) .body{background:#725748}.member b{display:block;margin-top:3px;font-size:7.5px;color:#f5f5ed}.member span{display:block;font-size:6.5px;color:#b9a993;margin-top:2px}
+.witness-zone{position:absolute;left:18%;right:18%;top:55%;height:25%;display:flex;align-items:flex-start;justify-content:center}.witness-table{position:absolute;left:11%;right:11%;bottom:7%;height:38%;border-radius:8px;background:linear-gradient(180deg,#6b4a31,#3a2c22);box-shadow:0 15px 22px rgba(0,0,0,.28)}.witness{position:relative;z-index:3;text-align:center;transform:translateY(-5px);transition:.35s ease}.witness .person{width:62px;height:76px;margin:auto;--skin:#c58b68;--hair:#352723}.witness .head{left:13px;width:36px;height:38px}.witness .hair{left:12px;width:38px;height:16px}.witness .body{left:4px;width:54px;height:41px;background:#36685d}.witness-name{display:inline-block;margin-top:4px;padding:5px 8px;border-radius:7px;background:#f4efe4;color:#2b302f;font-size:8px;font-weight:950;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.audience{position:absolute;left:6%;right:6%;bottom:3%;display:flex;justify-content:space-around;opacity:.35}.audience i{width:24px;height:34px;border-radius:50% 50% 12px 12px;background:#4a6869;box-shadow:24px 4px 0 #385a5d}
+.speech{position:absolute;z-index:8;left:5%;top:7%;width:min(390px,47%);padding:13px 14px;border-radius:14px 14px 14px 3px;background:#f5f8f4;color:#173137;box-shadow:0 18px 40px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);transition:.3s ease;pointer-events:none}.speech.show{opacity:1;transform:translateY(0)}.speech small{display:block;color:#508073;font-size:7px;font-weight:950;text-transform:uppercase;letter-spacing:.1em}.speech strong{display:block;font-size:12px;margin:4px 0}.speech p{font-size:10px;line-height:1.45;margin:0;color:#44595c}
+.room-caption{position:absolute;right:10px;bottom:9px;padding:6px 8px;border-radius:8px;background:rgba(4,15,18,.66);font-size:7px;color:#9ababa;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.learning{border-left:1px solid var(--line);padding:18px;background:linear-gradient(180deg,rgba(8,31,36,.98),rgba(6,22,27,.98));display:flex;flex-direction:column;gap:10px;min-width:0}.lesson-card,.action-card{border:1px solid var(--line);border-radius:15px;padding:14px;background:rgba(255,255,255,.03)}.lesson-card small,.action-card small{display:block;color:var(--teal);font-size:7.5px;font-weight:950;text-transform:uppercase;letter-spacing:.12em}.lesson-card h3,.action-card h3{font-size:15px;margin:5px 0;color:white}.lesson-card p,.action-card p{font-size:11px;line-height:1.52;color:#a9c3c4;margin:0}.action-card{flex:1}.choices{display:grid;gap:7px;margin-top:11px}.choice{width:100%;text-align:left;border:1px solid var(--line);border-radius:11px;padding:10px;background:rgba(255,255,255,.035);color:#dceeed;cursor:pointer}.choice:hover{border-color:rgba(86,224,193,.38);background:rgba(86,224,193,.055)}.choice.selected{border-color:rgba(86,224,193,.58);background:rgba(86,224,193,.10)}.choice b{display:block;font-size:10px}.choice span{display:block;margin-top:3px;color:#8aacae;font-size:8.5px;line-height:1.4}.bottom-actions{display:flex;align-items:center;justify-content:space-between;gap:8px}.next{border:0;border-radius:10px;padding:10px 13px;background:linear-gradient(135deg,#22a88f,var(--teal));color:#06231e;font-size:9px;font-weight:1000;cursor:pointer}.next[disabled]{opacity:.3;cursor:not-allowed}.back{border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:rgba(255,255,255,.03);color:#cae0df;font-size:9px;font-weight:900;cursor:pointer}
+.bill-paper{position:absolute;z-index:5;left:50%;top:54%;transform:translateX(-50%) rotate(-1deg);width:240px;height:160px;padding:16px;background:#f5f1e7;color:#273130;border-radius:5px;box-shadow:0 18px 35px rgba(0,0,0,.28);font-family:Georgia,serif;opacity:0;transition:.35s ease}.bill-paper.show{opacity:1;top:52%}.bill-paper b{display:block;font:900 8px Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:#527067}.bill-line{height:7px;border-radius:4px;background:#c9cfca;margin:9px 0}.bill-line.short{width:65%}.bill-line.redline{background:#ffb4b8;position:relative}.bill-line.redline:after{content:"AMEND";position:absolute;right:-46px;top:-3px;color:#a13c45;font:900 6px Inter,sans-serif}
+.vote-chip{display:inline-grid;place-items:center;width:28px;height:20px;border-radius:6px;margin-top:4px;font-size:6px;font-weight:1000;background:#31534c;color:#9ec9be;opacity:0;transform:translateY(5px);transition:.25s}.member.vote .vote-chip{opacity:1;transform:none}.member.vote:nth-child(odd) .vote-chip{background:#285f52;color:#c7f7e9}.member.vote:nth-child(even) .vote-chip{background:#604545;color:#f1c5c5}
+.guide{position:fixed;z-index:90;right:20px;bottom:20px;width:min(390px,calc(100vw - 28px));display:grid;grid-template-columns:52px 1fr;gap:10px;padding:12px;border:1px solid rgba(86,224,193,.28);border-radius:18px;background:rgba(8,29,34,.96);box-shadow:0 24px 70px rgba(0,0,0,.32);transform:translateY(130%);transition:.38s cubic-bezier(.2,.8,.2,1)}.guide.show{transform:none}.guide-face{width:50px;height:58px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,var(--cyan),var(--teal));font-size:30px}.guide small{color:var(--teal);font-size:7px;text-transform:uppercase;letter-spacing:.12em;font-weight:950}.guide p{margin:4px 0 8px;color:#e8f6f5;font-size:10px;line-height:1.45}.guide button{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#dff0ef;border-radius:8px;padding:6px 8px;font-size:8px;font-weight:900;cursor:pointer}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.learning{border-left:0;border-top:1px solid var(--line)}.room{min-height:520px}.progress{grid-template-columns:repeat(7,120px)}}@media(max-width:620px){.brand small{display:none}.navlinks a:nth-child(3){display:none}.page{width:min(100% - 16px,1460px)}.hero-main{padding:20px}.room-wrap{padding:8px}.room{min-height:470px}.dais{left:2%;right:2%}.member{min-width:55px}.member .person{transform:scale(.82)}.member b{font-size:6px}.member span{display:none}.speech{width:72%;font-size:9px}.workspace{min-height:0}.learning{padding:12px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="nav"><a class="brand" href="index.html"><div class="logo">OH!</div><div><strong>OH! Civics</strong><small>Health Committee Simulation</small></div></a><nav class="navlinks"><a href="index.html">Main site</a><a href="civics-course-latest.html">Civic Course</a><a class="active" href="health-committee.html">Health Committee</a><a href="culture-drafting.html">Culture Drafting</a></nav></div></header>
+<main class="page">
+<section class="hero"><div class="hero-main"><span class="eyebrow">Separate simulation · connected course</span><h1>Inside the Committee Room</h1><p>Stay inside one legislative process long enough to understand it. Hear testimony, ask a useful question, inspect an amendment, hear member concerns, and choose the committee's next procedural action.</p><div class="hero-actions"><button class="btn primary" id="newCase">Start a new hearing</button><a class="btn secondary" href="civics-course-latest.html">Review committee lesson</a></div></div><aside class="hero-side"><small>Visual mode</small><h3>The room teaches with you.</h3><p>Characters, the witness table, bill paper, member reactions, and voting indicators change as the process moves. The visual is the process—not a background illustration.</p></aside></section>
+<section class="game"><div class="game-head"><div><span class="eyebrow" id="caseCode"></span><h2 id="caseTitle"></h2><p id="caseQuestion"></p></div><div class="stage-counter" id="stageCounter"></div></div><div class="progress" id="progress"></div><div class="workspace"><div class="room-wrap"><div class="room">
+<div class="wall-panel"></div><div class="seal">OH<small>COMMITTEE ROOM</small></div>
+<div class="speech" id="speech"><small id="speechTag"></small><strong id="speechName"></strong><p id="speechText"></p></div>
+<div class="dais" id="dais"></div>
+<div class="witness-zone"><div class="witness" id="witness"><div class="person"><div class="head"></div><div class="hair"></div><div class="body"></div></div><div class="witness-name" id="witnessName">Witness table</div></div><div class="witness-table"></div></div>
+<div class="bill-paper" id="billPaper"><b>Committee substitute / amendment</b><div class="bill-line"></div><div class="bill-line short"></div><div class="bill-line redline"></div><div class="bill-line"></div><div class="bill-line short"></div></div>
+<div class="audience"><i></i><i></i><i></i><i></i></div><div class="room-caption" id="roomCaption">Public hearing · fictional practice room</div></div></div>
+<aside class="learning"><div class="lesson-card"><small>What this stage teaches</small><h3 id="lessonTitle"></h3><p id="lessonText"></p></div><div class="action-card"><small>Your move</small><h3 id="actionTitle"></h3><p id="actionText"></p><div class="choices" id="choices"></div></div><div class="bottom-actions"><button class="back" id="backBtn">← Back</button><button class="next" id="nextBtn">Next →</button></div></aside></div></section>
+</main>
+<div class="guide" id="guide"><div class="guide-face">🧑🏽‍⚖️</div><div><small>Avery · committee clerk</small><p id="guideText"></p><button id="guideDismiss">Got it</button></div></div>
+<script>
+(function(){
+const stages=['Briefing','Testimony','Questioning','Markup','Member discussion','Committee action','Debrief'];
+const members=[['Chair Ellis','Chair'],['Rep. Mercer','Member'],['Rep. Desai','Member'],['Rep. Brooks','Member'],['Rep. Park','Member']];
+const cases=[
+ {code:'Fictional H.B. 214',title:'Rural Maternity Transfer Bill',question:'Can the transfer rule work in practice without promising capacity the state cannot guarantee?',brief:'The proposal creates a statewide protocol for transfers when a pregnant patient needs care beyond a local hospital\'s capacity.',
+ witnesses:[
+  {name:'Dr. Lena Morris',role:'Rural obstetrician',tag:'Implementation',quote:'A protocol helps only if the receiving hospital actually has a bed and the right clinical team when the call comes in.',claim:'A transfer rule needs a capacity-confirmation step.',evidence:'Experience coordinating emergency transfers.',concern:'A protocol may exist on paper while crews still search for an accepting facility.'},
+  {name:'Andre Bell',role:'County EMS director',tag:'Access',quote:'Crews lose time calling one facility after another. We need one clear transfer contact and a defined handoff.',claim:'Fragmented communication creates delay.',evidence:'Operational experience with EMS dispatch and hospital handoffs.',concern:'Unclear contacts can add time during an emergency.'},
+  {name:'Nora Chen',role:'Fiscal analyst',tag:'Fiscal',quote:'The bill authorizes grants, but it does not yet say the maximum award or how long the program lasts.',claim:'The grant authority is not fiscally defined.',evidence:'The draft contains no grant cap or program duration.',concern:'Lawmakers cannot see the size or duration of the commitment.'}
+ ],
+ questions:[
+  ['Ask about capacity','How would the coordinating system know whether an accepting facility has the right bed and clinical team?','That question turns the broad transfer goal into an implementation requirement the bill may need to address.'],
+  ['Ask about popularity','How many people support maternity care in general?','That may be politically interesting, but it does not resolve the operational gap identified in testimony.'],
+  ['Ask about timing','Where in the transfer sequence is the largest avoidable delay?','That question helps identify where a procedural amendment could have the most effect.']
+ ],
+ amendments:[
+  ['Capacity confirmation','Require confirmation of an accepting facility and appropriate level of care before transport.','Directly responds to the implementation problem raised in testimony.'],
+  ['Two-year capped pilot','Set a two-year grant pilot, an annual ceiling, and an evaluation report.','Directly responds to the fiscal-definition problem while leaving more of the capacity issue untouched.'],
+  ['Agency rules later','Authorize the health department to establish transfer details in later rules.','Preserves flexibility but leaves more operational design outside the statutory text.']
+ ],
+ memberLines:[
+  ['Chair Ellis','The hearing record now gives us a specific question: did the amendment answer the problem witnesses actually identified?'],
+  ['Rep. Mercer','I want to know whether the new language creates a clear duty or simply moves the ambiguity somewhere else.'],
+  ['Rep. Desai','The text should tell an administrator what has to happen before the transport begins.'],
+  ['Rep. Brooks','The fiscal language and the transfer language solve different problems. We should not pretend one automatically solves the other.'],
+  ['Rep. Park','Before reporting the bill, I want the record to show what information the committee relied on.']
+ ]},
+ {code:'Fictional H.B. 388',title:'School Mental-Health Screening Bill',question:'Can the committee define consent, referral responsibility, and data handling clearly enough for districts to implement the program?',brief:'The proposal creates an optional state-supported screening program for participating public high schools.',
+ witnesses:[
+  {name:'Maya Robinson',role:'School counselor',tag:'Implementation',quote:'Screening only helps if the bill is clear about who follows up when a student needs more support.',claim:'Referral responsibility must be assigned.',evidence:'School counselors already coordinate limited behavioral-health referrals.',concern:'A result without a follow-up process can create confusion.'},
+  {name:'Tariq James',role:'Parent advocate',tag:'Rights',quote:'Families need to know what is collected, who sees it, and whether participation is genuinely optional.',claim:'Consent and data rules need specificity.',evidence:'The draft says participation is optional but does not describe the consent workflow.',concern:'Vague privacy language can undermine trust.'},
+  {name:'Elena Voss',role:'District treasurer',tag:'Fiscal',quote:'The grant is helpful, but districts cannot plan if the reimbursement formula is left undefined.',claim:'The funding mechanism needs a formula.',evidence:'District costs depend on staffing and vendor arrangements.',concern:'Uncertain reimbursement could produce uneven participation.'}
+ ],
+ questions:[
+  ['Ask about follow-up','Which staff role would be responsible for referral after a screening result?','That converts testimony into a concrete implementation question for the bill text.'],
+  ['Ask about slogans','Do you believe student mental health is important?','That does not test the design problem the witness identified.'],
+  ['Ask about records','What information must be collected, and who needs access to perform follow-up?','That connects privacy concerns to the actual administrative workflow.']
+ ],
+ amendments:[
+  ['Consent + privacy','Require written consent and specify who may access screening records.','Narrows uncertainty around participation and data handling.'],
+  ['Referral responsibility','Require each participating district to name the staff role responsible for referral and follow-up procedures.','Directly addresses the counselor\'s implementation concern.'],
+  ['Funding formula','Set a per-student reimbursement formula and require a two-year fiscal report.','Improves funding predictability and creates an oversight record.']
+ ],
+ memberLines:[
+  ['Chair Ellis','The committee should be able to point from testimony to the exact language it is changing.'],
+  ['Rep. Mercer','Optional participation needs a workflow, not just the word optional.'],
+  ['Rep. Desai','Who may access the record is a different drafting question from who performs the referral.'],
+  ['Rep. Brooks','If districts cannot estimate reimbursement, implementation may vary even if the policy goal is clear.'],
+  ['Rep. Park','The hearing record should make clear which problem each amendment is meant to solve.']
+ ]}
+];
+let state={caseIndex:0,stage:0,witness:0,heard:new Set(),question:null,amendment:null,members:new Set(),action:null};
+const el=id=>document.getElementById(id);
+function current(){return cases[state.caseIndex]}
+function renderMembers(active){
+ el('dais').innerHTML=members.map((m,i)=>'<div class="member '+(active===i?'active ':'')+(state.stage===5?'vote':'')+'"><div class="person"><div class="head"></div><div class="hair"></div><div class="body"></div></div><b>'+m[0]+'</b><span>'+m[1]+'</span><div class="vote-chip">'+(i%2===0?'YES':'HOLD')+'</div></div>').join('');
+}
+function showSpeech(tag,name,text){
+ el('speechTag').textContent=tag;el('speechName').textContent=name;el('speechText').textContent=text;el('speech').classList.add('show');
+}
+function hideSpeech(){el('speech').classList.remove('show')}
+function guide(text){el('guideText').textContent=text;el('guide').classList.add('show')}
+function progress(){el('progress').innerHTML=stages.map((s,i)=>'<div class="'+(i<state.stage?'done':i===state.stage?'active':'')+'">'+(i+1)+'. '+s+'</div>').join('')}
+function choiceButton(title,sub,index,selected,kind){return '<button class="choice '+(selected?'selected':'')+'" data-kind="'+kind+'" data-index="'+index+'"><b>'+title+'</b><span>'+sub+'</span></button>'}
+function roomMode(){
+ el('billPaper').classList.toggle('show',state.stage===3);
+ el('witness').style.opacity=state.stage>=1&&state.stage<=2?'1':'.28';
+ if(state.stage!==1&&state.stage!==2)el('witnessName').textContent='Witness table';
+ el('roomCaption').textContent=state.stage===0?'Clerk briefing · before testimony':state.stage===1?'Public testimony':state.stage===2?'Member questioning':state.stage===3?'Committee markup':state.stage===4?'Member discussion':state.stage===5?'Committee action':'Hearing complete';
+}
+function render(){
+ const c=current();progress();roomMode();el('caseCode').textContent=c.code;el('caseTitle').textContent=c.title;el('caseQuestion').textContent=c.question;el('stageCounter').textContent='Stage '+(state.stage+1)+' / '+stages.length;el('backBtn').disabled=state.stage===0;
+ let lessonTitle='',lessonText='',actionTitle='',actionText='',choices='',nextDisabled=false,nextLabel='Next →';
+ hideSpeech();renderMembers(-1);
+ if(state.stage===0){
+  lessonTitle='A committee narrows the problem.';lessonText='A committee hearing is not the final legislative vote. It is a working stage where lawmakers examine a bill closely enough to identify missing definitions, implementation problems, fiscal questions, and possible revisions.';
+  actionTitle='Read the clerk\'s briefing';actionText=c.brief+' Your first job is to keep the policy goal separate from the practical questions the committee must answer.';
+  choices='<div class="lesson-card" style="margin-top:10px"><small>Question to carry into testimony</small><p>'+c.question+'</p></div>';guide('Start by noticing the room. The bill is not being enacted here. The committee is building a record that may change the text before it ever reaches the full chamber.');
+ } else if(state.stage===1){
+  const w=c.witnesses[state.witness];el('witnessName').textContent=w.name;showSpeech(w.tag,w.name,w.quote);renderMembers(-1);
+  lessonTitle='Testimony adds information to the record.';lessonText='A witness can add a factual claim, professional experience, implementation concern, or policy argument. The witness\'s label does not prove the claim; the content and evidence matter.';
+  actionTitle='Hear every witness';actionText='Click each witness. Compare what kind of problem each person adds.';
+  choices=c.witnesses.map((w,i)=>choiceButton(w.name,w.role+' · '+w.tag,i,state.witness===i,'witness')).join('')+'<div class="lesson-card" style="margin-top:10px"><small>Claim</small><p>'+w.claim+'</p><small style="margin-top:8px">Evidence</small><p>'+w.evidence+'</p><small style="margin-top:8px">Concern</small><p>'+w.concern+'</p></div>';
+  nextDisabled=state.heard.size<c.witnesses.length;guide('The characters are doing the teaching here: each witness changes what the committee knows. Your job is to notice which part of the bill their testimony puts pressure on.');
+ } else if(state.stage===2){
+  renderMembers(2);const picked=state.question==null?null:c.questions[state.question];if(picked)showSpeech('Committee question','Rep. Desai',picked[1]);
+  lessonTitle='Questions turn testimony into a drafting problem.';lessonText='A useful committee question is specific enough to reveal what the bill text, implementation plan, or evidence still needs. It should move the hearing record forward rather than merely restating a value.';
+  actionTitle='Choose a question to ask';actionText='Pick the question that best tests an issue raised in testimony. After you choose, read what the question accomplishes.';
+  choices=c.questions.map((q,i)=>choiceButton(q[0],q[1],i,state.question===i,'question')).join('')+(picked?'<div class="lesson-card" style="margin-top:10px"><small>Why this question matters</small><p>'+picked[2]+'</p></div>':'');nextDisabled=state.question==null;
+ } else if(state.stage===3){
+  const picked=state.amendment==null?null:c.amendments[state.amendment];lessonTitle='Markup changes the actual bill text.';lessonText='An amendment is not a reaction meter. It is language. The important question is which problem the new words address, what discretion they create, and what they leave unresolved.';
+  actionTitle='Select an amendment to examine';actionText='The paper appears in the room because the object being changed is now the bill itself.';
+  choices=c.amendments.map((a,i)=>choiceButton(a[0],a[1],i,state.amendment===i,'amendment')).join('')+(picked?'<div class="lesson-card" style="margin-top:10px"><small>Effect on the record</small><p>'+picked[2]+'</p></div>':'');nextDisabled=state.amendment==null;guide('Notice the visual change: testimony has moved off center and the document is now the focus. Committee work turns information into possible language.');
+ } else if(state.stage===4){
+  const remaining=c.memberLines.filter((x,i)=>!state.members.has(i));const latest=[...state.members].slice(-1)[0];if(latest!=null){showSpeech('Member discussion',c.memberLines[latest][0],c.memberLines[latest][1]);renderMembers(latest)}
+  lessonTitle='Members interpret the same record differently.';lessonText='Discussion is where members connect testimony, bill language, implementation, and procedure. Different concerns can coexist without being reducible to a single score.';
+  actionTitle='Hear at least three members';actionText='Click a member perspective. Each one looks at a different feature of the same record.';
+  choices=c.memberLines.map((x,i)=>choiceButton(x[0],state.members.has(i)?x[1]:'Hear this member',i,state.members.has(i),'member')).join('');nextDisabled=state.members.size<3;
+ } else if(state.stage===5){
+  renderMembers(-1);lessonTitle='Committee action is a procedural checkpoint.';lessonText='Reporting a bill, holding it for more work, or declining to report it changes what happens next. None of these actions by itself makes the proposal a law.';
+  actionTitle='Choose the committee\'s next action';actionText='There is no hidden political “correct answer.” Study the procedural consequence of each option.';
+  const opts=[['Report with amendment','Send the amended bill to the full chamber for the next stage.'],['Hold for another hearing','Keep the bill in committee and build more record before reporting.'],['Do not report','Take no action to advance the bill from committee at this time.']];
+  choices=opts.map((x,i)=>choiceButton(x[0],x[1],i,state.action===i,'action')).join('');nextDisabled=state.action==null;nextLabel='Debrief →';guide('Watch the dais: members are now visibly taking a committee action. The visual consequence is procedural—the bill either moves, stays here, or stops here for now.');
+ } else {
+  renderMembers(-1);lessonTitle='You followed one complete committee process.';lessonText='The transferable skill is connecting testimony to a question, a question to bill language, and bill language to a procedural decision.';
+  actionTitle='What the room taught';actionText='The room changed because the object of attention changed: first the proposal, then witnesses, then questions, then the bill text, then members, then committee action.';
+  const a=c.amendments[state.amendment];const action=['Report with amendment','Hold for another hearing','Do not report'][state.action];
+  choices='<div class="lesson-card"><small>Amendment studied</small><h3>'+a[0]+'</h3><p>'+a[2]+'</p></div><div class="lesson-card" style="margin-top:8px"><small>Committee action</small><h3>'+action+'</h3><p>This was a committee checkpoint, not final enactment.</p></div><div class="hero-actions"><a class="btn secondary" href="civics-course-latest.html">Return to course</a><a class="btn secondary" href="culture-drafting.html">Try drafting simulation</a></div>';nextLabel='Replay hearing ↻';guide('The room is the process map. If you can explain why the visual focus moved from person to document to member action, you understand the committee stage.');
+ }
+ el('lessonTitle').textContent=lessonTitle;el('lessonText').textContent=lessonText;el('actionTitle').textContent=actionTitle;el('actionText').textContent=actionText;el('choices').innerHTML=choices;el('nextBtn').disabled=nextDisabled;el('nextBtn').textContent=nextLabel;
+}
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-kind]');if(b){const i=Number(b.dataset.index),k=b.dataset.kind;if(k==='witness'){state.witness=i;state.heard.add(i)}if(k==='question')state.question=i;if(k==='amendment')state.amendment=i;if(k==='member')state.members.add(i);if(k==='action')state.action=i;render()}
+});
+el('nextBtn').onclick=()=>{if(state.stage===6){state.stage=0;state.witness=0;state.heard=new Set();state.question=null;state.amendment=null;state.members=new Set();state.action=null}else state.stage++;render()};
+el('backBtn').onclick=()=>{if(state.stage>0)state.stage--;render()};
+el('newCase').onclick=()=>{state={caseIndex:(state.caseIndex+1)%cases.length,stage:0,witness:0,heard:new Set(),question:null,amendment:null,members:new Set(),action:null};render()};
+el('guideDismiss').onclick=()=>el('guide').classList.remove('show');
+render();
+})();
+</script>
+</body>
+</html>
