@@ -539,6 +539,106 @@ html,body{background:radial-gradient(circle at 10% -10%,rgba(55,213,255,.14),tra
 }
 </style>
 
+
+<style id="course-learning-v2">
+/* Make reading genuinely comfortable. */
+.slide-copy{padding:clamp(34px,4.5vw,64px);overflow:auto;background:linear-gradient(180deg,rgba(7,17,31,.22),rgba(7,17,31,.05))}
+.slide h2{font-size:clamp(34px,4vw,56px);line-height:1.04;max-width:17ch}
+.slide p{font-size:clamp(18px,1.48vw,21px);line-height:1.72;max-width:48ch;color:#d5e0ef;font-weight:480;letter-spacing:.002em}
+.kicker{font-size:11px}.micro span{font-size:12px}
+.deep-open,.source-link{font-size:13px}
+.bubble{font-size:12px;line-height:1.45}
+.guide-name{font-size:9px}
+
+/* Large reader: one section at a time instead of four tiny cards. */
+.deep-card{width:min(1040px,96vw);height:min(720px,92vh);grid-template-rows:auto minmax(0,1fr) auto}
+.deep-reader{min-height:0;padding:24px 30px 20px;background:linear-gradient(180deg,#0d1c31,#091624);display:grid;grid-template-columns:190px minmax(0,1fr);gap:22px;overflow:hidden}
+.reader-tabs{display:flex;flex-direction:column;gap:8px}
+.reader-tab{border:1px solid var(--line);border-radius:12px;padding:12px;text-align:left;background:rgba(255,255,255,.03);color:#92a6c1;font-size:11px;font-weight:900;cursor:pointer}
+.reader-tab small{display:block;color:#5c7395;font-size:8px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.reader-tab.active{background:rgba(95,130,255,.13);border-color:rgba(95,130,255,.38);color:#fff}
+.reader-pane{min-height:0;border:1px solid var(--line);border-radius:18px;padding:28px 30px;background:rgba(255,255,255,.035);overflow:auto}
+.reader-pane .reader-kicker{color:#56ddff;font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase}
+.reader-pane h3{font-size:clamp(25px,3vw,36px);line-height:1.08;letter-spacing:-.035em;color:#fff;margin:8px 0 18px;max-width:22ch}
+.reader-pane p{font-size:clamp(17px,1.5vw,19px);line-height:1.75;color:#d4dfed;margin:0;max-width:70ch}
+.reader-prompt{margin-top:22px;border-left:3px solid #37d5ff;padding:12px 14px;background:rgba(55,213,255,.05);border-radius:0 12px 12px 0;color:#b9dbe5;font-size:13px;line-height:1.55}
+.deep-foot{padding:12px 20px;gap:12px}
+.reader-nav{display:flex;align-items:center;gap:8px;margin-left:auto}
+.reader-nav button{border-radius:10px;padding:9px 12px;font-size:10px;font-weight:950;cursor:pointer}
+.reader-prev{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#d9e5f5}
+.deep-continue{background:linear-gradient(135deg,#4568e8,#5f82ff)}
+#deepPage{font-size:10px;color:#8195b1;min-width:50px;text-align:center}
+
+/* Visuals now behave like simulations/diagrams, not animated labels. */
+.visual-story{justify-content:flex-start;padding-top:4px;gap:12px}
+.visual-story-title{font-size:20px}
+.visual-story-status{font-size:12px;line-height:1.55;min-height:58px}
+.visual-controls{justify-content:space-between;align-items:center;gap:8px}
+.visual-controls .control-group{display:flex;gap:7px}
+.visual-step-btn,.replay-visual{border-radius:9px;padding:8px 10px;font-size:9.5px;font-weight:950;cursor:pointer}
+.visual-step-btn{border:1px solid rgba(95,130,255,.32);background:rgba(95,130,255,.15);color:#fff}
+
+/* Physical bill moving through process stations. */
+.process-sim{position:relative;display:grid;grid-template-columns:repeat(var(--steps),minmax(0,1fr));gap:8px;padding:52px 4px 8px}
+.process-rail{position:absolute;left:5%;right:5%;top:80px;height:3px;border-radius:999px;background:linear-gradient(90deg,rgba(95,130,255,.18),rgba(55,213,255,.30),rgba(95,130,255,.18))}
+.process-station{position:relative;z-index:2;min-height:118px;border:1px solid var(--line);border-radius:14px;padding:48px 8px 10px;background:rgba(255,255,255,.035);text-align:center;transition:.3s ease}
+.process-station:before{content:"";position:absolute;top:24px;left:50%;width:14px;height:14px;border-radius:50%;transform:translateX(-50%);background:#172b48;border:2px solid #6c83a4}
+.process-station b{display:block;font-size:9.5px;line-height:1.25;color:#91a4c0}
+.process-station small{display:block;margin-top:5px;color:#617895;font-size:7.5px;line-height:1.25}
+.process-station.active{border-color:rgba(55,213,255,.46);background:rgba(55,213,255,.08);transform:translateY(-4px)}
+.process-station.active:before{background:#37d5ff;border-color:#d1f8ff;box-shadow:0 0 22px rgba(55,213,255,.48)}
+.process-station.active b{color:#fff}.process-station.done b{color:#c2d0e1}
+.bill-token{position:absolute;z-index:5;top:24px;left:0;width:48px;height:62px;border-radius:5px;background:#f5f2e9;color:#203044;box-shadow:0 10px 25px rgba(0,0,0,.28);transition:left .55s cubic-bezier(.2,.8,.2,1),transform .3s ease;display:grid;place-items:center;font:1000 9px Inter,sans-serif;letter-spacing:.05em;border-top:8px solid #5f82ff}
+.bill-token:after{content:"BILL";font-size:7px;color:#7a8797}
+.bill-token.move{transform:translateY(-5px) rotate(-2deg)}
+
+/* Real-record simulation: event changes the document stamp and institution. */
+.record-sim{display:grid;grid-template-columns:minmax(190px,.8fr) minmax(0,1.2fr);gap:14px;min-height:300px}
+.record-document{position:relative;border:1px solid rgba(255,201,105,.25);border-radius:8px;padding:18px;background:#f3efe4;color:#26313d;box-shadow:0 18px 38px rgba(0,0,0,.28);transform:rotate(-1deg)}
+.record-document:before{content:"OFFICIAL RECORD";display:block;font-size:7px;letter-spacing:.12em;font-weight:950;color:#8a6b3d;margin-bottom:12px}
+.record-document h3{margin:0 0 8px;font-size:20px;color:#26313d;font-family:Georgia,serif}
+.record-document p{font-size:10.5px!important;line-height:1.45!important;color:#65707c!important}
+.record-stamp{position:absolute;right:14px;bottom:16px;border:2px solid #bc4f5e;color:#bc4f5e;border-radius:6px;padding:7px 9px;font-size:8px;font-weight:1000;letter-spacing:.08em;transform:rotate(-7deg);text-transform:uppercase;max-width:120px;text-align:center}
+.record-timeline{display:grid;gap:7px;align-content:start}
+.record-step{grid-template-columns:32px 1fr;min-height:49px}
+.record-step.active{transform:translateX(5px);border-color:rgba(255,201,105,.45);background:rgba(255,201,105,.075)}
+.record-step.active i{background:#ffc969;color:#17243a}
+
+/* Mini committee scene for role-based slides. */
+.role-room{position:relative;min-height:285px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#1b3550 0 28%,#12283e 28% 100%);padding:95px 18px 16px}
+.role-room:before{content:"OH";position:absolute;top:16px;left:50%;transform:translateX(-50%);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;border:2px solid rgba(255,201,105,.45);color:#ffc969;font:900 20px Georgia,serif}
+.role-dais{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.role-person{position:relative;border:1px solid var(--line);border-radius:14px;padding:42px 8px 10px;text-align:center;background:rgba(255,255,255,.04);transition:.3s ease}
+.role-person:before{content:"";position:absolute;top:10px;left:50%;width:28px;height:28px;border-radius:50%;transform:translateX(-50%);background:#bd8c6e}
+.role-person:after{content:"";position:absolute;top:31px;left:50%;width:38px;height:22px;border-radius:12px 12px 4px 4px;transform:translateX(-50%);background:#48657c}
+.role-person b{display:block;color:#eaf2fb;font-size:10px}.role-person span{display:block;color:#8096b2;font-size:8px;margin-top:4px}
+.role-person.active{border-color:rgba(73,215,165,.50);background:rgba(73,215,165,.08);transform:translateY(-4px)}
+.role-speech{margin-top:10px;border-radius:13px;padding:11px 12px;background:#f4f7f4;color:#23333b;font-size:11px;line-height:1.45;min-height:56px}
+
+/* Version compare uses real clause text and a redline. */
+.redline-stage{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch}
+.policy-page{border:1px solid var(--line);border-radius:10px;padding:16px;background:#f4f1e8;color:#27313e;box-shadow:0 12px 24px rgba(0,0,0,.18);min-height:230px}
+.policy-page small{display:block;font:900 7px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#718096}.policy-page h4{font:700 17px Georgia,serif;margin:7px 0 15px}
+.policy-clause{font:400 11px/1.55 Georgia,serif;border-top:1px solid #d8d1c8;padding:9px 0}
+.policy-clause.marked{background:#fff0d7;padding:9px;border-left:3px solid #e17655}
+.redline-arrow{display:grid;place-items:center;color:#56ddff;font-size:24px}
+.redline-note{margin-top:10px;padding:9px 10px;border-radius:9px;background:#fff0f0;border:1px solid #e7c4c4;color:#8d404e;font-size:9px;font-weight:800}
+
+/* Guide becomes contextual and stays readable. */
+.coach-pop{width:min(440px,calc(100vw - 32px))}
+.coach-copy p{font-size:13px;line-height:1.55}
+.coach-actions button{font-size:9.5px}
+#coachAnimate{min-width:120px}
+
+@media(max-width:680px){
+ .slide p{font-size:15.5px;line-height:1.58}
+ .deep-reader{grid-template-columns:1fr;padding:14px}.reader-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.reader-tab{padding:8px;font-size:8px}.reader-tab small{display:none}.reader-pane{padding:18px}.reader-pane p{font-size:15px;line-height:1.62}
+ .process-sim{grid-template-columns:repeat(var(--steps),minmax(92px,1fr));overflow:auto;padding-top:48px}.bill-token{display:none}
+ .record-sim{grid-template-columns:1fr}.record-document{min-height:150px}
+ .redline-stage{grid-template-columns:1fr}.redline-arrow{transform:rotate(90deg)}
+ .role-dais{grid-template-columns:repeat(3,minmax(95px,1fr));overflow:auto}
+}
+</style>
 </head>
 <body>
 <div id="app">
@@ -576,7 +676,7 @@ html,body{background:radial-gradient(circle at 10% -10%,rgba(55,213,255,.14),tra
       <small>Maya · your guide</small>
       <p id="coachPopText"></p>
       <div class="coach-actions">
-        <button class="primary-coach" id="coachAnimate">Show me</button>
+        <button class="primary-coach" id="coachAnimate">Next visual step</button>
         <button id="coachDeep">Explain deeper</button>
         <button id="coachDismiss">Keep exploring</button>
       </div>
@@ -607,13 +707,24 @@ html,body{background:radial-gradient(circle at 10% -10%,rgba(55,213,255,.14),tra
           <div><div class="deep-label" id="deepLabel">Deep Dive</div><h2 id="deepTitle"></h2></div>
           <button class="deep-close" id="deepClose" aria-label="Close explanation">×</button>
         </div>
-        <div class="deep-grid">
-          <section class="deep-section"><small>What this means</small><h3>Understand the idea</h3><p id="deepMeaning"></p></section>
-          <section class="deep-section"><small>Why it matters</small><h3>Connect it to power</h3><p id="deepWhy"></p></section>
-          <section class="deep-section"><small>Practical example</small><h3>See it in action</h3><p id="deepExample"></p></section>
-          <section class="deep-section"><small>Think like a civic researcher</small><h3>What should you ask next?</h3><p id="deepQuestion"></p></section>
+        <div class="deep-reader">
+          <nav class="reader-tabs" aria-label="Explanation sections">
+            <button class="reader-tab active" data-reader-tab="0"><small>1</small>Meaning</button>
+            <button class="reader-tab" data-reader-tab="1"><small>2</small>Why it matters</button>
+            <button class="reader-tab" data-reader-tab="2"><small>3</small>Example</button>
+            <button class="reader-tab" data-reader-tab="3"><small>4</small>Question</button>
+          </nav>
+          <section class="reader-pane">
+            <div class="reader-kicker" id="readerKicker"></div>
+            <h3 id="readerTitle"></h3>
+            <p id="readerBody"></p>
+            <div class="reader-prompt" id="readerPrompt"></div>
+          </section>
         </div>
-        <div class="deep-foot"><span>Read the explanation, then return to the visual to apply it.</span><button class="deep-continue" id="deepContinue">Continue to visual →</button></div>
+        <div class="deep-foot">
+          <span id="readerHint">One idea at a time — use the tabs or arrows.</span>
+          <div class="reader-nav"><button class="reader-prev" id="deepPrev">← Previous</button><span id="deepPage">1 / 4</span><button class="deep-continue" id="deepContinue">Next section →</button></div>
+        </div>
       </div>
     </div>
 
@@ -779,10 +890,13 @@ const introText = document.getElementById("introText");
 const deepModal = document.getElementById("deepModal");
 const deepTitle = document.getElementById("deepTitle");
 const deepLabel = document.getElementById("deepLabel");
-const deepMeaning = document.getElementById("deepMeaning");
-const deepWhy = document.getElementById("deepWhy");
-const deepExample = document.getElementById("deepExample");
-const deepQuestion = document.getElementById("deepQuestion");
+const readerKicker = document.getElementById("readerKicker");
+const readerTitle = document.getElementById("readerTitle");
+const readerBody = document.getElementById("readerBody");
+const readerPrompt = document.getElementById("readerPrompt");
+const readerTabs = [...document.querySelectorAll("[data-reader-tab]")];
+const deepPage = document.getElementById("deepPage");
+const deepPrev = document.getElementById("deepPrev");
 const deepClose = document.getElementById("deepClose");
 const deepContinue = document.getElementById("deepContinue");
 const coachPop = document.getElementById("coachPop");
@@ -791,7 +905,7 @@ const coachAnimate = document.getElementById("coachAnimate");
 const coachDeep = document.getElementById("coachDeep");
 const coachDismiss = document.getElementById("coachDismiss");
 const deepSeen = new Set();
-let visualTimer=null,coachTimer=null;
+let coachTimer=null,visualStep=-1,readerIndex=0;
 
 function renderHome(){
   modulesEl.innerHTML="";
@@ -824,89 +938,120 @@ function openLevel(i){
 }
 
 
+
+function escapeAttr(v){return String(v||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function currentDeep(){return DEEP[activeLevel]&&DEEP[activeLevel][activeSlide]?DEEP[activeLevel][activeSlide]:{};}
+function shortText(v,n=150){v=String(v||"");return v.length>n?v.slice(0,n-1).trim()+"…":v;}
 function conceptParts(s){
-  if(s.chips&&s.chips.length)return s.chips;
-  const raw=(s.caption||s.text||"").split(/\s*(?:→|•|·)\s*/).map(x=>x.trim()).filter(Boolean);
-  return raw.length>1?raw.slice(0,4):[s.kicker,s.title];
+  if(s.chips&&s.chips.length)return s.chips.slice(0,4);
+  const raw=(s.caption||"").split(/\s*(?:→|•|·)\s*/).map(x=>x.trim()).filter(Boolean);
+  if(raw.length>1)return raw.slice(0,4);
+  return [s.kicker,s.title];
 }
 function conceptVisual(s){
-  const parts=conceptParts(s),mid=Math.ceil(parts.length/2),left=parts.slice(0,mid),right=parts.slice(mid);
-  return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Concept map</div><div class="visual-story-title">How the pieces connect</div></div><div class="concept-board"><div class="concept-side left">'+left.map((x,i)=>'<div class="concept-node" data-seq data-note="'+escapeAttr('Focus on: '+x)+'">'+x+'</div>').join('')+'</div><div class="concept-hub">'+(s.icon||'OH')+'</div><div class="concept-side right">'+right.map(x=>'<div class="concept-node" data-seq data-note="'+escapeAttr('Connect this idea: '+x)+'">'+x+'</div>').join('')+'</div></div><div class="visual-story-status">The visual will highlight one idea at a time.</div><div class="visual-controls"><button class="replay-visual" data-replay-visual>Replay diagram ↻</button></div></div></div>';
+  const d=currentDeep(),parts=conceptParts(s);
+  return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Apply the concept</div><div class="visual-story-title">Issue → institution → action</div></div><div class="concept-board"><div class="concept-side left"><div class="concept-node" data-seq data-note="'+escapeAttr('Start with a concrete situation: '+shortText(d.example,120))+'">Situation</div><div class="concept-node" data-seq data-note="'+escapeAttr('Ask what authority or role matters here: '+parts.join(', '))+'">Authority</div></div><div class="concept-hub">'+(s.icon||'OH')+'</div><div class="concept-side right"><div class="concept-node" data-seq data-note="'+escapeAttr('Connect the action to the correct institution instead of treating government as one actor.')+'">Institution</div><div class="concept-node" data-seq data-note="'+escapeAttr('Then ask what changed in the real world because that institution acted.')+'">Result</div></div></div><div class="visual-story-status">Start with the situation, then trace authority and result.</div><div class="visual-controls"><span class="visual-label">Learner-controlled walkthrough</span><div class="control-group"><button class="replay-visual" data-replay-visual>Reset</button><button class="visual-step-btn" data-visual-next>Start walkthrough →</button></div></div></div></div>';
 }
 function workflowVisual(s){
-  return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Process workflow</div><div class="visual-story-title">Follow the proposal from one checkpoint to the next</div></div><div class="workflow-track" style="--steps:'+s.steps.length+'">'+s.steps.map((x,i)=>'<div class="workflow-step" data-seq data-note="'+escapeAttr('Step '+(i+1)+' of '+s.steps.length+': '+x+(i<s.steps.length-1?'. Next, the process moves to '+s.steps[i+1]+'.':'. This is the final checkpoint shown on this slide.'))+'"><span class="step-dot"></span><b>'+x+'</b></div>').join('')+'</div><div class="visual-story-status">Press “Show me” or replay the workflow to watch the sequence.</div><div class="visual-controls"><button class="replay-visual" data-replay-visual>Replay workflow ↻</button></div></div></div>';
+  return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Legislative workflow</div><div class="visual-story-title">Move the bill through the checkpoints</div></div><div class="process-sim" style="--steps:'+s.steps.length+'"><div class="process-rail"></div><div class="bill-token" data-bill-token>HB<div></div></div>'+s.steps.map((x,i)=>'<div class="process-station" data-seq data-note="'+escapeAttr('Checkpoint '+(i+1)+': '+x+(i<s.steps.length-1?'. The bill has to clear this stage before moving to '+s.steps[i+1]+'.':'. This is the endpoint shown in this workflow.'))+'" data-index="'+i+'"><b>'+x+'</b><small>'+(i===0?'starting point':i===s.steps.length-1?'shown endpoint':'checkpoint')+'</small></div>').join('')+'</div><div class="visual-story-status">Use “Next step” to move the bill. Notice that each checkpoint is a separate decision point.</div><div class="visual-controls"><span class="visual-label">You control the bill</span><div class="control-group"><button class="replay-visual" data-replay-visual>Reset</button><button class="visual-step-btn" data-visual-next>Next step →</button></div></div></div></div>';
 }
 function recordVisual(s){
-  return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Practical Ohio example</div><div class="visual-story-title">Watch the public record unfold</div></div><div class="record-scene"><div class="record-file"><div><span class="stamp">Official-record walkthrough</span><h3>'+s.realTitle+'</h3><p>'+s.realText+'</p></div>'+(s.source?'<a class="source-link" href="'+SOURCE[s.source]+'" target="_blank" rel="noreferrer">Open source ↗</a>':'')+'</div><div class="record-timeline">'+s.realFlow.map((x,i)=>'<div class="record-step" data-seq data-note="'+escapeAttr('Record step '+(i+1)+': '+x+(i<s.realFlow.length-1?'. Notice how the action then moves to '+s.realFlow[i+1]+'.':'. Now connect the full sequence back to the lesson concept.'))+'"><i>'+(i+1)+'</i><b>'+x+'</b></div>').join('')+'</div></div><div class="visual-story-status">The highlighted step shows where the example is in the process.</div><div class="visual-controls"><button class="replay-visual" data-replay-visual>Replay example ↻</button></div></div></div>';
+  return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Official-record walkthrough</div><div class="visual-story-title">Reconstruct what actually happened</div></div><div class="record-sim"><div class="record-document"><h3>'+s.realTitle+'</h3><p>'+s.realText+'</p><div class="record-stamp" data-record-stamp>Open the record</div>'+(s.source?'<a class="source-link" href="'+SOURCE[s.source]+'" target="_blank" rel="noreferrer">Open official source ↗</a>':'')+'</div><div class="record-timeline">'+s.realFlow.map((x,i)=>'<div class="record-step" data-seq data-record-label="'+escapeAttr(x)+'" data-note="'+escapeAttr('Event '+(i+1)+': '+x+(i<s.realFlow.length-1?'. The next recorded action is '+s.realFlow[i+1]+'.':'. Now use the full sequence to explain the example.'))+'"><i>'+(i+1)+'</i><b>'+x+'</b></div>').join('')+'</div></div><div class="visual-story-status">Advance one event at a time. The document stamp changes with the public record.</div><div class="visual-controls"><span class="visual-label">Evidence before interpretation</span><div class="control-group"><button class="replay-visual" data-replay-visual>Reset</button><button class="visual-step-btn" data-visual-next>Next record event →</button></div></div></div></div>';
 }
 function peopleVisual(s){
-  return '<div class="visual"><div class="visual-story"><div><div class="visual-label">People in the process</div><div class="visual-story-title">Same process, different institutional roles</div></div><div class="people-story">'+s.people.map((p,i)=>'<div class="person" data-seq data-note="'+escapeAttr(p[1]+': '+p[2])+'"><div class="emoji">'+p[0]+'</div><b>'+p[1]+'</b><span>'+p[2]+'</span><span class="person-role">Watch what information or authority this role contributes.</span></div>').join('')+'</div><div class="visual-story-status">The highlight moves from role to role so you can compare what each one contributes.</div><div class="visual-controls"><button class="replay-visual" data-replay-visual>Replay roles ↻</button></div></div></div>';
+  return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Role simulation</div><div class="visual-story-title">Who contributes what?</div></div><div class="role-room"><div class="role-dais">'+s.people.map((p,i)=>'<div class="role-person" data-seq data-note="'+escapeAttr(p[1]+' — '+p[2])+'"><b>'+p[1]+'</b><span>'+p[2]+'</span></div>').join('')+'</div><div class="role-speech" data-role-speech>Select “Next speaker” to hear how each role contributes differently.</div></div><div class="visual-controls"><span class="visual-label">Compare roles, not personalities</span><div class="control-group"><button class="replay-visual" data-replay-visual>Reset</button><button class="visual-step-btn" data-visual-next>Next speaker →</button></div></div></div></div>';
 }
 function compareVisual(){
-  return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Version comparison</div><div class="visual-story-title">See how wording changes the policy</div></div><div class="compare animating"><div class="doc" data-seq data-note="Start with the earlier draft. This is the version you would compare against."><b>Earlier draft</b><div class="line"></div><div class="line short"></div><div class="line"></div><div class="line short"></div></div><div class="compare-arrow">→</div><div class="doc" data-seq data-note="Now inspect the revised draft. The highlighted lines represent language that changed."><b>Revised draft</b><div class="line"></div><div class="line changed"></div><div class="line"></div><div class="line changed short"></div></div></div><div class="visual-story-status">Blue lines represent changed language. The important question is what those words change in practice.</div><div class="visual-controls"><button class="replay-visual" data-replay-visual>Replay comparison ↻</button></div></div></div>';
+  const d=currentDeep(),example=shortText(d.example,100);
+  return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Drafting redline</div><div class="visual-story-title">A small wording change can change the policy</div></div><div class="redline-stage"><div class="policy-page" data-seq data-note="Read the earlier version first. Ask what rule an administrator would apply."><small>Earlier draft</small><h4>Program eligibility</h4><div class="policy-clause">Eligible applicants include nonprofit cultural organizations.</div><div class="policy-clause">The agency may award grants for approved activities.</div></div><div class="redline-arrow">→</div><div class="policy-page" data-seq data-note="'+escapeAttr('Now read the revision. The highlighted clause changes scope or discretion. Example context: '+example)+'"><small>Revised draft</small><h4>Program eligibility</h4><div class="policy-clause marked">Eligible applicants include nonprofit cultural organizations <b>and qualifying local governments</b>.</div><div class="policy-clause">The agency may award grants for approved activities.</div><div class="redline-note">Added language changes who may qualify.</div></div></div><div class="visual-story-status">Compare the rule before and after. The learning question is what the new words change.</div><div class="visual-controls"><span class="visual-label">Read the text like a drafter</span><div class="control-group"><button class="replay-visual" data-replay-visual>Reset</button><button class="visual-step-btn" data-visual-next>Reveal revision →</button></div></div></div></div>';
 }
-function escapeAttr(v){return String(v||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function makeVisual(s){
-  if(s.type==="icon") return conceptVisual(s);
-  if(s.type==="map") return workflowVisual(s);
-  if(s.type==="real") return recordVisual(s);
-  if(s.type==="people") return peopleVisual(s);
-  if(s.type==="compare") return compareVisual();
-  if(s.type==="quiz"){
-    return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Apply it</div><div class="visual-story-title">Make the process decision yourself</div></div><div class="quiz">'+s.answers.map((a,i)=>'<button data-answer="'+i+'">'+a+'</button>').join("")+'<div class="quiz-feedback" id="quizFeedback"></div></div></div></div>';
-  }
-  if(s.type==="games"){
-    return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Practice transfer</div><div class="visual-story-title">Use the same reasoning in a simulation</div></div><div class="game-pair"><a class="game" style="text-decoration:none" href="index.html?page=health"><div><div class="emoji">🩺</div><h3>Health Committee</h3><p>Listen, question, amend, decide.</p></div></a><a class="game alt" style="text-decoration:none" href="index.html?page=arts"><div><div class="emoji">🎨</div><h3>Culture Drafting</h3><p>Write, revise, compare, implement.</p></div></a></div></div></div>';
-  }
+  if(s.type==="icon")return conceptVisual(s);
+  if(s.type==="map")return workflowVisual(s);
+  if(s.type==="real")return recordVisual(s);
+  if(s.type==="people")return peopleVisual(s);
+  if(s.type==="compare")return compareVisual();
+  if(s.type==="quiz")return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Apply it</div><div class="visual-story-title">Make the process decision yourself</div></div><div class="quiz">'+s.answers.map((a,i)=>'<button data-answer="'+i+'">'+a+'</button>').join("")+'<div class="quiz-feedback" id="quizFeedback"></div></div></div></div>';
+  if(s.type==="games")return '<div class="visual"><div class="visual-story"><div><div class="visual-label">Practice transfer</div><div class="visual-story-title">Use the same reasoning in a full simulation</div></div><div class="game-pair"><a class="game" style="text-decoration:none" href="health-committee.html"><div><div class="emoji">🩺</div><h3>Health Committee</h3><p>Enter the committee room.</p></div></a><a class="game alt" style="text-decoration:none" href="culture-drafting.html"><div><div class="emoji">🎨</div><h3>Culture Drafting</h3><p>Enter the drafting studio.</p></div></a></div></div></div>';
   return '<div class="visual"></div>';
 }
 
 
-function openDeep(auto=false){
+
+function readerSections(){
+  const d=currentDeep();
+  return [
+    {k:"What this means",t:"Understand the idea",b:d.meaning||"",p:"Read for the core rule or distinction. You do not need to memorize the wording."},
+    {k:"Why it matters",t:"Connect the idea to power and consequences",b:d.why||"",p:"Ask what becomes easier to understand once you know this distinction."},
+    {k:"Practical example",t:"See the concept operating in a concrete situation",b:d.example||"",p:"Now connect the example back to the visual on the slide."},
+    {k:"Think like a civic researcher",t:"Ask the next useful question",b:d.question||"",p:"Use this question when you encounter a real claim, bill, hearing, or public record."}
+  ];
+}
+function renderReader(){
+  const sections=readerSections(),r=sections[readerIndex];
+  readerKicker.textContent=r.k;readerTitle.textContent=r.t;readerBody.textContent=r.b;readerPrompt.textContent=r.p;
+  readerTabs.forEach((b,i)=>b.classList.toggle("active",i===readerIndex));
+  deepPage.textContent=(readerIndex+1)+" / "+sections.length;
+  deepPrev.style.visibility=readerIndex===0?"hidden":"visible";
+  deepContinue.textContent=readerIndex===sections.length-1?"Return to visual →":"Next section →";
+}
+function openDeep(){
   const s=course[activeLevel].slides[activeSlide];
-  const d=DEEP[activeLevel]&&DEEP[activeLevel][activeSlide];
-  if(!d)return;
   deepLabel.textContent="Level "+(activeLevel+1)+" • Lesson "+(activeSlide+1);
-  deepTitle.textContent=s.title;
-  deepMeaning.textContent=d.meaning;
-  deepWhy.textContent=d.why;
-  deepExample.textContent=d.example;
-  deepQuestion.textContent=d.question;
-  deepModal.classList.add("show");
-  if(auto)deepSeen.add(activeLevel+"-"+activeSlide);
+  deepTitle.textContent=s.title;readerIndex=0;renderReader();deepModal.classList.add("show");
 }
 function closeDeep(){deepModal.classList.remove("show");}
-
-function clearVisualTimer(){if(visualTimer){clearInterval(visualTimer);visualTimer=null;}}
-function runVisualAnimation(){
-  clearVisualTimer();
+function resetVisual(){
+  visualStep=-1;
   const items=[...slide.querySelectorAll("[data-seq]")];
+  items.forEach(el=>{el.classList.remove("active","done")});
   const status=slide.querySelector(".visual-story-status");
-  if(!items.length){if(status)status.textContent="This slide is interactive—make a choice or use the lesson controls.";return;}
-  let i=0;
-  const paint=()=>{
-    items.forEach((el,j)=>{el.classList.toggle("active",j===i);el.classList.toggle("done",j<i);});
-    if(status)status.textContent=items[i].dataset.note||("Step "+(i+1)+" of "+items.length);
-  };
-  paint();
-  if(items.length>1)visualTimer=setInterval(()=>{i=(i+1)%items.length;paint();},1700);
+  if(status)status.textContent=items.length?"Start the walkthrough when you are ready.":"Use this visual to apply the lesson.";
+  const stamp=slide.querySelector("[data-record-stamp]");if(stamp)stamp.textContent="Open the record";
+  const speech=slide.querySelector("[data-role-speech]");if(speech)speech.textContent="Select “Next speaker” to compare what each role contributes.";
+  positionBillToken();
+  updateVisualButton();
+}
+function positionBillToken(){
+  const token=slide.querySelector("[data-bill-token]");
+  const stations=[...slide.querySelectorAll(".process-station")];
+  if(!token||!stations.length)return;
+  if(visualStep<0){token.style.left="2%";token.classList.remove("move");return;}
+  const track=token.parentElement.getBoundingClientRect(),target=stations[Math.min(visualStep,stations.length-1)].getBoundingClientRect();
+  const x=target.left-track.left+(target.width-token.offsetWidth)/2;
+  token.style.left=Math.max(0,x)+"px";token.classList.add("move");setTimeout(()=>token.classList.remove("move"),450);
+}
+function updateVisualButton(){
+  const btn=slide.querySelector("[data-visual-next]"),items=[...slide.querySelectorAll("[data-seq]")];
+  if(!btn)return;
+  btn.textContent=visualStep>=items.length-1&&items.length?"Replay walkthrough ↻":visualStep<0?"Start walkthrough →":"Next step →";
+}
+function advanceVisual(){
+  const items=[...slide.querySelectorAll("[data-seq]")],status=slide.querySelector(".visual-story-status");
+  if(!items.length)return;
+  if(visualStep>=items.length-1)visualStep=-1;
+  visualStep++;
+  items.forEach((el,i)=>{el.classList.toggle("active",i===visualStep);el.classList.toggle("done",i<visualStep)});
+  const active=items[visualStep];
+  if(status)status.textContent=active.dataset.note||("Step "+(visualStep+1)+" of "+items.length);
+  const stamp=slide.querySelector("[data-record-stamp]");if(stamp&&active.dataset.recordLabel)stamp.textContent=active.dataset.recordLabel;
+  const speech=slide.querySelector("[data-role-speech]");if(speech&&active.closest(".role-dais"))speech.textContent=active.dataset.note||"";
+  positionBillToken();updateVisualButton();
 }
 function coachLead(s){
-  if(s.type==="real")return "Watch the example move through the record. The highlighted step shows how the real example connects back to the concept you just learned.";
-  if(s.type==="map")return "Follow the highlighted checkpoint instead of trying to memorize the whole process at once.";
-  if(s.type==="people")return "I’ll move the spotlight from person to person. Compare what each role contributes to the process.";
-  if(s.type==="compare")return "Watch the revised language pulse. The lesson is not that text changed—it’s that changed words can change implementation.";
-  if(s.type==="quiz")return "Your turn. Use the process you just saw rather than guessing from the wording.";
-  if(s.type==="games")return "These are practice environments. Pick the one that matches the skill you want to use.";
-  return "Use the diagram as a map of the idea. I’ll highlight one connection at a time.";
+  if(s.type==="real")return "Treat this like a public-record reconstruction. Advance one event at a time and explain who acted before you move on.";
+  if(s.type==="map")return "You control the bill. Move it one checkpoint at a time and notice that each stop represents a separate decision.";
+  if(s.type==="people")return "Switch speakers and compare roles. The lesson is what each person contributes to the process—not who you like.";
+  if(s.type==="compare")return "Read the earlier rule first, then reveal the revision and ask exactly who or what the added words change.";
+  if(s.type==="quiz")return "Your turn. Use the process model you just practiced instead of guessing from the wording.";
+  if(s.type==="games")return "These two simulations pick up where the course leaves off. Each one lives on its own page with a different working environment.";
+  return "Start with the situation, identify the institution or authority, then trace the result. Use the visual one step at a time.";
 }
 function showCoach(){
   const s=course[activeLevel].slides[activeSlide];
-  clearTimeout(coachTimer);
-  coachPopText.textContent=coachLead(s)+" "+s.guide;
+  clearTimeout(coachTimer);coachPopText.textContent=coachLead(s)+" "+s.guide;
   coachAnimate.style.display=s.type==="quiz"||s.type==="games"?"none":"inline-flex";
-  coachPop.classList.add("show");
-  coachTimer=setTimeout(()=>coachPop.classList.remove("show"),8500);
+  coachPop.classList.add("show");coachTimer=setTimeout(()=>coachPop.classList.remove("show"),11000);
 }
 function hideCoach(){clearTimeout(coachTimer);coachPop.classList.remove("show");}
 
@@ -934,8 +1079,10 @@ function renderSlide(){
   const last=activeSlide===course[activeLevel].slides.length-1;
   nextBtn.textContent=last?"Finish level ✓":"Next →";
   nextBtn.classList.toggle("finish",last);
-  slide.querySelectorAll("[data-replay-visual]").forEach(btn=>btn.onclick=runVisualAnimation);
-  runVisualAnimation();
+  visualStep=-1;
+  slide.querySelectorAll("[data-replay-visual]").forEach(btn=>btn.onclick=resetVisual);
+  slide.querySelectorAll("[data-visual-next]").forEach(btn=>btn.onclick=advanceVisual);
+  resetVisual();
   hideCoach();
   setTimeout(showCoach,260);
 }
@@ -951,12 +1098,14 @@ function finishLevel(){
 }
 
 document.getElementById("startBtn").onclick=()=>intro.classList.remove("show");
-document.getElementById("closeBtn").onclick=()=>{closeDeep();hideCoach();clearVisualTimer();lesson.classList.remove("open");};
+document.getElementById("closeBtn").onclick=()=>{closeDeep();hideCoach();lesson.classList.remove("open");};
 deepClose.onclick=closeDeep;
-deepContinue.onclick=closeDeep;
+deepContinue.onclick=()=>{if(readerIndex<3){readerIndex++;renderReader()}else closeDeep();};
+deepPrev.onclick=()=>{if(readerIndex>0){readerIndex--;renderReader()}};
+readerTabs.forEach((b,i)=>b.onclick=()=>{readerIndex=i;renderReader()});
 deepModal.addEventListener("click",e=>{if(e.target===deepModal)closeDeep();});
-coachAnimate.onclick=()=>{runVisualAnimation();coachPop.classList.add("show");};
-coachDeep.onclick=()=>{hideCoach();openDeep(false);};
+coachAnimate.onclick=()=>{advanceVisual();coachPop.classList.add("show");};
+coachDeep.onclick=()=>{hideCoach();openDeep();};
 coachDismiss.onclick=hideCoach;
 prevBtn.onclick=()=>{if(activeSlide>0){activeSlide--;renderSlide()}};
 nextBtn.onclick=()=>{
@@ -966,7 +1115,7 @@ nextBtn.onclick=()=>{
 document.addEventListener("keydown",e=>{
   if(!lesson.classList.contains("open")||intro.classList.contains("show"))return;
   if(e.key==="Escape"&&deepModal.classList.contains("show")){closeDeep();return;}
-  if(e.key==="Escape"){hideCoach();clearVisualTimer();lesson.classList.remove("open");}
+  if(e.key==="Escape"){hideCoach();lesson.classList.remove("open");}
   if(e.key==="ArrowRight")nextBtn.click();
   if(e.key==="ArrowLeft"&&activeSlide>0)prevBtn.click();
 });
