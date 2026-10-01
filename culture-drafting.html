@@ -31,11 +31,13 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;ba
 .guide{position:fixed;z-index:90;right:20px;bottom:20px;width:min(390px,calc(100vw - 28px));display:grid;grid-template-columns:52px 1fr;gap:10px;padding:12px;border:1px solid rgba(239,140,173,.28);border-radius:18px;background:rgba(35,20,42,.96);box-shadow:0 24px 70px rgba(0,0,0,.32);transform:translateY(130%);transition:.38s cubic-bezier(.2,.8,.2,1)}.guide.show{transform:none}.guide-face{width:50px;height:58px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,var(--copper),var(--rose));font-size:30px}.guide small{color:#ef9fc1;font-size:7px;text-transform:uppercase;letter-spacing:.12em;font-weight:950}.guide p{margin:4px 0 8px;color:#f7edf5;font-size:10px;line-height:1.45}.guide button{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#f1e3ef;border-radius:8px;padding:6px 8px;font-size:8px;font-weight:900;cursor:pointer}
 @media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.learning{border-left:0;border-top:1px solid var(--line)}.studio{min-height:520px}.progress{grid-template-columns:repeat(6,125px)}}@media(max-width:620px){.brand small{display:none}.navlinks a:nth-child(3){display:none}.page{width:min(100% - 16px,1460px)}.hero-main{padding:20px}.studio-wrap{padding:8px}.studio{min-height:480px}.bill{width:62%;height:48%}.stakeholder{width:23%}.stakeholder:nth-child(4){display:none}.note{width:70%}.workspace{min-height:0}.learning{padding:12px}}
 </style>
+<link rel="stylesheet" href="game-visuals.css">
+<script src="civic-scenes.js"></script>
 </head>
-<body>
+<body class="culture">
 <header class="topbar"><div class="nav"><a class="brand" href="index.html"><div class="logo">OH!</div><div><strong>OH! Civics</strong><small>Culture Drafting Simulation</small></div></a><nav class="navlinks"><a href="index.html">Main site</a><a href="civics-course-latest.html">Civic Course</a><a href="health-committee.html">Health Committee</a><a class="active" href="culture-drafting.html">Culture Drafting</a></nav></div></header>
 <main class="page">
-<section class="hero"><div class="hero-main"><span class="eyebrow">Separate simulation · connected course</span><h1>Inside the Drafting Studio</h1><p>Turn one broad culture-policy goal into usable legislative language. Stakeholders reveal drafting problems, the bill changes on the desk, and a sponsor redline forces you to test whether the final text can actually be implemented.</p><div class="hero-actions"><button class="btn primary" id="newDraft">Start a new draft</button><a class="btn secondary" href="civics-course-latest.html">Review drafting lesson</a></div></div><aside class="hero-side"><small>Visual mode</small><h3>The document is the game board.</h3><p>People feed requirements into the bill. Clause sections light up as they are written. Redlines appear where ambiguity remains, and the final implementation test shows what the words would require in practice.</p></aside></section>
+<section class="hero"><div class="hero-main"><span class="eyebrow">Separate simulation · connected course</span><h1>Inside the Drafting Studio</h1><p>Turn community needs into clauses, resolve a redline, and test the draft.</p><div class="hero-actions"><button class="btn primary" id="newDraft">Start a new draft</button><a class="btn secondary" href="civics-course-latest.html">Review drafting lesson</a></div></div><aside class="hero-side"><small>Visual mode</small><h3>The document is the game board.</h3><p>People feed requirements into the bill. Clause sections light up as they are written. Redlines appear where ambiguity remains, and the final implementation test shows what the words would require in practice.</p></aside></section>
 <section class="game"><div class="game-head"><div><span class="eyebrow" id="caseCode"></span><h2 id="caseTitle"></h2><p id="caseQuestion"></p></div><div class="stage-counter" id="stageCounter"></div></div><div class="progress" id="progress"></div><div class="workspace"><div class="studio-wrap"><div class="studio">
 <div class="window"></div><div class="lamp"></div><div class="shelf"><i></i><i></i><i></i><i></i></div>
 <div class="note" id="note"><small id="noteTag"></small><strong id="noteName"></strong><p id="noteText"></p></div>
@@ -93,7 +95,7 @@ const cases=[
 ];
 let state={caseIndex:0,stage:0,heard:new Set(),activePerson:null,clauseIndex:0,choices:[],redline:null,test:null};
 const el=id=>document.getElementById(id),current=()=>cases[state.caseIndex];
-function guide(text){el('guideText').textContent=text;el('guide').classList.add('show')}
+function guide(text){el('guideText').textContent=text}
 function progress(){el('progress').innerHTML=stages.map((s,i)=>'<div class="'+(i<state.stage?'done':i===state.stage?'active':'')+'">'+(i+1)+'. '+s+'</div>').join('')}
 function renderPeople(){
  el('stakeholders').innerHTML=people.map((p,i)=>'<div class="stakeholder '+(state.stage>=1?'show ':'')+(state.activePerson===i?'active':'')+'"><div class="person"><div class="head"></div><div class="hair"></div><div class="body"></div></div><b>'+p[0]+'</b></div>').join('');
@@ -109,42 +111,42 @@ function render(){
  const c=current();progress();renderPeople();hideNote();el('pen').classList.remove('active');el('caseCode').textContent=c.code;el('caseTitle').textContent=c.title;el('caseQuestion').textContent=c.question;el('stageCounter').textContent='Stage '+(state.stage+1)+' / '+stages.length;el('backBtn').disabled=state.stage===0;el('studioCaption').textContent=stages[state.stage]+' · legislative drafting studio';
  let lessonTitle='',lessonText='',actionTitle='',actionText='',choices='',nextDisabled=false,nextLabel='Next →',activeClause=-1;
  if(state.stage===0){
-  lessonTitle='A policy goal is not yet a bill.';lessonText='Drafting converts a goal into legal instructions. A usable bill eventually has to answer who is covered, what government may or must do, what resources or conditions apply, and how implementation can be reviewed.';
-  actionTitle='Read the sponsor request';actionText=c.goal+' The words are still missing. Your job is to build an operating structure rather than polish a slogan.';
+  lessonTitle='A policy goal is not yet a bill.';lessonText='A bill needs instructions: who qualifies, what government does, which conditions apply, and how results are reviewed.';
+  actionTitle='Read the sponsor request';actionText=c.goal+' Give the goal an operating structure.';
   choices='<div class="lesson-card" style="margin-top:10px"><small>Drafting question</small><p>'+c.question+'</p></div>';guide('Look at the paper: every section begins as “Drafting needed.” The visual is showing you that a policy goal has not yet answered the legal questions an administrator would face.');
  } else if(state.stage===1){
   if(state.activePerson!=null&&state.activePerson>0){const n=c.needs[state.activePerson-1];showNote('Stakeholder need',n.name,n.need)}
-  lessonTitle='Stakeholders reveal missing rules.';lessonText='A stakeholder does not write the law for you. Their experience can reveal where the draft lacks a definition, eligibility rule, administrative mechanism, or accountability structure.';
-  actionTitle='Open every stakeholder note';actionText='Each character feeds a different drafting requirement into the bill.';
+  lessonTitle='Stakeholders reveal missing rules.';lessonText='Stakeholder experience reveals missing definitions, eligibility rules, mechanisms, or oversight. You decide how to draft them.';
+  actionTitle='Open every stakeholder note';actionText='Match each need to a clause.';
   choices=c.needs.map((n,i)=>choiceButton(n.name,n.role+' · '+(state.heard.has(i)?n.clue:'Open note'),i,state.heard.has(i),'need')).join('');nextDisabled=state.heard.size<c.needs.length;guide('The characters are not decoration. Each one exposes a different job the bill text has to perform. Watch which clause their concern points toward.');
  } else if(state.stage===2){
   activeClause=Math.min(state.clauseIndex,c.clauses.length-1);const cl=c.clauses[state.clauseIndex];const selected=state.choices[state.clauseIndex];
   if(state.clauseIndex>=c.clauses.length){
-    lessonTitle='The draft now has a complete structure.';lessonText='Purpose, eligibility, mechanism, and accountability are different legal jobs. A bill can be rhetorically clear while still failing one of those jobs.';
-    actionTitle='Review the assembled bill';actionText='The paper now contains language in all four sections. Notice how the visual changed from blanks to an operating structure.';
+    lessonTitle='The draft now has a complete structure.';lessonText='Purpose, eligibility, mechanism, and accountability do different jobs. Check that the draft performs all four.';
+    actionTitle='Review the assembled bill';actionText='Review how the four sections work together.';
     choices='<div class="lesson-card"><small>Structure check</small><p>Can you explain what each clause does without relying on the bill title?</p></div>';activeClause=-1;
   }else{
-    lessonTitle='Every clause has a different job.';lessonText='Specific language usually reduces administrative discretion; broader language can preserve flexibility. The tradeoff matters because later implementation depends on what the text actually delegates or defines.';
+    lessonTitle='Every clause has a different job.';lessonText='Specific language limits discretion. Broader language preserves flexibility but leaves more decisions to administrators.';
     actionTitle=cl.name+' clause';actionText=cl.prompt;
     choices=cl.opts.map((o,i)=>choiceButton(i===0?'More specific':'More flexible',o[0]+' '+o[1],i,selected===i,'clause')).join('');nextDisabled=selected==null;nextLabel=state.clauseIndex===c.clauses.length-1?'Review full draft →':'Next clause →';el('pen').classList.add('active');
   }
  } else if(state.stage===3){
   const picked=state.redline==null?null:c.redlines[state.redline];activeClause=state.redline===0?1:3;el('pen').classList.add('active');if(picked)showNote('Sponsor redline','Sponsor Vale',picked[1]);
-  lessonTitle='Revision is part of legislating.';lessonText='A redline matters because the words change, not because a meter moves. The drafter should be able to identify the ambiguity, the replacement language, and the practical consequence.';
-  actionTitle='Choose a sponsor redline to resolve';actionText='The pen and marked clause show exactly where the policy artifact changes.';
+  lessonTitle='Revision is part of legislating.';lessonText='Identify the ambiguity, the new language, and its practical effect.';
+  actionTitle='Choose a sponsor redline to resolve';actionText='Choose a revision and inspect its effect.';
   choices=c.redlines.map((r,i)=>choiceButton(r[0],r[1],i,state.redline===i,'redline')).join('')+(picked?'<div class="lesson-card" style="margin-top:10px"><small>Drafting effect</small><p>'+picked[2]+'</p></div>':'');nextDisabled=state.redline==null;
   guide('Now the visual focus is the marked clause. That is the learning point: when a problem becomes specific, the bill should change in a specific place.');
  } else if(state.stage===4){
   const picked=state.test==null?null:c.tests[state.test];if(picked)showNote('Implementation test','Agency reviewer',picked[0]+': '+picked[1]);
-  lessonTitle='Test the text against a real decision.';lessonText='Implementation testing asks whether two reasonable readers could use the text and reach the same result. Ambiguity is easiest to see when a real applicant, agency, or deadline forces the language to produce an answer.';
-  actionTitle='Run an implementation test';actionText='Pick a scenario and use the draft as if you were the administrator.';
+  lessonTitle='Test the text against a real decision.';lessonText='Can two readers apply the text and reach the same result? Test it against an applicant or agency decision.';
+  actionTitle='Run an implementation test';actionText='Apply your draft to a scenario.';
   choices=c.tests.map((t,i)=>choiceButton(t[0],t[1],i,state.test===i,'test')).join('')+(picked?'<div class="lesson-card" style="margin-top:10px"><small>What this test reveals</small><p>'+picked[2]+'</p></div>':'');nextDisabled=state.test==null;guide('This is where drafting becomes concrete. The question is no longer “does the sentence sound good?” It is “can this sentence actually decide the case in front of the administrator?”');
  } else {
-  lessonTitle='The final text is the policy artifact.';lessonText='The durable skill is tracing every final clause back to a policy-design question and then checking whether the text can be implemented without inventing a new rule.';
-  actionTitle='What the studio taught';actionText='People exposed missing rules; the bill sections answered them; a redline refined one ambiguity; an implementation test forced the words to produce a result.';
+  lessonTitle='The final text is the policy artifact.';lessonText='Trace each clause to its purpose. Can an administrator apply it without inventing a rule?';
+  actionTitle='What the studio taught';actionText='Needs → clauses → revision → implementation.';
   const r=c.redlines[state.redline];choices='<div class="lesson-card"><small>Final revision</small><h3>'+r[0]+'</h3><p>'+r[2]+'</p></div><div class="hero-actions"><a class="btn secondary" href="civics-course-latest.html">Return to course</a><a class="btn secondary" href="health-committee.html">Try committee simulation</a></div>';nextLabel='Replay draft ↻';guide('If you can point at each section of the paper and explain the job it performs, you understand more than the bill title—you understand the policy structure.');
  }
- renderBill(activeClause);el('lessonTitle').textContent=lessonTitle;el('lessonText').textContent=lessonText;el('actionTitle').textContent=actionTitle;el('actionText').textContent=actionText;el('choices').innerHTML=choices;el('nextBtn').disabled=nextDisabled;el('nextBtn').textContent=nextLabel;
+ renderBill(activeClause);el('lessonTitle').textContent=lessonTitle;el('lessonText').textContent=lessonText;el('actionTitle').textContent=actionTitle;el('actionText').textContent=actionText;el('choices').innerHTML=choices;el('nextBtn').disabled=nextDisabled;el('nextBtn').textContent=nextLabel;updateCivicScene('culture',state,c);
 }
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-kind]');if(!b)return;const i=Number(b.dataset.index),k=b.dataset.kind;
@@ -165,8 +167,9 @@ el('nextBtn').onclick=()=>{
 el('backBtn').onclick=()=>{const draft=current();if(state.stage===2&&state.clauseIndex>0){state.clauseIndex--}else if(state.stage>0){state.stage--;if(state.stage===2)state.clauseIndex=Math.min(draft.clauses.length,state.choices.length)}render()};
 el('newDraft').onclick=()=>{state={caseIndex:(state.caseIndex+1)%cases.length,stage:0,heard:new Set(),activePerson:null,clauseIndex:0,choices:[],redline:null,test:null};render()};
 el('guideDismiss').onclick=()=>el('guide').classList.remove('show');
+const help=document.createElement('button');help.className='btn secondary';help.textContent='Learning guide';help.onclick=()=>el('guide').classList.toggle('show');el('backBtn').parentElement.append(help);document.querySelector('.guide-face').innerHTML=civicGlyph();
 render();
 })();
 </script>
-</body>
+<script src="visual-enhancements.js"></script></body>
 </html>

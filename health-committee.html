@@ -34,11 +34,13 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;ba
 .guide{position:fixed;z-index:90;right:20px;bottom:20px;width:min(390px,calc(100vw - 28px));display:grid;grid-template-columns:52px 1fr;gap:10px;padding:12px;border:1px solid rgba(86,224,193,.28);border-radius:18px;background:rgba(8,29,34,.96);box-shadow:0 24px 70px rgba(0,0,0,.32);transform:translateY(130%);transition:.38s cubic-bezier(.2,.8,.2,1)}.guide.show{transform:none}.guide-face{width:50px;height:58px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,var(--cyan),var(--teal));font-size:30px}.guide small{color:var(--teal);font-size:7px;text-transform:uppercase;letter-spacing:.12em;font-weight:950}.guide p{margin:4px 0 8px;color:#e8f6f5;font-size:10px;line-height:1.45}.guide button{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#dff0ef;border-radius:8px;padding:6px 8px;font-size:8px;font-weight:900;cursor:pointer}
 @media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.learning{border-left:0;border-top:1px solid var(--line)}.room{min-height:520px}.progress{grid-template-columns:repeat(7,120px)}}@media(max-width:620px){.brand small{display:none}.navlinks a:nth-child(3){display:none}.page{width:min(100% - 16px,1460px)}.hero-main{padding:20px}.room-wrap{padding:8px}.room{min-height:470px}.dais{left:2%;right:2%}.member{min-width:55px}.member .person{transform:scale(.82)}.member b{font-size:6px}.member span{display:none}.speech{width:72%;font-size:9px}.workspace{min-height:0}.learning{padding:12px}}
 </style>
+<link rel="stylesheet" href="game-visuals.css">
+<script src="civic-scenes.js"></script>
 </head>
-<body>
+<body class="health">
 <header class="topbar"><div class="nav"><a class="brand" href="index.html"><div class="logo">OH!</div><div><strong>OH! Civics</strong><small>Health Committee Simulation</small></div></a><nav class="navlinks"><a href="index.html">Main site</a><a href="civics-course-latest.html">Civic Course</a><a class="active" href="health-committee.html">Health Committee</a><a href="culture-drafting.html">Culture Drafting</a></nav></div></header>
 <main class="page">
-<section class="hero"><div class="hero-main"><span class="eyebrow">Separate simulation · connected course</span><h1>Inside the Committee Room</h1><p>Stay inside one legislative process long enough to understand it. Hear testimony, ask a useful question, inspect an amendment, hear member concerns, and choose the committee's next procedural action.</p><div class="hero-actions"><button class="btn primary" id="newCase">Start a new hearing</button><a class="btn secondary" href="civics-course-latest.html">Review committee lesson</a></div></div><aside class="hero-side"><small>Visual mode</small><h3>The room teaches with you.</h3><p>Characters, the witness table, bill paper, member reactions, and voting indicators change as the process moves. The visual is the process—not a background illustration.</p></aside></section>
+<section class="hero"><div class="hero-main"><span class="eyebrow">Separate simulation · connected course</span><h1>Inside the Committee Room</h1><p>Hear testimony, test an amendment, and decide the committee’s next step.</p><div class="hero-actions"><button class="btn primary" id="newCase">Start a new hearing</button><a class="btn secondary" href="civics-course-latest.html">Review committee lesson</a></div></div><aside class="hero-side"><small>Visual mode</small><h3>The room teaches with you.</h3><p>Characters, the witness table, bill paper, member reactions, and voting indicators change as the process moves. The visual is the process—not a background illustration.</p></aside></section>
 <section class="game"><div class="game-head"><div><span class="eyebrow" id="caseCode"></span><h2 id="caseTitle"></h2><p id="caseQuestion"></p></div><div class="stage-counter" id="stageCounter"></div></div><div class="progress" id="progress"></div><div class="workspace"><div class="room-wrap"><div class="room">
 <div class="wall-panel"></div><div class="seal">OH<small>COMMITTEE ROOM</small></div>
 <div class="speech" id="speech"><small id="speechTag"></small><strong id="speechName"></strong><p id="speechText"></p></div>
@@ -111,7 +113,7 @@ function showSpeech(tag,name,text){
  el('speechTag').textContent=tag;el('speechName').textContent=name;el('speechText').textContent=text;el('speech').classList.add('show');
 }
 function hideSpeech(){el('speech').classList.remove('show')}
-function guide(text){el('guideText').textContent=text;el('guide').classList.add('show')}
+function guide(text){el('guideText').textContent=text}
 function progress(){el('progress').innerHTML=stages.map((s,i)=>'<div class="'+(i<state.stage?'done':i===state.stage?'active':'')+'">'+(i+1)+'. '+s+'</div>').join('')}
 function choiceButton(title,sub,index,selected,kind){return '<button class="choice '+(selected?'selected':'')+'" data-kind="'+kind+'" data-index="'+index+'"><b>'+title+'</b><span>'+sub+'</span></button>'}
 function roomMode(){
@@ -125,41 +127,41 @@ function render(){
  let lessonTitle='',lessonText='',actionTitle='',actionText='',choices='',nextDisabled=false,nextLabel='Next →';
  hideSpeech();renderMembers(-1);
  if(state.stage===0){
-  lessonTitle='A committee narrows the problem.';lessonText='A committee hearing is not the final legislative vote. It is a working stage where lawmakers examine a bill closely enough to identify missing definitions, implementation problems, fiscal questions, and possible revisions.';
-  actionTitle='Read the clerk\'s briefing';actionText=c.brief+' Your first job is to keep the policy goal separate from the practical questions the committee must answer.';
+  lessonTitle='A committee narrows the problem.';lessonText='Committees examine definitions, costs, and implementation before deciding whether to advance a bill. A hearing does not enact law.';
+  actionTitle='Read the clerk\'s briefing';actionText=c.brief+' Separate the goal from the practical questions.';
   choices='<div class="lesson-card" style="margin-top:10px"><small>Question to carry into testimony</small><p>'+c.question+'</p></div>';guide('Start by noticing the room. The bill is not being enacted here. The committee is building a record that may change the text before it ever reaches the full chamber.');
  } else if(state.stage===1){
   const w=c.witnesses[state.witness];el('witnessName').textContent=w.name;showSpeech(w.tag,w.name,w.quote);renderMembers(-1);
   lessonTitle='Testimony adds information to the record.';lessonText='A witness can add a factual claim, professional experience, implementation concern, or policy argument. The witness\'s label does not prove the claim; the content and evidence matter.';
-  actionTitle='Hear every witness';actionText='Click each witness. Compare what kind of problem each person adds.';
+  actionTitle='Hear every witness';actionText='Hear all three. Compare their concerns.';
   choices=c.witnesses.map((w,i)=>choiceButton(w.name,w.role+' · '+w.tag,i,state.witness===i,'witness')).join('')+'<div class="lesson-card" style="margin-top:10px"><small>Claim</small><p>'+w.claim+'</p><small style="margin-top:8px">Evidence</small><p>'+w.evidence+'</p><small style="margin-top:8px">Concern</small><p>'+w.concern+'</p></div>';
   nextDisabled=state.heard.size<c.witnesses.length;guide('The characters are doing the teaching here: each witness changes what the committee knows. Your job is to notice which part of the bill their testimony puts pressure on.');
  } else if(state.stage===2){
   renderMembers(2);const picked=state.question==null?null:c.questions[state.question];if(picked)showSpeech('Committee question','Rep. Desai',picked[1]);
-  lessonTitle='Questions turn testimony into a drafting problem.';lessonText='A useful committee question is specific enough to reveal what the bill text, implementation plan, or evidence still needs. It should move the hearing record forward rather than merely restating a value.';
-  actionTitle='Choose a question to ask';actionText='Pick the question that best tests an issue raised in testimony. After you choose, read what the question accomplishes.';
+  lessonTitle='Questions turn testimony into a drafting problem.';lessonText='Ask what the text or evidence still leaves unresolved. A useful question tests a concrete problem.';
+  actionTitle='Choose a question to ask';actionText='Test a concern raised in testimony.';
   choices=c.questions.map((q,i)=>choiceButton(q[0],q[1],i,state.question===i,'question')).join('')+(picked?'<div class="lesson-card" style="margin-top:10px"><small>Why this question matters</small><p>'+picked[2]+'</p></div>':'');nextDisabled=state.question==null;
  } else if(state.stage===3){
-  const picked=state.amendment==null?null:c.amendments[state.amendment];lessonTitle='Markup changes the actual bill text.';lessonText='An amendment is not a reaction meter. It is language. The important question is which problem the new words address, what discretion they create, and what they leave unresolved.';
-  actionTitle='Select an amendment to examine';actionText='The paper appears in the room because the object being changed is now the bill itself.';
+  const picked=state.amendment==null?null:c.amendments[state.amendment];lessonTitle='Markup changes the actual bill text.';lessonText='An amendment changes legal language. Identify what it fixes, delegates, or leaves unresolved.';
+  actionTitle='Select an amendment to examine';actionText='Choose language that responds to the record.';
   choices=c.amendments.map((a,i)=>choiceButton(a[0],a[1],i,state.amendment===i,'amendment')).join('')+(picked?'<div class="lesson-card" style="margin-top:10px"><small>Effect on the record</small><p>'+picked[2]+'</p></div>':'');nextDisabled=state.amendment==null;guide('Notice the visual change: testimony has moved off center and the document is now the focus. Committee work turns information into possible language.');
  } else if(state.stage===4){
   const remaining=c.memberLines.filter((x,i)=>!state.members.has(i));const latest=[...state.members].slice(-1)[0];if(latest!=null){showSpeech('Member discussion',c.memberLines[latest][0],c.memberLines[latest][1]);renderMembers(latest)}
-  lessonTitle='Members interpret the same record differently.';lessonText='Discussion is where members connect testimony, bill language, implementation, and procedure. Different concerns can coexist without being reducible to a single score.';
-  actionTitle='Hear at least three members';actionText='Click a member perspective. Each one looks at a different feature of the same record.';
+  lessonTitle='Members interpret the same record differently.';lessonText='Members connect testimony to text and procedure. Different concerns can coexist.';
+  actionTitle='Hear at least three members';actionText='Hear three perspectives on the same record.';
   choices=c.memberLines.map((x,i)=>choiceButton(x[0],state.members.has(i)?x[1]:'Hear this member',i,state.members.has(i),'member')).join('');nextDisabled=state.members.size<3;
  } else if(state.stage===5){
-  renderMembers(-1);lessonTitle='Committee action is a procedural checkpoint.';lessonText='Reporting a bill, holding it for more work, or declining to report it changes what happens next. None of these actions by itself makes the proposal a law.';
-  actionTitle='Choose the committee\'s next action';actionText='There is no hidden political “correct answer.” Study the procedural consequence of each option.';
+  renderMembers(-1);lessonTitle='Committee action is a procedural checkpoint.';lessonText='Report, hold, or decline to advance the bill. None of these committee actions makes it law.';
+  actionTitle='Choose the committee\'s next action';actionText='Compare what each action does next.';
   const opts=[['Report with amendment','Send the amended bill to the full chamber for the next stage.'],['Hold for another hearing','Keep the bill in committee and build more record before reporting.'],['Do not report','Take no action to advance the bill from committee at this time.']];
   choices=opts.map((x,i)=>choiceButton(x[0],x[1],i,state.action===i,'action')).join('');nextDisabled=state.action==null;nextLabel='Debrief →';guide('Watch the dais: members are now visibly taking a committee action. The visual consequence is procedural—the bill either moves, stays here, or stops here for now.');
  } else {
-  renderMembers(-1);lessonTitle='You followed one complete committee process.';lessonText='The transferable skill is connecting testimony to a question, a question to bill language, and bill language to a procedural decision.';
-  actionTitle='What the room taught';actionText='The room changed because the object of attention changed: first the proposal, then witnesses, then questions, then the bill text, then members, then committee action.';
+  renderMembers(-1);lessonTitle='You followed one complete committee process.';lessonText='Connect testimony to questions, questions to language, and language to the next action.';
+  actionTitle='What the room taught';actionText='Trace your choices from the hearing record to committee action.';
   const a=c.amendments[state.amendment];const action=['Report with amendment','Hold for another hearing','Do not report'][state.action];
   choices='<div class="lesson-card"><small>Amendment studied</small><h3>'+a[0]+'</h3><p>'+a[2]+'</p></div><div class="lesson-card" style="margin-top:8px"><small>Committee action</small><h3>'+action+'</h3><p>This was a committee checkpoint, not final enactment.</p></div><div class="hero-actions"><a class="btn secondary" href="civics-course-latest.html">Return to course</a><a class="btn secondary" href="culture-drafting.html">Try drafting simulation</a></div>';nextLabel='Replay hearing ↻';guide('The room is the process map. If you can explain why the visual focus moved from person to document to member action, you understand the committee stage.');
  }
- el('lessonTitle').textContent=lessonTitle;el('lessonText').textContent=lessonText;el('actionTitle').textContent=actionTitle;el('actionText').textContent=actionText;el('choices').innerHTML=choices;el('nextBtn').disabled=nextDisabled;el('nextBtn').textContent=nextLabel;
+ el('lessonTitle').textContent=lessonTitle;el('lessonText').textContent=lessonText;el('actionTitle').textContent=actionTitle;el('actionText').textContent=actionText;el('choices').innerHTML=choices;el('nextBtn').disabled=nextDisabled;el('nextBtn').textContent=nextLabel;updateCivicScene('health',state,c);
 }
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-kind]');if(b){const i=Number(b.dataset.index),k=b.dataset.kind;if(k==='witness'){state.witness=i;state.heard.add(i)}if(k==='question')state.question=i;if(k==='amendment')state.amendment=i;if(k==='member')state.members.add(i);if(k==='action')state.action=i;render()}
@@ -168,8 +170,9 @@ el('nextBtn').onclick=()=>{if(state.stage===6){state.stage=0;state.witness=0;sta
 el('backBtn').onclick=()=>{if(state.stage>0)state.stage--;render()};
 el('newCase').onclick=()=>{state={caseIndex:(state.caseIndex+1)%cases.length,stage:0,witness:0,heard:new Set(),question:null,amendment:null,members:new Set(),action:null};render()};
 el('guideDismiss').onclick=()=>el('guide').classList.remove('show');
+const help=document.createElement('button');help.className='btn secondary';help.textContent='Learning guide';help.onclick=()=>el('guide').classList.toggle('show');el('backBtn').parentElement.append(help);document.querySelector('.guide-face').innerHTML=civicGlyph();
 render();
 })();
 </script>
-</body>
+<script src="visual-enhancements.js"></script></body>
 </html>
