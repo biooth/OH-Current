@@ -1,0 +1,40 @@
+name: Game UI smoke checks
+on:
+  push:
+    branches: [feature/interactive-visual-gameplay]
+  pull_request:
+    paths:
+      - 'culture-drafting.html'
+      - 'health-committee.html'
+      - 'gameplay-layer.js'
+      - 'gameplay-layer.css'
+      - '.github/workflows/game-ui-smoke.yml'
+jobs:
+  static-game-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: |
+          node --check gameplay-layer.js
+          node --check civic-scenes.js
+      - name: Game integration and accessible interaction contract
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          shared_js = Path('gameplay-layer.js').read_text()
+          shared_css = Path('gameplay-layer.css').read_text()
+          for page, kind in [('culture-drafting.html','culture'),('health-committee.html','health')]:
+              doc=Path(page).read_text()
+              assert 'src="gameplay-layer.js"' in doc, page
+              assert 'href="gameplay-layer.css"' in doc, page
+              assert "OHGameLayer.render('"+kind+"',state,c)" in doc, page
+          for marker in ['data-kind', 'aria-pressed', 'data-play-details', 'data-clause-drop', 'play-witnesses', 'play-route-choices']:
+              assert marker in shared_js, marker
+          assert 'prefers-reduced-motion' in shared_css
+          assert '@media(max-width:550px)' in shared_css
+          print('Both pages reference the interactive games, keyboard-accessible choices, and responsive styles.')
+          PY

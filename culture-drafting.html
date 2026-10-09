@@ -32,7 +32,9 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;ba
 @media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.learning{border-left:0;border-top:1px solid var(--line)}.studio{min-height:520px}.progress{grid-template-columns:repeat(6,125px)}}@media(max-width:620px){.brand small{display:none}.navlinks a:nth-child(3){display:none}.page{width:min(100% - 16px,1460px)}.hero-main{padding:20px}.studio-wrap{padding:8px}.studio{min-height:480px}.bill{width:62%;height:48%}.stakeholder{width:23%}.stakeholder:nth-child(4){display:none}.note{width:70%}.workspace{min-height:0}.learning{padding:12px}}
 </style>
 <link rel="stylesheet" href="game-visuals.css">
+<link rel="stylesheet" href="gameplay-layer.css">
 <script src="civic-scenes.js"></script>
+<script src="gameplay-layer.js"></script>
 </head>
 <body class="culture">
 <header class="topbar"><div class="nav"><a class="brand" href="index.html"><div class="logo">OH!</div><div><strong>OH! Civics</strong><small>Culture Drafting Simulation</small></div></a><nav class="navlinks"><a href="index.html">Main site</a><a href="civics-course-latest.html">Civic Course</a><a href="health-committee.html">Health Committee</a><a class="active" href="culture-drafting.html">Culture Drafting</a></nav></div></header>
@@ -146,7 +148,7 @@ function render(){
   actionTitle='What the studio taught';actionText='Needs → clauses → revision → implementation.';
   const r=c.redlines[state.redline];choices='<div class="lesson-card"><small>Final revision</small><h3>'+r[0]+'</h3><p>'+r[2]+'</p></div><div class="hero-actions"><a class="btn secondary" href="civics-course-latest.html">Return to course</a><a class="btn secondary" href="health-committee.html">Try committee simulation</a></div>';nextLabel='Replay draft ↻';guide('If you can point at each section of the paper and explain the job it performs, you understand more than the bill title—you understand the policy structure.');
  }
- renderBill(activeClause);el('lessonTitle').textContent=lessonTitle;el('lessonText').textContent=lessonText;el('actionTitle').textContent=actionTitle;el('actionText').textContent=actionText;el('choices').innerHTML=choices;el('nextBtn').disabled=nextDisabled;el('nextBtn').textContent=nextLabel;updateCivicScene('culture',state,c);
+ renderBill(activeClause);el('lessonTitle').textContent=lessonTitle;el('lessonText').textContent=lessonText;el('actionTitle').textContent=actionTitle;el('actionText').textContent=actionText;el('choices').innerHTML=choices;el('nextBtn').disabled=nextDisabled;el('nextBtn').textContent=nextLabel;updateCivicScene('culture',state,c);window.OHGameLayer.render('culture',state,c);
 }
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-kind]');if(!b)return;const i=Number(b.dataset.index),k=b.dataset.kind;
