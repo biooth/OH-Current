@@ -24,7 +24,7 @@ for(let stage=0;stage<6;stage++){
 }
 assert.match(layer.buildScene('culture',{...draft,stage:2},cultureCase),/scene-ink-write/);
 assert.match(layer.buildScene('culture',{...draft,stage:3},cultureCase),/scene-redline/);
-assert.match(layer.buildScene('culture',{...draft,stage:4},cultureCase),/CLEARER RULE/);
+assert.match(layer.buildScene('culture',{...draft,stage:4,choices:[0,0,0,0]},cultureCase),/CLEARER RULE/);
 assert.match(layer.buildScene('culture',{...draft,stage:4,choices:[1,1,1,1]},cultureCase),/NEEDS REVIEW/);
 assert.match(layer.buildScene('culture',{...draft,stage:5},cultureCase),/NOT ENACTED/);
 
