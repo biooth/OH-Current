@@ -1,13 +1,16 @@
 name: Game UI smoke checks
 on:
   push:
-    branches: [feature/interactive-visual-gameplay]
+    branches: [main, feature/interactive-visual-gameplay, feature/animated-game-scenes-20261009]
   pull_request:
     paths:
       - 'culture-drafting.html'
       - 'health-committee.html'
       - 'gameplay-layer.js'
       - 'gameplay-layer.css'
+      - 'game-animations.js'
+      - 'game-animations.css'
+      - 'tests/game-animations.test.cjs'
       - '.github/workflows/game-ui-smoke.yml'
 jobs:
   static-game-checks:
@@ -21,6 +24,8 @@ jobs:
         run: |
           node --check gameplay-layer.js
           node --check civic-scenes.js
+          node --check game-animations.js
+          node tests/game-animations.test.cjs
       - name: Game integration and accessible interaction contract
         run: |
           python3 - <<'PY'
