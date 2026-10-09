@@ -55,7 +55,7 @@
     var stage=s.stage, name='Culture drafting';
     if (stage===0) {
       return {title:'From an idea to an enforceable bill',desc:'An idea moves into four legal sections.',
-        html: pill(35,35,'COMMUNITY IDEA','',180)+text(46,115,short(c.goal,42),'scene-white-medium')+
+        html: pill(35,35,'COMMUNITY IDEA','',180)+text(46,115,/Historic/.test(c.title)?'Accessible venues':'Community arts access','scene-white-medium')+text(46,144,'Turn a goal into rules','scene-white-small')+
         path('M240 134H380','scene-energy-path')+dot(379,134,'scene-energy-dot')+
         documentShape(440,30,345,234,0)+text(612,80,'THE BILL','scene-ink-dark','text-anchor="middle"')+
         ['Purpose','Eligibility','Mechanism','Accountability'].map(function(label,i) {
@@ -79,7 +79,7 @@
         documentShape(622,53,200,215,3)+
         (need?path('M'+(126+active*170)+' 96Q590 27 635 115','scene-energy-path')+
           box(276,24,330,70,'scene-speech-bubble scene-enter')+
-          text(292,52,short(need.need,42),'scene-ink-dark')+
+          text(292,52,short(need.need,35),'scene-ink-dark')+
           text(292,75,'→ '+(['Eligibility','Allowable uses','Public reporting'][active]),'scene-ink-highlight'):
           text(439,44,'Tap a character to reveal a drafting need','scene-white-small','text-anchor="middle"'))};
     }
@@ -211,7 +211,7 @@
         (last==null?pill(234,30,'TAP A MEMBER TO SPEAK','',410):
         box(218,21,445,93,'scene-speech-bubble scene-enter')+
         text(235,53,members[last][0],'scene-ink-highlight')+
-        text(235,83,short(members[last][1],57),'scene-ink-dark'))};
+        text(235,83,short(members[last][1],46),'scene-ink-dark'))};
     }
     if(stage===5){
       var destinations=['FULL CHAMBER','ANOTHER HEARING','REMAIN IN COMMITTEE'];
@@ -258,6 +258,7 @@
     var scene=area.querySelector('.scene-learning-theater');
     if(scene)scene.remove();
     area.insertAdjacentHTML('afterbegin',sceneMarkup(kind,s,c));
+    ['lessonText','actionText'].forEach(function(id){var node=document.getElementById(id);if(node)node.hidden=false;});
     document.body.classList.add('animated-gameplay');
     document.body.dataset.gameScene=kind+'-'+s.stage;
     lastKind=kind;
