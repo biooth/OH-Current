@@ -1,7 +1,7 @@
 name: Game UI smoke checks
 on:
   push:
-    branches: [main, feature/interactive-visual-gameplay, feature/animated-game-scenes-20261009]
+    branches: [main, feature/expressive-civic-characters-oct26]
   pull_request:
     paths:
       - 'culture-drafting.html'
@@ -10,6 +10,8 @@ on:
       - 'gameplay-layer.css'
       - 'game-animations.js'
       - 'game-animations.css'
+      - 'civic-character-art.js'
+      - 'civic-character-art.css'
       - 'tests/game-animations.test.cjs'
       - '.github/workflows/game-ui-smoke.yml'
 jobs:
@@ -25,6 +27,7 @@ jobs:
           node --check gameplay-layer.js
           node --check civic-scenes.js
           node --check game-animations.js
+          node --check civic-character-art.js
           node tests/game-animations.test.cjs
       - name: Game integration and accessible interaction contract
         run: |

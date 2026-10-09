@@ -19,19 +19,17 @@
     var w=width||Math.max(90,Math.min(270,String(value).length*8+26));
     return box(x,y,w,31,'scene-pill '+(klass||''))+text(x+w/2,y+21,value,'scene-pill-label','text-anchor="middle"');
   }
-  function character(x,y,index,klass) {
-    var skin=['#bd7c54','#8c513e','#dfaa7e','#ab6d50','#d69c71'][index%5];
-    var jacket=['#38677c','#8c5575','#6b6857','#72588c','#34665a'][index%5];
-    return '<g transform="translate('+x+' '+y+')" class="scene-character '+(klass||'')+'">' +
-      '<ellipse cx="0" cy="74" rx="36" ry="9" fill="#000" opacity=".13"/>'+
-      '<path d="M-37 76Q-37 36 0 36Q37 36 37 76" fill="'+jacket+'"/>'+
-      '<path d="M-13 40L0 53L13 40" fill="#faf4e8"/>'+
-      '<rect x="-8" y="28" width="16" height="16" rx="5" fill="'+skin+'"/>'+
-      '<ellipse cx="0" cy="8" rx="25" ry="29" fill="'+skin+'"/>'+
-      '<path d="M-25 7Q-28 -22 0 -23Q27 -23 25 9Q15 0 11 -8Q0 7 -25 7" fill="#302632"/>'+
-      '<circle cx="-9" cy="10" r="2.4" fill="#33252b"/><circle cx="9" cy="10" r="2.4" fill="#33252b"/>'+
-      '<path d="M-7 22q7 5 14 0" fill="none" stroke="#764640" stroke-width="2.3" stroke-linecap="round"/>'+
-      '</g>';
+  function character(x,y,index,klass,options) {
+    var opts=options||{};
+    opts.className=klass||'';
+    return window.OHCharacterArt.scene(x,y,index,opts);
+  }
+  function witnessRole(w) {
+    var r=String(w.role||'').toLowerCase();
+    if(/obstetric|counsel|physician|doctor|nurse/.test(r))return 'doctor';
+    if(/ems|emergency/.test(r))return 'ems';
+    if(/fiscal|treasurer|analyst/.test(r))return 'analyst';
+    return 'citizen';
   }
   function documentShape(x,y,w,h,rows) {
     var a='<g class="scene-document">'+box(x,y,w,h,'scene-paper')+'<rect x="'+(x+15)+'" y="'+(y+12)+'" width="'+(w*.52)+'" height="7" rx="3" class="scene-ink-head"/>';
@@ -73,7 +71,7 @@
         html:[0,1,2].map(function(i) {
           var px=126+i*170;
           return '<g class="scene-voice-entry" style="--scene-delay:'+(i*.14)+'s">'+
-            character(px,125,i+1,active===i?'scene-spotlight':'')+
+            character(px,125,i+1,active===i?'scene-spotlight':'',{role:['arts','auditor','analyst'][i],mood:active===i?'concerned':'neutral',pose:active===i?'point':'listen'})+
             text(px,224,c.needs[i].name,'scene-white-small','text-anchor="middle"')+'</g>';
         }).join('')+
         documentShape(622,53,200,215,3)+
@@ -119,7 +117,7 @@
       return {title:'A real request tests the draft',desc:'An applicant takes their request through your drafted rule: '+outcome+'.',
         html:box(34,86,205,132,'scene-diagram-node')+
           text(135,115,'APPLICANT','scene-white-heading','text-anchor="middle"')+
-          character(135,135,2,'scene-applicant')+
+          character(135,135,2,'scene-applicant',{role:'citizen',mood:'neutral',pose:'listen'})+
           path('M248 153H343','scene-energy-path')+
           box(345,86,205,132,'scene-diagram-node')+
           text(446,122,'YOUR BILL','scene-white-heading','text-anchor="middle"')+
@@ -147,7 +145,7 @@
           text(207,100,'BILL FILE','scene-ink-dark','text-anchor="middle"')+
           path('M333 155H535','scene-energy-path')+dot(533,155,'scene-energy-dot')+
           '<path d="M590 220v-61q0-58 102-58t102 58v61" fill="#5b483e" stroke="#c69a6e" stroke-width="8"/>'+
-          character(693,95,0,'scene-spotlight')+
+          character(693,95,0,'scene-spotlight',{role:'chair',mood:'serious',pose:'speak'})+
           text(690,249,'COMMITTEE HEARING','scene-white-heading','text-anchor="middle"')};
     }
     if(stage===1){
@@ -157,7 +155,7 @@
           '<rect x="320" y="185" width="350" height="64" rx="8" fill="url(#sceneDesk)"/>'+
           '<path d="M538 188v-77l32-20" stroke="#a0e1d9" stroke-width="6" fill="none"/>'+
           '<circle cx="572" cy="89" r="10" fill="#d4f5ec"/>'+
-          character(415,117,s.witness+1,'scene-witness-moving')+
+          character(415,117,s.witness+1,'scene-witness-moving',{role:witnessRole(w),mood:'serious',pose:'speak'})+
           box(95,39,435,64,'scene-speech-bubble scene-enter')+
           text(114,65,short(w.quote,49),'scene-ink-dark')+
           text(114,87,w.name+' · '+w.tag,'scene-ink-highlight')+
@@ -205,7 +203,7 @@
           members[last][0]+' says: '+members[last][1],
         html:members.map(function(m,i){
           var x=99+i*170;
-          return character(x,142,i,i===last?'scene-spotlight':'')+
+          return character(x,142,i,i===last?'scene-spotlight':'',{role:'member',mood:i===last?'serious':'neutral',pose:i===last?'point':'listen'})+
             text(x,250,m[0],'scene-white-small','text-anchor="middle"');
         }).join('')+
         (last==null?pill(234,30,'TAP A MEMBER TO SPEAK','',410):

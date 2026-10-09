@@ -1,0 +1,73 @@
+/* OH! Civics character performance: believable illustrated expressions without constant motion.
+   All action cues are also shown by selected-card styling and captions. */
+.play-avatar.civic-portrait{width:100%;height:100%;display:block;overflow:visible;transform-origin:center bottom}
+.civic-portrait .civic-person, .scene-character .civic-person{transform-box:fill-box;transform-origin:center bottom}
+.civic-portrait .civic-head, .scene-character .civic-head{transform-box:fill-box;transform-origin:center 74%}
+.civic-portrait .civic-body,.scene-character .civic-body{transform-box:fill-box;transform-origin:center bottom}
+.civic-portrait .civic-eyes,.scene-character .civic-eyes{transform-box:fill-box;transform-origin:center}
+.civic-portrait .civic-mouth,.scene-character .civic-mouth{transform-box:fill-box;transform-origin:center}
+.civic-portrait .civic-arm-right,.scene-character .civic-arm-right{transform-box:fill-box;transform-origin:15% 70%}
+.civic-portrait .civic-person,.scene-character .civic-person{animation:civicBreathing 4.6s ease-in-out infinite}
+.civic-portrait .civic-head,.scene-character .civic-head{animation:civicHeadListen 5.8s ease-in-out infinite}
+.civic-portrait .civic-eyes,.scene-character .civic-eyes{animation:civicBlink 7.2s linear infinite}
+.civic-portrait .civic-person.pose-speak .civic-head,.scene-character .civic-person.pose-speak .civic-head{animation:civicHeadSpeak 2.1s ease-in-out infinite}
+.civic-portrait .civic-person.pose-speak .civic-mouth,.scene-character .civic-person.pose-speak .civic-mouth{animation:civicTalkMouth .62s ease-in-out infinite}
+.civic-portrait .civic-person.pose-speak .civic-arm-right,.scene-character .civic-person.pose-speak .civic-arm-right{animation:civicGesture 2.4s ease-in-out infinite}
+.civic-portrait .civic-person.pose-point .civic-arm-right,.scene-character .civic-person.pose-point .civic-arm-right{animation:civicPoint 2.8s ease-in-out infinite}
+.civic-portrait .civic-person.mood-concerned .civic-head,.scene-character .civic-person.mood-concerned .civic-head{animation:civicConcern 4.7s ease-in-out infinite}
+.play-option:hover .civic-portrait{transform:translateY(-2px) scale(1.035);transition:transform .24s ease}
+.play-option.is-picked .civic-portrait{filter:drop-shadow(0 4px 8px rgba(0,0,0,.18))}
+.play-people .play-option.is-picked::after,.play-witnesses:not(.play-members) .play-option.is-picked::after{
+  content:"Speaking";position:absolute;top:6px;right:6px;background:#286959;color:#fff;padding:4px 6px;border-radius:7px;font-size:10px;font-weight:850;letter-spacing:.02em
+}
+.play-members .play-option.is-picked::after{
+  content:"Heard";position:absolute;top:6px;right:6px;background:#245e65;color:#f7fafb;padding:4px 6px;border-radius:7px;font-size:9px;font-weight:850
+}
+.play-health .play-witnesses .play-option.is-picked::after{background:#276d68;color:#eafff3}
+.play-coach-portrait .civic-portrait{filter:drop-shadow(0 3px 5px rgba(32,25,27,.12))}
+.scene-character .civic-person{animation-duration:5.2s}
+.scene-character.scene-spotlight .civic-person.pose-point .civic-arm-right{animation-duration:2s}
+.scene-character.scene-witness-moving .civic-person.pose-speak .civic-arm-right{animation-delay:.9s}
+.scene-character.scene-witness-moving .civic-person.pose-speak .civic-mouth{animation-delay:.8s}
+@keyframes civicBreathing{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-1.25px)}
+}
+@keyframes civicHeadListen{
+  0%,32%,100%{transform:rotate(0deg)}
+  50%{transform:rotate(-1.8deg)}
+  78%{transform:rotate(1.2deg)}
+}
+@keyframes civicHeadSpeak{
+  0%,100%{transform:rotate(0)}
+  28%{transform:rotate(-2deg) translateY(-.8px)}
+  58%{transform:rotate(1.5deg)}
+}
+@keyframes civicBlink{
+  0%,42%,44%,86%,88%,100%{transform:scaleY(1)}
+  43%,87%{transform:scaleY(.12)}
+}
+@keyframes civicTalkMouth{
+  0%,100%{transform:scaleY(1)}
+  40%{transform:scaleY(1.35) translateY(1px)}
+  70%{transform:scaleY(.65)}
+}
+@keyframes civicGesture{
+  0%,20%,100%{transform:rotate(0)}
+  48%{transform:rotate(-8deg) translateY(-2px)}
+  74%{transform:rotate(3deg)}
+}
+@keyframes civicPoint{
+  0%,100%{transform:rotate(0deg)}
+  50%{transform:rotate(-7deg)}
+}
+@keyframes civicConcern{
+  0%,100%{transform:rotate(0)}
+  50%{transform:rotate(-2deg) translateY(1px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .civic-portrait *, .scene-character *, .civic-portrait, .scene-character{
+    animation:none!important;transition:none!important;transform:none!important
+  }
+  /* Positioning transforms on the outer static SVG wrapper are preserved. */
+}

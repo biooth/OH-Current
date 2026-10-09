@@ -18,9 +18,17 @@ var glyphs={
  file:'<path d="M5 2h10l4 4v16H5zM14 2v5h5M8 12h8M8 16h8"/>'
 };
 function icon(type){return '<svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">'+(glyphs[type]||glyphs.rule)+'</svg>'}
-function face(index){
- var coats=['#95455d','#3c647d','#977443','#49715a','#65568a'],skin=['#c88962','#7d4b37','#e0ad85','#ad7057','#9f6c50'],hair=['#392831','#221b23','#584032','#252d32','#2d2429'];
- return '<svg class="play-avatar" viewBox="0 0 80 86" aria-hidden="true"><ellipse cx="40" cy="77" rx="34" ry="8" fill="#000" opacity=".12"/><path d="M8 83Q8 48 40 48Q72 48 72 83" fill="'+coats[index%5]+'"/><path d="M29 51l11 12 11-12" fill="#eee5d8"/><rect x="34" y="43" width="12" height="14" rx="5" fill="'+skin[index%5]+'"/><ellipse cx="40" cy="28" rx="23" ry="25" fill="'+skin[index%5]+'"/><path d="M17 29Q13 2 40 3Q66 3 63 30Q50 23 48 15Q37 27 17 29" fill="'+hair[index%5]+'"/><circle cx="32" cy="31" r="2" fill="#382b2b"/><circle cx="48" cy="31" r="2" fill="#382b2b"/><path d="M34 41q6 4 12 0" fill="none" stroke="#784846" stroke-width="2" stroke-linecap="round"/></svg>';
+function face(index, opts){return window.OHCharacterArt.portrait(index,opts||{});}
+function witnessRole(w){
+ var role=String(w.role||'').toLowerCase();
+ if(/obstetric|counsel|physician|doctor|nurse/.test(role))return 'doctor';
+ if(/ems|emergency/.test(role))return 'ems';
+ if(/fiscal|treasurer|analyst/.test(role))return 'analyst';
+ return 'citizen';
+}
+function culturalRole(n){
+ var role=String(n.role||'').toLowerCase();
+ return /art|theater|venue|culture/.test(role)?'arts':/auditor|administr|consultant|tax/.test(role)?'auditor':'citizen';
 }
 function playButton(label,sub,kind,i,selected,visual){
  return '<button type="button" class="play-option'+(selected?' is-picked':'')+'" data-kind="'+kind+'" data-index="'+i+'" aria-pressed="'+!!selected+'"'+(kind==='clause'?' draggable="true"':'')+'>'+ (visual||icon('rule'))+'<span class="play-option-copy"><strong>'+esc(label)+'</strong>'+(sub?'<span>'+esc(sub)+'</span>':'')+'</span>'+(selected?'<span class="play-tick" aria-hidden="true">✓</span>':'')+'</button>';
@@ -30,7 +38,7 @@ function clauseSlots(s){
  return '<div class="play-slots" aria-label="Bill clause progress">'+slots.map(function(p,i){var filled=s.choices[i]!=null,active=s.stage===2&&s.clauseIndex===i;return '<div class="play-slot'+(filled?' filled':'')+(active?' active':'')+'" '+(active?'data-clause-drop="true" tabindex="0" role="group" aria-label="Drop a clause here"':'')+'>'+icon(p[1])+'<strong>'+p[0]+'</strong><span>'+(filled?(s.choices[i]===0?'Defined':'Flexible'):(active?'Drop here':'Empty'))+'</span></div>'}).join('')+'</div>';
 }
 function coach(text,i,tip){
- return '<div class="play-coach"><div class="play-coach-portrait">'+face(i)+'</div><div class="play-coach-words"><span class="play-coach-name">'+(kindLast==='culture'?'Renee · Your drafting partner':'Avery · Committee clerk')+'</span><p>'+esc(text)+'</p></div><button type="button" class="play-more" data-play-details="true" aria-expanded="'+document.body.classList.contains('show-full-game-text')+'">'+(document.body.classList.contains('show-full-game-text')?'Hide full notes':'Full notes +')+'</button></div>'+(tip?'<div class="play-nudge">'+icon('check')+esc(tip)+'</div>':'');
+ return '<div class="play-coach"><div class="play-coach-portrait">'+face(i,{role:'guide',mood:'happy',pose:'speak'})+'</div><div class="play-coach-words"><span class="play-coach-name">'+(kindLast==='culture'?'Renee · Your drafting partner':'Avery · Committee clerk')+'</span><p>'+esc(text)+'</p></div><button type="button" class="play-more" data-play-details="true" aria-expanded="'+document.body.classList.contains('show-full-game-text')+'">'+(document.body.classList.contains('show-full-game-text')?'Hide full notes':'Full notes +')+'</button></div>'+(tip?'<div class="play-nudge">'+icon('check')+esc(tip)+'</div>':'');
 }
 var cultureLines=[
 'First, see how a goal becomes four enforceable instructions.',
@@ -45,7 +53,7 @@ function culture(s,c){
  if(st===0){
  area='<div class="play-storyboard"><div>'+icon('goal')+'<strong>Community goal</strong><span>'+esc(c.goal)+'</span></div><b>→</b><div>'+icon('rule')+'<strong>Bill instructions</strong><span>Who? What? How? Checked by whom?</span></div></div>'+clauseSlots(s);
  }else if(st===1){
- area='<div class="play-caption">OPEN THE COMMUNITY NOTEBOOK <span>'+s.heard.size+' / '+c.needs.length+' heard</span></div><div class="play-people">'+c.needs.map(function(n,i){return playButton(n.name,n.role,'need',i,s.activePerson===i+1,face(i+1))}).join('')+'</div>';
+ area='<div class="play-caption">OPEN THE COMMUNITY NOTEBOOK <span>'+s.heard.size+' / '+c.needs.length+' heard</span></div><div class="play-people">'+c.needs.map(function(n,i){return playButton(n.name,n.role,'need',i,s.activePerson===i+1,face(i+1,{role:culturalRole(n),mood:s.activePerson===i+1?'concerned':'neutral',pose:s.activePerson===i+1?'speak':'listen'}))}).join('')+'</div>';
  if(s.activePerson>0){var n=c.needs[s.activePerson-1];area+='<div class="play-dialogue"><strong>'+esc(n.name)+' says:</strong> “'+esc(n.need)+'”<div class="play-lesson-arrow">'+icon('route')+esc(n.clue)+'</div></div>';}
  tip=s.heard.size===c.needs.length?'All three needs collected. Move to clause drafting.':'Characters unlock what the bill must specify.';
  }else if(st===2){
@@ -90,7 +98,7 @@ function health(s,c){
  area='<div class="play-hearing-intro"><div>'+icon('file')+'<strong>Proposal</strong><span>'+esc(c.brief)+'</span></div><div>'+icon('hearing')+'<strong>Hearing</strong><span>Witnesses add evidence to the record.</span></div><div>'+icon('vote')+'<strong>Decision</strong><span>Committee decides the next procedural step.</span></div></div>';
  tip='This is a fictional Ohio-style legislative exercise, not an actual hearing.';
  }else if(st===1){
- area='<div class="play-caption">WITNESS LINEUP <span>'+s.heard.size+' / 3 ON RECORD</span></div><div class="play-witnesses">'+c.witnesses.map(function(w,i){return playButton(w.name,w.tag+' · '+crop(w.claim,58),'witness',i,s.witness===i,face(i+1))}).join('')+'</div><div class="play-record"><span class="play-led"></span> NOW TESTIFYING: <strong>'+esc(c.witnesses[s.witness].name)+'</strong><p>'+esc(c.witnesses[s.witness].quote)+'</p></div>';
+ area='<div class="play-caption">WITNESS LINEUP <span>'+s.heard.size+' / 3 ON RECORD</span></div><div class="play-witnesses">'+c.witnesses.map(function(w,i){return playButton(w.name,w.tag+' · '+crop(w.claim,58),'witness',i,s.witness===i,face(i+1,{role:witnessRole(w),mood:s.witness===i?'serious':'neutral',pose:s.witness===i?'speak':'listen'}))}).join('')+'</div><div class="play-record"><span class="play-led"></span> NOW TESTIFYING: <strong>'+esc(c.witnesses[s.witness].name)+'</strong><p>'+esc(c.witnesses[s.witness].quote)+'</p></div>';
  tip=s.heard.size===3?'Three perspectives are on the record. Now question them.':'Tap a character to bring testimony to the microphone.';
  }else if(st===2){
  area='<div class="play-caption">QUESTION CONSOLE <span>TEST THE RECORD</span></div><div class="play-tiles">'+c.questions.map(function(q,i){return playButton(q[0],crop(q[1],90),'question',i,s.question===i,icon(i===1?'people':'question'))}).join('')+'</div>'+(s.question==null?'':'<div class="play-record"><span class="play-led"></span> WHAT THIS REVEALS<p>'+esc(c.questions[s.question][2])+'</p></div>');
@@ -99,7 +107,7 @@ function health(s,c){
  area='<div class="play-caption">AMENDMENT CONTROL BOARD <span>COMPARE THE TRADEOFFS</span></div><div class="play-tiles play-amendments">'+c.amendments.map(function(a,i){return playButton(a[0],crop(a[1],90),'amendment',i,s.amendment===i,icon('revise'))}).join('')+'</div>'+issueMap(s,c);
  tip=s.amendment==null?'Choose a change to the bill text.':'One amendment rarely solves every problem raised in testimony.';
  }else if(st===4){
- area='<div class="play-caption">MEMBER MICROPHONES <span>'+s.members.size+' / 3 REQUIRED</span></div><div class="play-witnesses play-members">'+c.memberLines.map(function(m,i){return playButton(m[0],s.members.has(i)?crop(m[1],75):'Tap to hear viewpoint','member',i,s.members.has(i),face(i))}).join('')+'</div>';
+ area='<div class="play-caption">MEMBER MICROPHONES <span>'+s.members.size+' / 3 REQUIRED</span></div><div class="play-witnesses play-members">'+c.memberLines.map(function(m,i){return playButton(m[0],s.members.has(i)?crop(m[1],75):'Tap to hear viewpoint','member',i,s.members.has(i),face(i,{role:'member',mood:s.members.has(i)?'serious':'neutral',pose:[...s.members].slice(-1)[0]===i?'point':'listen'}))}).join('')+'</div>';
  tip='There is no made-up vote count here. These are fictional viewpoints.';
  }else if(st===5){
  var routes=[['Report the bill','Full chamber','route'],['Continue the hearing','Committee keeps bill','clock'],['Do not report','Bill stays in committee','file']];
