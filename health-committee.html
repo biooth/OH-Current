@@ -35,7 +35,9 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;ba
 @media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.learning{border-left:0;border-top:1px solid var(--line)}.room{min-height:520px}.progress{grid-template-columns:repeat(7,120px)}}@media(max-width:620px){.brand small{display:none}.navlinks a:nth-child(3){display:none}.page{width:min(100% - 16px,1460px)}.hero-main{padding:20px}.room-wrap{padding:8px}.room{min-height:470px}.dais{left:2%;right:2%}.member{min-width:55px}.member .person{transform:scale(.82)}.member b{font-size:6px}.member span{display:none}.speech{width:72%;font-size:9px}.workspace{min-height:0}.learning{padding:12px}}
 </style>
 <link rel="stylesheet" href="game-visuals.css">
+<link rel="stylesheet" href="gameplay-layer.css">
 <script src="civic-scenes.js"></script>
+<script src="gameplay-layer.js"></script>
 </head>
 <body class="health">
 <header class="topbar"><div class="nav"><a class="brand" href="index.html"><div class="logo">OH!</div><div><strong>OH! Civics</strong><small>Health Committee Simulation</small></div></a><nav class="navlinks"><a href="index.html">Main site</a><a href="civics-course-latest.html">Civic Course</a><a class="active" href="health-committee.html">Health Committee</a><a href="culture-drafting.html">Culture Drafting</a></nav></div></header>
@@ -161,7 +163,7 @@ function render(){
   const a=c.amendments[state.amendment];const action=['Report with amendment','Hold for another hearing','Do not report'][state.action];
   choices='<div class="lesson-card"><small>Amendment studied</small><h3>'+a[0]+'</h3><p>'+a[2]+'</p></div><div class="lesson-card" style="margin-top:8px"><small>Committee action</small><h3>'+action+'</h3><p>This was a committee checkpoint, not final enactment.</p></div><div class="hero-actions"><a class="btn secondary" href="civics-course-latest.html">Return to course</a><a class="btn secondary" href="culture-drafting.html">Try drafting simulation</a></div>';nextLabel='Replay hearing ↻';guide('The room is the process map. If you can explain why the visual focus moved from person to document to member action, you understand the committee stage.');
  }
- el('lessonTitle').textContent=lessonTitle;el('lessonText').textContent=lessonText;el('actionTitle').textContent=actionTitle;el('actionText').textContent=actionText;el('choices').innerHTML=choices;el('nextBtn').disabled=nextDisabled;el('nextBtn').textContent=nextLabel;updateCivicScene('health',state,c);
+ el('lessonTitle').textContent=lessonTitle;el('lessonText').textContent=lessonText;el('actionTitle').textContent=actionTitle;el('actionText').textContent=actionText;el('choices').innerHTML=choices;el('nextBtn').disabled=nextDisabled;el('nextBtn').textContent=nextLabel;updateCivicScene('health',state,c);window.OHGameLayer.render('health',state,c);
 }
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-kind]');if(b){const i=Number(b.dataset.index),k=b.dataset.kind;if(k==='witness'){state.witness=i;state.heard.add(i)}if(k==='question')state.question=i;if(k==='amendment')state.amendment=i;if(k==='member')state.members.add(i);if(k==='action')state.action=i;render()}
