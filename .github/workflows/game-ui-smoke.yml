@@ -1,7 +1,7 @@
 name: Game UI smoke checks
 on:
   push:
-    branches: [main, feature/expressive-civic-characters-oct26]
+    branches: [main, feature/simplify-game-flow-20261009]
   pull_request:
     paths:
       - 'culture-drafting.html'
@@ -12,6 +12,9 @@ on:
       - 'game-animations.css'
       - 'civic-character-art.js'
       - 'civic-character-art.css'
+      - 'game-flow.js'
+      - 'game-flow.css'
+      - 'tests/game-flow.test.cjs'
       - 'tests/game-animations.test.cjs'
       - '.github/workflows/game-ui-smoke.yml'
 jobs:
@@ -28,6 +31,8 @@ jobs:
           node --check civic-scenes.js
           node --check game-animations.js
           node --check civic-character-art.js
+          node --check game-flow.js
+          node tests/game-flow.test.cjs
           node tests/game-animations.test.cjs
       - name: Game integration and accessible interaction contract
         run: |
