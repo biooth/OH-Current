@@ -46,7 +46,11 @@ assert.match(layer.buildScene('culture',{...draft,stage:5},cultureCase),/NOT ENA
 
 const healthCase={
   title:'Rural Maternity Transfer Bill',brief:'Help hospitals transfer patients safely.',
-  witnesses:[{name:'Dr. Lena Morris',tag:'Implementation',quote:'An accepting hospital must confirm an available bed.'},{name:'Andre Bell',tag:'Access',quote:'Transfers need clear calls.'},{name:'Nora Chen',tag:'Fiscal',quote:'Grant ceilings need clarification.'}],
+  witnesses:[
+    {name:'Dr. Lena Morris',role:'Rural obstetrician',tag:'Implementation',quote:'A protocol helps only if the receiving hospital actually has a bed and the right clinical team when the call comes in.',claim:'A transfer rule needs a capacity-confirmation step.',evidence:'Experience coordinating emergency transfers.',concern:'A protocol may exist on paper while crews still search for an accepting facility.'},
+    {name:'Andre Bell',role:'County EMS director',tag:'Access',quote:'Crews lose time calling one facility after another. We need one clear transfer contact and a defined handoff.',claim:'Fragmented communication creates delay.',evidence:'Operational experience with EMS dispatch and hospital handoffs.',concern:'Unclear contacts can add time during an emergency.'},
+    {name:'Nora Chen',role:'Fiscal analyst',tag:'Fiscal',quote:'The bill authorizes grants, but it does not yet say the maximum award or how long the program lasts.',claim:'The grant authority is not fiscally defined.',evidence:'The draft contains no grant cap or program duration.',concern:'Lawmakers cannot see the size or duration of the commitment.'}
+  ],
   questions:[['Ask about capacity'],['Ask about popularity'],['Ask about timing']],
   amendments:[['Confirm capacity','Requires an accepting bed','Addresses the capacity concern.'],['Pilot funding','Limits grants','Addresses fiscal questions.'],['Agency rules','Delegate design','Leaves operational detail to later rules.']],
   memberLines:[['Chair Ellis','Clarify the amendment.'],['Rep. Mercer','Does it work?'],['Rep. Desai','Confirm acceptance.'],['Rep. Brooks','Check costs.'],['Rep. Park','We need a record.']]
@@ -58,6 +62,24 @@ for(let stage=0;stage<7;stage++){
   assert.match(a,/<svg /);
 }
 assert.match(layer.buildScene('health',{...hearing,stage:1},healthCase),/scene-witness-moving/);
+for(let i=0;i<healthCase.witnesses.length;i++){
+  const w=healthCase.witnesses[i],markup=layer.buildScene('health',{...hearing,witness:i,stage:1,heard:new Set([i])},healthCase);
+  assert.match(markup,/class="scene-testimony"/);
+  assert.match(markup,/Full witness testimony/);
+  for(const field of ['name','role','quote','claim','evidence','concern']){
+    assert.ok(markup.includes(w[field]),'Missing unabridged '+field+' for '+w.name);
+  }
+  assert.match(markup,/Added to the hearing record/);
+  assert.doesNotMatch(markup,/>undefined</);
+}
+assert.match(layer.buildScene('health',{...hearing,stage:1,witness:0,heard:new Set()},healthCase),/Select this witness to add the statement/);
+assert.doesNotMatch(layer.buildScene('health',{...hearing,stage:2},healthCase),/class="scene-testimony"/);
+assert.doesNotMatch(layer.buildScene('culture',{...draft,stage:1},cultureCase),/class="scene-testimony"/);
+const unsafeWitness={...healthCase,witnesses:[{...healthCase.witnesses[0],quote:'Long statement with <script>alert(1)</script> & policy <rights>.'},...healthCase.witnesses.slice(1)]};
+const escaped=layer.buildScene('health',{...hearing,stage:1,witness:0},unsafeWitness);
+assert.doesNotMatch(escaped,/<script>/);
+assert.match(escaped,/&lt;script&gt;/);
+assert.match(escaped,/&amp; policy &lt;rights&gt;/);
 assert.match(layer.buildScene('health',{...hearing,stage:2},healthCase),/ACCEPTING BED/);
 assert.match(layer.buildScene('health',{...hearing,stage:3},healthCase),/TARGETED/);
 assert.match(layer.buildScene('health',{...hearing,stage:3,amendment:2},healthCase),/DELEGATED/);
@@ -85,6 +107,9 @@ for(const page of ['culture-drafting.html','health-committee.html']){
   assert.ok(html.indexOf('src="civic-character-art.js"')<html.indexOf('src="game-animations.js"'));
   assert.ok(html.indexOf('src="gameplay-layer.js"')<html.indexOf('src="game-animations.js"'));
 }
+const flowCss=fs.readFileSync('game-flow.css','utf8');
+for(const rule of ['.scene-testimony-quote','.scene-testimony-record','.scene-testimony-status','overflow-wrap:anywhere'])assert.ok(flowCss.includes(rule));
+assert.doesNotMatch(flowCss.slice(flowCss.indexOf('/* A single readable testimony sheet')),/text-overflow:ellipsis|line-clamp|overflow:hidden/);
 const characterCss=fs.readFileSync('civic-character-art.css','utf8');
 for(const cue of ['civicBlink','civicTalkMouth','civicGesture','civicHeadSpeak','prefers-reduced-motion:reduce'])assert.match(characterCss,new RegExp(cue));
 console.log('Animated scenes + expressive characters + reduced motion + integration: PASS');
