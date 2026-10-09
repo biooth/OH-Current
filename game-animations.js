@@ -247,7 +247,7 @@
     return '<figure class="scene-learning-theater '+(kind==='culture'?'scene-culture':'scene-health')+'" aria-label="Animated civic process illustration">'+
       '<div class="scene-learning-head"><span>WATCH IT HAPPEN · '+(kind==='culture'?'DRAFTING':'HEARING')+'</span>'+
       '<button type="button" class="scene-replay" data-scene-replay aria-label="Replay the process animation">↻ Replay animation</button></div>'+
-      '<div class="scene-motion" data-scene-motion>'+shell(kind,data.html,data.title,data.desc)+'</div>'+
+      '<div class="scene-motion scene-play" data-scene-motion>'+shell(kind,data.html,data.title,data.desc)+'</div>'+
       '<figcaption>'+e(data.title)+'</figcaption></figure>';
   }
   function draw(kind,s,c) {
