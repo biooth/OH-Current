@@ -1,0 +1,166 @@
+/* OH! Civics / Less chrome, more play.
+   One scene + one instruction + a few choices. The lesson remains opt-in. */
+
+/* A welcoming intro rather than two competing hero panels. */
+.flow-simplified .page{padding-top:12px}
+.flow-simplified .hero{display:block;margin-bottom:11px}
+.flow-simplified .hero-side{display:none!important}
+.flow-simplified .hero-main{border:0;border-radius:0;box-shadow:none;background:transparent;padding:10px 8px 11px}
+.flow-simplified .hero h1{font-size:clamp(26px,3.2vw,39px);line-height:1.08;letter-spacing:-.04em;margin:4px 0}
+.flow-simplified .hero p{font-size:13px;line-height:1.4}
+.flow-simplified .hero-actions{margin-top:10px;gap:8px}
+.flow-simplified .hero-actions .btn{border-radius:999px;font-size:12px;min-height:35px;padding:8px 14px}
+.flow-simplified .hero-actions .btn.secondary{border:0;background:rgba(255,255,255,.06)}
+.flow-simplified .game{border:0;background:transparent;box-shadow:none;overflow:visible;border-radius:0}
+.flow-simplified .game-head{padding:10px 12px 7px;border:0;background:transparent;align-items:end}
+.flow-simplified .game-head .eyebrow{font-size:10px;letter-spacing:.09em}
+.flow-simplified .game-head h2{font-size:clamp(17px,2vw,23px);line-height:1.25;margin:3px 0 0}
+.flow-simplified .stage-counter{font-size:11px;letter-spacing:.02em;color:#bfc2c9;white-space:nowrap;align-self:center}
+.flow-simplified .workspace{min-height:0}
+.flow-simplified .studio,.flow-simplified .room{height:auto;min-height:0!important}
+.flow-simplified .studio-wrap,.flow-simplified .room-wrap{padding:0}
+.flow-simplified .studio>.window,.flow-simplified .studio>.lamp,
+.flow-simplified .studio>.shelf,.flow-simplified .studio>.stakeholders,
+.flow-simplified .studio>.pen,.flow-simplified .studio>.desk,
+.flow-simplified .room>.wall-panel,.flow-simplified .room>.seal,
+.flow-simplified .room>.dais,.flow-simplified .room>.witness-zone,
+.flow-simplified .room>.audience{display:none!important}
+
+/* Only three simple chapters. No outlines around each lesson stage. */
+.flow-simplified .progress.flow-progress{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:6px 12px 16px;border:0;overflow:visible}
+.flow-simplified .progress.flow-progress .flow-chapter{display:flex;align-items:center;gap:8px;min-width:0;min-height:24px;padding:0;height:auto;text-align:left;background:none;box-shadow:none;border:0;border-radius:0;color:#978b9f;font-size:11px;font-weight:750;letter-spacing:.02em;text-transform:none}
+.flow-simplified .progress.flow-progress .flow-chapter::before,
+.flow-simplified .progress.flow-progress .flow-chapter::after{content:none;display:none}
+.flow-simplified .flow-chapter-dot{width:15px;height:15px;border-radius:50%;background:#554358;box-shadow:0 0 0 4px rgba(255,255,255,.045);flex-shrink:0}
+.flow-simplified .flow-chapter.current{color:#fff;font-weight:850}
+.flow-simplified .flow-chapter.completed{color:#cfd2d7}
+.flow-simplified.is-culture-play .flow-chapter.current .flow-chapter-dot{background:#efa5bd;box-shadow:0 0 0 4px rgba(239,165,189,.17)}
+.flow-simplified.is-health-play .flow-chapter.current .flow-chapter-dot{background:#81e8cc;box-shadow:0 0 0 4px rgba(129,232,204,.18)}
+.flow-simplified .flow-chapter.completed .flow-chapter-dot{background:#8caf9b}
+.flow-simplified .flow-chapter-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Distinctive flat illustrated surfaces, without stacks of nested rounded panels. */
+.flow-simplified .play-surface{overflow:hidden;margin:0!important;border:0!important;box-shadow:0 13px 30px rgba(0,0,0,.15);border-radius:19px!important}
+.flow-simplified .play-culture{background:radial-gradient(ellipse at 98% 0%,rgba(245,181,147,.35),transparent 42%),linear-gradient(150deg,#fff6e8,#f6e4d9);color:#422e40}
+.flow-simplified .play-health{background:radial-gradient(ellipse at 93% 0%,rgba(87,215,181,.18),transparent 43%),linear-gradient(135deg,#0f414c,#092b38);color:#eafff9}
+.flow-simplified .play-surface-top{display:none!important}
+.flow-simplified .play-coach{background:transparent!important;box-shadow:none!important;border:0!important;border-radius:0!important;margin:0!important;padding:9px 13px 7px!important;gap:11px}
+.flow-simplified .play-coach-portrait{width:52px!important;height:53px!important;border-radius:50%;background:#f0d4c9;box-shadow:0 4px 11px rgba(71,28,45,.12)}
+.flow-simplified .play-health .play-coach-portrait{background:#236170}
+.flow-simplified .play-coach-words p{font-weight:780;font-size:clamp(14px,1.6vw,18px)!important;line-height:1.3;max-width:58ch;margin-top:2px}
+.flow-simplified .play-coach-name{font-size:10px;letter-spacing:.05em}
+.flow-simplified .play-more{background:transparent!important;border:0!important;color:#734258;max-width:none!important;min-width:60px;min-height:38px;box-shadow:none;border-radius:9px;font-size:12px!important;font-weight:820;padding:5px 9px!important}
+.flow-simplified .play-health .play-more{color:#abf1df}
+.flow-simplified .play-more:hover{background:rgba(73,57,74,.08)!important}
+.flow-simplified .play-health .play-more:hover{background:rgba(220,255,245,.1)!important}
+.flow-simplified .play-nudge,.flow-simplified .play-stamp,.flow-simplified .play-caption,.flow-simplified .play-route-start,.flow-simplified .play-route-fork{display:none!important}
+.flow-simplified .play-route-choices::before{display:none!important}
+.flow-simplified .play-gamearea{padding:0 13px 11px;gap:10px;min-height:0}
+.flow-simplified .scene-learning-theater{border:0!important;border-radius:12px;box-shadow:none}
+.flow-simplified .scene-learning-head{background:rgba(9,22,37,.48);border:0;min-height:36px;padding:4px 11px;color:#fff}
+.flow-simplified .scene-learning-head>span{font-size:10px;letter-spacing:.06em}
+.flow-simplified .scene-replay{border:0!important;background:rgba(255,255,255,.08);font-size:11px;border-radius:999px;min-height:30px}
+.flow-simplified .scene-learning-theater figcaption{border:0;background:rgba(9,24,35,.55);padding:7px 13px;font-size:13px}
+.flow-simplified .scene-diagram-node{stroke-width:1.4}
+.flow-simplified .scene-diagram-node.scene-yes{stroke-width:2.5}
+
+/* Flat, generously spaced choices, rather than bordered cards inside bordered cards. */
+.flow-simplified .play-tiles{gap:8px}
+.flow-simplified .play-surface .play-option{border:1px solid transparent!important;box-shadow:none!important;border-radius:11px;background:rgba(255,255,255,.46);color:#422e40;min-height:68px;transition:background .18s ease,transform .18s ease,box-shadow .18s ease;position:relative;padding:10px 12px}
+.flow-simplified .play-health .play-option{background:rgba(211,246,238,.075);color:#f2fffb}
+.flow-simplified .play-surface .play-option:hover{transform:translateY(-2px);background:rgba(255,255,255,.76);box-shadow:0 6px 14px rgba(54,34,45,.09)!important}
+.flow-simplified .play-health .play-option:hover{background:rgba(211,246,238,.16)}
+.flow-simplified .play-surface .play-option.is-picked{background:rgba(246,204,215,.74);box-shadow:inset 4px 0 0 #ac476a!important}
+.flow-simplified .play-health .play-option.is-picked{background:rgba(130,236,207,.19);box-shadow:inset 4px 0 0 #78e9cb!important}
+.flow-simplified .play-surface .play-option:focus-visible,
+.flow-simplified .play-more:focus-visible,
+.flow-simplified .scene-replay:focus-visible,
+.flow-simplified .flow-context:focus-visible{outline:3px solid #f5c76d;outline-offset:3px}
+.flow-simplified .play-option-copy strong{font-size:clamp(13px,1.4vw,16px);line-height:1.28;letter-spacing:0}
+.flow-simplified .play-option .play-icon{width:22px;height:22px}
+.flow-simplified .play-tick{background:transparent;color:#257258;font-size:18px;width:19px}
+.flow-simplified .play-health .play-tick{color:#9aefdc}
+.flow-simplified .play-people,.flow-simplified .play-witnesses{gap:7px}
+.flow-simplified .play-people .play-option,.flow-simplified .play-witnesses .play-option{min-height:110px;justify-content:center;gap:3px;background:rgba(255,255,255,.29)}
+.flow-simplified .play-health .play-witnesses .play-option{background:rgba(212,248,240,.075)}
+.flow-simplified .play-people .play-avatar,.flow-simplified .play-witnesses .play-avatar{height:66px;width:70px}
+.flow-simplified .play-members .play-option{min-height:102px}
+.flow-simplified .play-members .play-avatar{width:47px;height:50px}
+.flow-simplified .play-members .play-option-copy strong{font-size:12px}
+.flow-simplified .play-route-choices .play-option{min-height:84px}
+.flow-simplified .play-amendments .play-option{min-height:82px}
+.flow-simplified .play-people .play-option.is-picked::after,
+.flow-simplified .play-witnesses .play-option.is-picked::after{font-size:9px}
+
+/* Clause progress is an understated horizontal checklist, not another set of boxes. */
+.flow-simplified .play-slots{gap:7px;margin:0!important}
+.flow-simplified .play-slot{min-height:61px;padding:6px 2px;background:transparent;border:0!important;border-bottom:2px solid #d4bdaf!important;border-radius:0;box-shadow:none!important;gap:2px}
+.flow-simplified .play-slot .play-icon{height:19px;width:19px}
+.flow-simplified .play-slot strong{font-size:11px;line-height:1.1}
+.flow-simplified .play-slot span{font-size:10px}
+.flow-simplified .play-slot.active{background:rgba(255,246,211,.36);border-color:#c76c8d!important;animation:none}
+.flow-simplified .play-slot.filled{background:rgba(121,183,152,.1);border-color:#7eb494!important;color:#2d6157}
+.flow-simplified .play-question{font-size:15px;font-weight:800;line-height:1.3;margin:0 0 2px}
+
+/* Explanations are inline notes, not more panels. */
+.flow-simplified .flow-feedback{font-size:13px;font-weight:700;line-height:1.45;margin:0 2px;color:#79566c}
+.flow-simplified .flow-feedback span{color:#bb6a8b;font-size:19px;vertical-align:middle}
+.flow-simplified .play-health .flow-feedback{color:#b2e3da}
+.flow-simplified .play-health .flow-feedback span{color:#89e5c9}
+.flow-simplified .flow-context[hidden]{display:none!important}
+.flow-simplified .flow-context{padding:8px 18px 15px;background:rgba(255,255,255,.25);border-top:1px solid rgba(66,44,62,.08)}
+.flow-simplified .play-health .flow-context{background:rgba(216,255,245,.055);border-top:1px solid rgba(216,255,245,.1)}
+.flow-simplified .flow-context p{margin:0;max-width:90ch;font-size:14px;line-height:1.6;color:#563e4a}
+.flow-simplified .play-health .flow-context p{color:#e1f7ef}
+.flow-simplified .flow-context strong{font-weight:900;margin-right:5px}
+
+/* Old lesson / choice duplicates stay out of sight—even when context is expanded. */
+.flow-simplified .learning>.lesson-card,
+.flow-simplified .learning>.action-card,
+.flow-simplified.show-full-game-text .learning>.lesson-card,
+.flow-simplified.show-full-game-text .learning>.action-card,
+.flow-simplified #choices,.flow-simplified.show-full-game-text #choices{display:none!important}
+.flow-simplified .learning{padding:10px 4px 4px;background:transparent;border:0;display:block}
+.flow-simplified .learning>.bottom-actions{display:flex;align-items:center;justify-content:space-between;width:100%;gap:11px;margin:0!important}
+.flow-simplified .bottom-actions>.btn.secondary{display:none!important}
+.flow-simplified .bottom-actions .next{font-size:14px;min-height:44px;padding:9px 21px;border-radius:999px;box-shadow:0 5px 16px rgba(0,0,0,.14);letter-spacing:0;font-weight:860}
+.flow-simplified .bottom-actions .back{border:0;box-shadow:none;background:transparent;font-size:13px;min-height:44px;border-radius:99px;padding:8px 14px}
+.flow-simplified .bottom-actions .back:hover{background:rgba(255,255,255,.07)}
+.flow-simplified .bottom-actions .next:disabled{opacity:.4;filter:grayscale(.3);box-shadow:none;cursor:not-allowed}
+.flow-simplified.show-full-game-text .play-tiles .play-option-copy>span{display:none}
+.flow-simplified.show-full-game-text .play-dialogue,.flow-simplified.show-full-game-text .play-record,.flow-simplified.show-full-game-text .play-issue-map{display:none!important}
+
+/* Comfortable reading and input sizing on a phone. */
+@media(max-width:760px){
+ .flow-simplified .page{width:calc(100% - 18px);padding-top:7px}
+ .flow-simplified .hero-main{padding:7px 4px 10px}
+ .flow-simplified .hero h1{font-size:27px}
+ .flow-simplified .hero p{font-size:12px}
+ .flow-simplified .game-head{padding:8px 5px}
+ .flow-simplified .progress.flow-progress{padding:6px 5px 12px;gap:6px}
+ .flow-simplified .stage-counter{font-size:10px}
+ .flow-simplified .play-surface{border-radius:14px!important}
+ .flow-simplified .play-coach{padding:9px 8px 7px!important;gap:8px}
+ .flow-simplified .play-coach-portrait{width:45px!important;height:45px!important}
+ .flow-simplified .play-coach-words p{font-size:14px!important}
+ .flow-simplified .play-gamearea{padding:0 8px 10px}
+ .flow-simplified .play-tiles{grid-template-columns:1fr}
+ .flow-simplified .play-amendments{grid-template-columns:1fr}
+ .flow-simplified .play-members{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .flow-simplified .play-people,.flow-simplified .play-witnesses{gap:5px}
+ .flow-simplified .play-people .play-option,.flow-simplified .play-witnesses .play-option{padding:5px 3px}
+ .flow-simplified .play-people .play-avatar,.flow-simplified .play-witnesses .play-avatar{width:53px;height:57px}
+ .flow-simplified .play-route-choices{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+ .flow-simplified .play-route-choices .play-option{padding:8px 3px;min-height:93px}
+ .flow-simplified .play-route-choices .play-option-copy strong{font-size:12px}
+ .flow-simplified .bottom-actions .next{font-size:12px;padding:9px 13px}
+}
+@media(max-width:400px){
+ .flow-simplified .progress.flow-progress .flow-chapter{font-size:10px;gap:6px}
+ .flow-simplified .flow-chapter-dot{height:11px;width:11px}
+ .flow-simplified .play-people .play-option-copy strong,.flow-simplified .play-witnesses .play-option-copy strong{font-size:11px}
+ .flow-simplified .play-people .play-option,.flow-simplified .play-witnesses .play-option{min-height:112px}
+}
+@media(prefers-reduced-motion:reduce){
+ .flow-simplified .play-option,.flow-simplified .bottom-actions .next,.flow-simplified .play-more{transition:none!important;animation:none!important}
+}
