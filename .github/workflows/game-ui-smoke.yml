@@ -1,7 +1,7 @@
 name: Game UI smoke checks
 on:
   push:
-    branches: [main, feature/simplify-game-flow-20261009]
+    branches: [main, feature/full-witness-testimony-20261009]
   pull_request:
     paths:
       - 'culture-drafting.html'
