@@ -4,7 +4,23 @@ const fs=require('node:fs');
 const vm=require('node:vm');
 const window={OHGameLayer:{render(){}}};
 const document={addEventListener(){}};
+vm.runInNewContext(fs.readFileSync('civic-character-art.js','utf8'),{window,document}, {filename:'civic-character-art.js'});
 vm.runInNewContext(fs.readFileSync('game-animations.js','utf8'),{window,document}, {filename:'game-animations.js'});
+const character=window.OHCharacterArt;
+assert.equal(typeof character.portrait,'function');
+assert.equal(typeof character.scene,'function');
+const speaking=character.portrait(2,{role:'doctor',mood:'serious',pose:'speak'});
+assert.match(speaking,/civic-head/);
+assert.match(speaking,/pose-speak/);
+assert.match(speaking,/mood-serious/);
+assert.match(speaking,/data-role="doctor"/);
+assert.match(speaking,/civic-mouth/);
+assert.match(speaking,/civic-arm-right/);
+const listening=character.portrait(3,{role:'auditor',mood:'concerned',pose:'listen'});
+assert.match(listening,/mood-concerned/);
+assert.match(listening,/data-role="auditor"/);
+assert.match(character.scene(100,140,1,{className:'scene-witness-moving',role:'ems',pose:'speak'}),/scene-witness-moving/);
+assert.notEqual(character.portrait(0),character.portrait(1));
 const layer=window.OHAnimatedScenes;
 assert.equal(typeof layer.buildScene,'function');
 
@@ -63,6 +79,12 @@ for(const page of ['culture-drafting.html','health-committee.html']){
   const html=fs.readFileSync(page,'utf8');
   assert.match(html,/href="game-animations.css"/);
   assert.match(html,/src="game-animations.js"/);
+  assert.match(html,/src="civic-character-art.js"/);
+  assert.match(html,/href="civic-character-art.css"/);
+  assert.ok(html.indexOf('src="civic-character-art.js"')<html.indexOf('src="gameplay-layer.js"'));
+  assert.ok(html.indexOf('src="civic-character-art.js"')<html.indexOf('src="game-animations.js"'));
   assert.ok(html.indexOf('src="gameplay-layer.js"')<html.indexOf('src="game-animations.js"'));
 }
-console.log('Animated scenes: 13 stage variations + choice feedback, reduced-motion, integration: PASS');
+const characterCss=fs.readFileSync('civic-character-art.css','utf8');
+for(const cue of ['civicBlink','civicTalkMouth','civicGesture','civicHeadSpeak','prefers-reduced-motion:reduce'])assert.match(characterCss,new RegExp(cue));
+console.log('Animated scenes + expressive characters + reduced motion + integration: PASS');
