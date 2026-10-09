@@ -164,3 +164,27 @@
 @media(prefers-reduced-motion:reduce){
  .flow-simplified .play-option,.flow-simplified .bottom-actions .next,.flow-simplified .play-more{transition:none!important;animation:none!important}
 }
+
+
+/* A single readable testimony sheet replaces the old abbreviated speech bubble.
+   No height clamp, ellipsis, or internal scrolling: the entire statement stays visible. */
+.flow-simplified .scene-health.has-full-testimony .scene-motion svg{max-height:280px}
+.flow-simplified .scene-health.has-full-testimony figcaption{display:none}
+.scene-testimony{padding:14px clamp(15px,3vw,30px) 17px;background:linear-gradient(135deg,#f2f9f3,#e1f2e9);color:#1b3a41}
+.scene-testimony-heading{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;line-height:1.25}
+.scene-testimony-kicker{font-size:10px;letter-spacing:.12em;font-weight:900;color:#4b7478}
+.scene-testimony-heading strong{font-size:17px;font-weight:850;color:#17373b}
+.scene-testimony-role{font-size:12px;font-weight:700;color:#526d70}
+.scene-testimony-quote{padding:0;margin:13px 0 11px;max-width:75ch;border:0;font-size:clamp(16px,2vw,20px);line-height:1.52;letter-spacing:-.01em;font-weight:650;color:#15333a;font-style:normal;overflow-wrap:anywhere}
+.scene-testimony-record{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;border-top:1px solid rgba(28,91,84,.15);padding-top:11px}
+.scene-testimony-record p{font-size:13px;line-height:1.48;color:#36575a;margin:0;min-width:0;overflow-wrap:anywhere}
+.scene-testimony-record strong{display:block;color:#285a60;font-size:11px;letter-spacing:.035em;margin-bottom:3px}
+.scene-testimony-status{margin:11px 0 0;font-size:11px;line-height:1.45;font-weight:800;color:#326f65}
+@media(max-width:760px){
+ .scene-testimony{padding:13px 15px 15px}
+ .scene-testimony-heading strong{font-size:16px}
+ .scene-testimony-quote{font-size:17px;line-height:1.48}
+ .scene-testimony-record{grid-template-columns:1fr;gap:8px}
+ .scene-testimony-record p{font-size:13px}
+ .scene-testimony-record strong{display:inline;margin-right:6px}
+}
