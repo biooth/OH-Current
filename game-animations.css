@@ -1,0 +1,166 @@
+/* Purposeful animated storyboards for OH! Civics.
+   Motion carries meaning; captions and SVG labels preserve it without motion. */
+.animated-gameplay .scene-environment,
+.animated-gameplay .studio-caption,
+.animated-gameplay .room-caption,
+.animated-gameplay .studio > .note,
+.animated-gameplay .room > .speech { display:none!important; }
+.animated-gameplay .studio,.animated-gameplay .room{overflow:visible;border:0;background:transparent;box-shadow:none;}
+.animated-gameplay .room-wrap,.animated-gameplay .studio-wrap{padding:8px;}
+.animated-gameplay .play-surface{margin:0;border-radius:18px}
+.animated-gameplay .play-gamearea{display:grid;gap:9px;padding:10px;min-height:0}
+.animated-gameplay .learning>.lesson-card,
+.animated-gameplay .learning>.action-card{display:none}
+.animated-gameplay.show-full-game-text .learning>.lesson-card,
+.animated-gameplay.show-full-game-text .learning>.action-card{display:block}
+.animated-gameplay .learning{justify-content:flex-end;gap:10px}
+.animated-gameplay .learning>.bottom-actions{margin-top:auto}
+.animated-gameplay .game-head p{font-size:13px;line-height:1.35;max-width:60ch}
+.animated-gameplay .play-surface-top{padding:7px 12px;font-size:10px}
+.animated-gameplay .play-coach{margin:8px 10px 0;padding:8px 10px}
+.animated-gameplay .play-coach p{font-size:14px}
+.animated-gameplay .play-coach-portrait{height:51px;width:48px}
+.animated-gameplay .play-coach-name{font-size:10px}
+.animated-gameplay .play-more{min-height:40px}
+.animated-gameplay .play-culture .play-storyboard,
+.animated-gameplay .play-culture .play-before-after,
+.animated-gameplay .play-culture .play-application,
+.animated-gameplay .play-culture .play-final,
+.animated-gameplay .play-health .play-hearing-intro,
+.animated-gameplay .play-health .play-issue-map,
+.animated-gameplay .play-health .play-record,
+.animated-gameplay .play-culture .play-dialogue{display:none}
+.animated-gameplay.show-full-game-text .play-culture .play-dialogue,
+.animated-gameplay.show-full-game-text .play-health .play-record,
+.animated-gameplay.show-full-game-text .play-health .play-issue-map{display:block}
+.animated-gameplay .play-nudge{padding:5px 12px 7px}
+.animated-gameplay .play-surface .play-tiles .play-option{min-height:66px}
+.animated-gameplay .play-surface .play-tiles .play-option-copy>span{display:none}
+.animated-gameplay.show-full-game-text .play-surface .play-tiles .play-option-copy>span{display:block}
+.animated-gameplay .play-tiles .play-option{padding:7px 9px}
+.animated-gameplay .play-amendments .play-option{min-height:77px}
+.animated-gameplay .play-people .play-option,.animated-gameplay .play-witnesses .play-option{min-height:128px}
+.animated-gameplay .play-people .play-avatar,.animated-gameplay .play-witnesses .play-avatar{height:51px;width:55px}
+.animated-gameplay .play-members .play-option{min-height:112px}
+.animated-gameplay .play-route-choices .play-option{min-height:90px}
+.animated-gameplay .play-slots{margin:0;gap:5px}
+.animated-gameplay .play-slot{min-height:65px}
+.animated-gameplay .play-slot .play-icon{height:20px;width:20px}
+.animated-gameplay .play-stamp{margin:1px 0;padding:6px 12px}
+.scene-learning-theater{margin:0;overflow:hidden;border-radius:14px;background:#101e32;color:#fff;border:1px solid rgba(255,255,255,.2)}
+.scene-culture{border-color:#9d769c}
+.scene-health{border-color:#39768a}
+.scene-learning-head{min-height:36px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(7,20,35,.92);padding:5px 12px;font-size:11px;font-weight:900;letter-spacing:.10em}
+.scene-learning-head>span{color:#efc2d9}
+.scene-health .scene-learning-head>span{color:#a3f1d5}
+.scene-replay{font-size:11px;min-height:31px;border:1px solid #567187;color:#eff9fb;background:#1b3446;border-radius:8px;padding:5px 10px;cursor:pointer;letter-spacing:0;font-weight:700}
+.scene-replay:hover{background:#2b4e65}
+.scene-replay:focus-visible{outline:3px solid #f5da91;outline-offset:2px}
+.scene-motion{overflow:hidden}
+.scene-motion svg{display:block;width:100%;height:auto;max-height:300px}
+.scene-learning-theater figcaption{font-size:12px;line-height:1.35;padding:8px 12px;background:rgba(11,24,37,.93);color:#fff;font-weight:750}
+.scene-white-heading{font-family:system-ui,-apple-system,sans-serif;fill:#fff9ed;font-weight:900;font-size:17px;letter-spacing:.05em}
+.scene-white-medium{font-family:system-ui,-apple-system,sans-serif;fill:#f6f0e9;font-weight:750;font-size:17px}
+.scene-white-small{font-family:system-ui,-apple-system,sans-serif;fill:#e7e8e0;font-weight:700;font-size:13px}
+.scene-ink-dark{font-family:system-ui,-apple-system,sans-serif;fill:#372a38;font-weight:850;font-size:16px}
+.scene-ink-highlight{font-family:system-ui,-apple-system,sans-serif;fill:#975675;font-weight:900;font-size:13px}
+.scene-pill{fill:#e9d6d4;stroke:#cc9eae;stroke-width:2}
+.scene-pill.scene-signal{fill:#95d4bc;stroke:#69aa90}
+.scene-pill.scene-mini{fill:#dbeedc;stroke:#93b4a0}
+.scene-pill-label{fill:#3c2940;font-size:13px;font-family:system-ui,-apple-system,sans-serif;font-weight:900}
+.scene-paper{fill:#fff7e8;stroke:#dfc6a4;stroke-width:3}
+.scene-ink-head{fill:#a78d96}
+.scene-ink-line{fill:none;stroke:#b49c9d;stroke-linecap:round;stroke-width:5}
+.scene-empty-row{fill:#eee0d1;stroke:#c9b5ab;stroke-width:2}
+.scene-current-slot{fill:#ffe1c9;stroke:#d07691;stroke-width:3}
+.scene-written-slot{fill:#d8e9d8;stroke:#8bbba5;stroke-width:2}
+.scene-highlight-paper{fill:#d9ebd7;stroke:#8db89b;stroke-width:2}
+.scene-diagram-node{fill:#20485a;stroke:#67a5aa;stroke-width:3}
+.scene-diagram-node.scene-yes{fill:#236b67;stroke:#88edc7}
+.scene-diagram-node.scene-hold{fill:#79594d;stroke:#f0bc8b}
+.scene-diagram-node.scene-muted{opacity:.62}
+.scene-diagram-node.scene-concern{fill:#7a4549;stroke:#f3b58c}
+.scene-speech-bubble{fill:#fff5df;stroke:#ddacbc;stroke-width:3}
+.scene-energy-path,.scene-route-network{fill:none;stroke:#f1cf85;stroke-linecap:round;stroke-linejoin:round;stroke-width:5}
+.scene-route-network{stroke:#618691;stroke-width:4}
+.scene-energy-dot{fill:#ffe6a5}
+.scene-redline{fill:none;stroke:#bd5672;stroke-linecap:round;stroke-width:8}
+.scene-green-write{fill:none;stroke:#5ea77c;stroke-linecap:round;stroke-width:6}
+.scene-travel-path{fill:none;stroke:#ffd68e;stroke-linecap:round;stroke-width:5;stroke-dasharray:8 9}
+.scene-check-stroke{fill:none;stroke:#a8f3d2;stroke-linecap:round;stroke-linejoin:round;stroke-width:6}
+.scene-character{transform-box:fill-box;transform-origin:center bottom}
+.scene-route-selected>.scene-diagram-node{filter:drop-shadow(0 0 11px rgba(125,238,211,.58))}
+.scene-clause-focus .scene-current-slot{filter:drop-shadow(0 0 8px rgba(241,166,102,.5))}
+.scene-spotlight{filter:drop-shadow(0 0 12px rgba(255,226,144,.9))}
+.scene-play .scene-energy-path{stroke-dasharray:12 12;animation:sceneArrow 1.45s linear infinite}
+.scene-play .scene-energy-dot{animation:sceneBeat 1.6s ease-in-out infinite}
+.scene-play .scene-build-row{animation:sceneRise .6s ease both;animation-delay:var(--scene-delay,0s)}
+.scene-play .scene-voice-entry{animation:sceneRise .5s ease both;animation-delay:var(--scene-delay,0s)}
+.scene-play .scene-flow-node{animation:sceneRise .4s ease both;animation-delay:var(--scene-delay,0s)}
+.scene-play .scene-coverage-row{animation:sceneRise .5s ease both;animation-delay:var(--scene-delay,0s)}
+.scene-play .scene-enter{animation:sceneBubble .48s ease both}
+.scene-play .scene-ink-write{stroke-dasharray:260;stroke-dashoffset:260;animation:sceneInk 1.2s ease forwards}
+.scene-play .scene-redline{stroke-dasharray:180;stroke-dashoffset:180;animation:sceneInk .85s .15s ease forwards}
+.scene-play .scene-green-write{stroke-dasharray:240;stroke-dashoffset:240;animation:sceneInk 1s .5s ease forwards}
+.scene-play .scene-pen{transform-box:fill-box;transform-origin:center;animation:scenePen 1s ease both}
+.scene-play .scene-witness-moving{animation:sceneWitness .85s cubic-bezier(.19,.9,.28,1) both}
+.scene-play .scene-spotlight{animation:sceneFocus 1.9s ease-in-out infinite}
+.scene-play .scene-concern{animation:sceneRisk 2s ease-in-out infinite}
+.scene-play .scene-route-selected{animation:sceneRise .6s cubic-bezier(.2,.8,.3,1) both}
+.scene-play .scene-choice-tracer{animation:sceneBeat 1.3s ease infinite}
+.scene-play .scene-seal{transform-box:fill-box;transform-origin:center;animation:sceneStamp .7s cubic-bezier(.12,.76,.2,1) both}
+@keyframes sceneArrow{to{stroke-dashoffset:-48}}
+@keyframes sceneBeat{50%{opacity:.45;transform:scale(1.18);transform-origin:center}}
+@keyframes sceneRise{from{opacity:.13;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes sceneBubble{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes sceneInk{to{stroke-dashoffset:0}}
+@keyframes scenePen{0%{transform:rotate(24deg) translateY(-10px)}65%{transform:rotate(-8deg) translateY(5px)}100%{transform:none}}
+@keyframes sceneWitness{from{opacity:.3;transform:translateX(-130px)}to{opacity:1;transform:translateX(0)}}
+@keyframes sceneFocus{50%{filter:drop-shadow(0 0 19px rgba(255,226,144,.98))}}
+@keyframes sceneRisk{50%{stroke:#ffd69b;stroke-width:5}}
+@keyframes sceneStamp{from{opacity:0;transform:scale(1.48) rotate(-18deg)}70%{opacity:1;transform:scale(.94) rotate(2deg)}to{transform:none}}
+@media(max-width:950px){
+  .animated-gameplay .workspace{grid-template-columns:1fr}
+  .animated-gameplay .learning{border-left:0}
+  .animated-gameplay .play-surface{border-radius:14px}
+  .scene-motion svg{max-height:none}
+}
+@media(max-width:620px){
+  .scene-learning-head{font-size:10px;padding:4px 8px}
+  .scene-replay{font-size:10px;padding:5px 7px}
+  .scene-learning-theater figcaption{font-size:13px}
+  .scene-motion{overflow-x:auto;overscroll-behavior-inline:contain}
+  .scene-motion svg{min-width:585px;width:100%}
+  .animated-gameplay .play-coach p{font-size:13px}
+  .animated-gameplay .play-gamearea{padding:7px}
+  .animated-gameplay .play-slots{gap:4px}
+  .animated-gameplay .play-people .play-option,.animated-gameplay .play-witnesses .play-option{min-height:110px}
+}
+@media(prefers-reduced-motion:reduce){
+  .scene-motion *{animation:none!important;transition:none!important}
+  .scene-energy-path{stroke-dasharray:none!important}
+  .scene-ink-write,.scene-redline,.scene-green-write{stroke-dasharray:none!important;stroke-dashoffset:0!important}
+  .scene-replay{display:none}
+}
+
+
+/* The animated scene is the game board, not one of several side panels. */
+.animated-gameplay .workspace{display:grid;grid-template-columns:minmax(0,1fr);min-height:0}
+.animated-gameplay .learning{border:0;border-top:1px solid var(--line);padding:9px 14px;display:flex;flex-direction:row;align-items:center;justify-content:flex-end;gap:8px}
+.animated-gameplay .learning>.bottom-actions{width:100%;margin:0;justify-content:space-between}
+.animated-gameplay.show-full-game-text .learning{flex-wrap:wrap;align-items:stretch}
+.animated-gameplay.show-full-game-text .learning>.lesson-card{flex:1 1 275px}
+.animated-gameplay.show-full-game-text .learning>.action-card{flex:2 1 350px}
+.animated-gameplay .game-head p{display:none}
+.animated-gameplay.show-full-game-text .game-head p{display:block}
+.animated-gameplay .progress{display:flex;gap:5px;padding:8px 14px;overflow:visible;align-items:center}
+.animated-gameplay .progress div{min-width:0;flex:1;padding:0;height:6px;border-radius:99px;background:rgba(255,255,255,.15);font-size:0;line-height:0;overflow:hidden}
+.animated-gameplay .progress div.done{background:#75cda9}
+.animated-gameplay .culture .progress div.done,.animated-gameplay.is-culture-play .progress div.done{background:#dc93a9}
+.animated-gameplay .progress div.active{background:#f2cf8c;box-shadow:0 0 0 2px rgba(242,207,140,.25)}
+.animated-gameplay .progress .active:after{display:none}
+@media(max-width:620px){
+ .animated-gameplay .learning{padding:8px}
+ .animated-gameplay .progress{padding:8px;gap:4px}
+ .animated-gameplay .progress div{height:5px}
+}
