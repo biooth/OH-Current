@@ -60,7 +60,7 @@ function culture(s,c){
  area='<div class="play-caption">REVISION DESK <span>CHOOSE ONE REDLINE</span></div><div class="play-tiles">'+c.redlines.map(function(r,i){return playButton(r[0],crop(r[1],95),'redline',i,s.redline===i,icon('revise'))}).join('')+'</div><div class="play-before-after"><div><small>BEFORE</small><strong>Unclear or incomplete</strong><div class="play-line faded"></div><div class="play-line faded short"></div></div><b>→</b><div class="'+(s.redline==null?'':'is-live')+'"><small>AFTER</small><strong>'+(s.redline==null?'Choose a revision':esc(c.redlines[s.redline][0]))+'</strong><div class="play-line"></div><div class="play-line short"></div></div></div>';
  tip=s.redline!=null?'The text changes, not just the title.':'Find the specific ambiguity you want to resolve.';
  }else if(st===4){
- var t=s.test,selected=t==null?null:c.tests[t],checkClause=t===0?1:2,clear=s.choices[checkClause]===0;
+ var t=s.test,selected=t==null?null:c.tests[t],phased=/Historic/.test(c.title)&&t===0,checkClause=t===0?1:2,clear=phased?s.redline===0:s.choices[checkClause]===0;
  area='<div class="play-caption">APPLICATION COUNTER <span>RUN A TEST</span></div><div class="play-tiles">'+c.tests.map(function(x,i){return playButton(x[0],crop(x[1],84),'test',i,t===i,icon(i===0?'people':'file'))}).join('')+'</div><div class="play-application"><div>'+icon('people')+'<strong>Real-world request</strong></div><span class="play-flow-arrow">→</span><div>'+icon('rule')+'<strong>Apply your rule</strong></div><span class="play-flow-arrow">→</span><div class="'+(selected?'is-live':'')+'">'+icon('check')+'<strong>'+(selected?(clear?'More predictable':'Needs interpretation'):'Try a case')+'</strong></div></div>';
  tip=selected?(clear?'Your earlier precise clause gives the reviewer a clearer starting rule.':'Your flexible clause leaves an important call to the administrator.'):'Choose a scenario; see how your earlier drafting choice matters.';
  }else{
@@ -81,8 +81,8 @@ var healthLines=[
 function issueMap(s,c){
  var caseTwo=/School/.test(c.title);
  var issues=caseTwo?['Consent and records','Referral workflow','Funding formula']:['Transfer capacity','Emergency handoff','Grant limits'];
- var match=caseTwo?[0,1,2]:[0,2,1],chosen=s.amendment;
- return '<div class="play-issue-map"><div class="play-caption">HEARING RECORD <span>WHAT DOES THE AMENDMENT ADDRESS?</span></div>'+issues.map(function(iss,i){var focus=chosen!=null&&match[chosen]===i;return '<div class="play-issue-row"><span>'+icon(focus?'check':'question')+esc(iss)+'</span><b class="'+(focus?'addressed':'open')+'">'+(chosen==null?'Pending':focus?'Addressed by proposal':'Still to examine')+'</b></div>'}).join('')+'</div>';
+ var match=caseTwo?[0,1,2]:[0,2,-1],chosen=s.amendment;
+ return '<div class="play-issue-map"><div class="play-caption">HEARING RECORD <span>WHAT DOES THE AMENDMENT ADDRESS?</span></div>'+issues.map(function(iss,i){var focus=chosen!=null&&match[chosen]===i;return '<div class="play-issue-row"><span>'+icon(focus?'check':'question')+esc(iss)+'</span><b class="'+(focus?'addressed':'open')+'">'+(chosen==null?'Pending':focus?'Addressed by proposal':!caseTwo&&chosen===2&&i===1?'Delegated to agency':'Still to examine')+'</b></div>'}).join('')+'</div>';
 }
 function health(s,c){
  var st=s.stage,area='',tip='';
