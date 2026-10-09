@@ -34,8 +34,8 @@
 .flow-simplified .flow-chapter-dot{width:15px;height:15px;border-radius:50%;background:#554358;box-shadow:0 0 0 4px rgba(255,255,255,.045);flex-shrink:0}
 .flow-simplified .flow-chapter.current{color:#fff;font-weight:850}
 .flow-simplified .flow-chapter.completed{color:#cfd2d7}
-.flow-simplified .is-culture-play .flow-chapter.current .flow-chapter-dot{background:#efa5bd;box-shadow:0 0 0 4px rgba(239,165,189,.17)}
-.flow-simplified .is-health-play .flow-chapter.current .flow-chapter-dot{background:#81e8cc;box-shadow:0 0 0 4px rgba(129,232,204,.18)}
+.flow-simplified.is-culture-play .flow-chapter.current .flow-chapter-dot{background:#efa5bd;box-shadow:0 0 0 4px rgba(239,165,189,.17)}
+.flow-simplified.is-health-play .flow-chapter.current .flow-chapter-dot{background:#81e8cc;box-shadow:0 0 0 4px rgba(129,232,204,.18)}
 .flow-simplified .flow-chapter.completed .flow-chapter-dot{background:#8caf9b}
 .flow-simplified .flow-chapter-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
