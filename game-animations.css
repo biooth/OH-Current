@@ -142,3 +142,25 @@
   .scene-ink-write,.scene-redline,.scene-green-write{stroke-dasharray:none!important;stroke-dashoffset:0!important}
   .scene-replay{display:none}
 }
+
+
+/* The animated scene is the game board, not one of several side panels. */
+.animated-gameplay .workspace{display:grid;grid-template-columns:minmax(0,1fr);min-height:0}
+.animated-gameplay .learning{border:0;border-top:1px solid var(--line);padding:9px 14px;display:flex;flex-direction:row;align-items:center;justify-content:flex-end;gap:8px}
+.animated-gameplay .learning>.bottom-actions{width:100%;margin:0;justify-content:space-between}
+.animated-gameplay.show-full-game-text .learning{flex-wrap:wrap;align-items:stretch}
+.animated-gameplay.show-full-game-text .learning>.lesson-card{flex:1 1 275px}
+.animated-gameplay.show-full-game-text .learning>.action-card{flex:2 1 350px}
+.animated-gameplay .game-head p{display:none}
+.animated-gameplay.show-full-game-text .game-head p{display:block}
+.animated-gameplay .progress{display:flex;gap:5px;padding:8px 14px;overflow:visible;align-items:center}
+.animated-gameplay .progress div{min-width:0;flex:1;padding:0;height:6px;border-radius:99px;background:rgba(255,255,255,.15);font-size:0;line-height:0;overflow:hidden}
+.animated-gameplay .progress div.done{background:#75cda9}
+.animated-gameplay .culture .progress div.done,.animated-gameplay.is-culture-play .progress div.done{background:#dc93a9}
+.animated-gameplay .progress div.active{background:#f2cf8c;box-shadow:0 0 0 2px rgba(242,207,140,.25)}
+.animated-gameplay .progress .active:after{display:none}
+@media(max-width:620px){
+ .animated-gameplay .learning{padding:8px}
+ .animated-gameplay .progress{padding:8px;gap:4px}
+ .animated-gameplay .progress div{height:5px}
+}
