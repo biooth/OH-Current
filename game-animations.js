@@ -157,9 +157,9 @@
           '<circle cx="572" cy="89" r="10" fill="#d4f5ec"/>'+
           character(415,117,s.witness+1,'scene-witness-moving',{role:witnessRole(w),mood:'serious',pose:'speak'})+
           box(95,39,435,64,'scene-speech-bubble scene-enter')+
-          text(114,65,short(w.quote,49),'scene-ink-dark')+
+          text(114,65,'FULL TESTIMONY BELOW','scene-ink-dark')+
           text(114,87,w.name+' · '+w.tag,'scene-ink-highlight')+
-          pill(668,188,'ON RECORD','scene-signal',146)+
+          pill(668,188,s.heard&&s.heard.has(s.witness)?'ON RECORD':'AT THE MIC','scene-signal',146)+
           path('M94 216H263','scene-travel-path')};
     }
     if(stage===2){
@@ -240,12 +240,33 @@
       }).join('')};
   }
   var lastKind='', lastState=null;
+  // Deliberately render the complete original statement: SVG speech bubbles are too
+  // narrow for testimony. This readable in-flow transcript changes with the witness.
+  function witnessTranscript(w,isRecorded) {
+    return '<section class="scene-testimony" aria-label="Full witness testimony">'+
+      '<div class="scene-testimony-heading">'+
+        '<span class="scene-testimony-kicker">WITNESS TESTIMONY</span>'+
+        '<strong>'+e(w.name)+'</strong>'+
+        '<span class="scene-testimony-role">'+e(w.role||w.tag)+'</span>'+
+      '</div>'+
+      '<blockquote class="scene-testimony-quote">“'+e(w.quote)+'”</blockquote>'+
+      '<div class="scene-testimony-record" aria-label="Testimony context">'+
+        '<p><strong>Claim</strong> '+e(w.claim)+'</p>'+
+        '<p><strong>Evidence</strong> '+e(w.evidence)+'</p>'+
+        '<p><strong>Concern</strong> '+e(w.concern)+'</p>'+
+      '</div>'+
+      '<p class="scene-testimony-status">'+(isRecorded?'✓ Added to the hearing record':'Select this witness to add the statement to the hearing record')+'</p>'+
+    '</section>';
+  }
   function sceneMarkup(kind,s,c) {
     var data=kind==='culture'?cultureStage(s,c):healthStage(s,c);
-    return '<figure class="scene-learning-theater '+(kind==='culture'?'scene-culture':'scene-health')+'" aria-label="Animated civic process illustration">'+
+    var onMic=kind==='health'&&s.stage===1;
+    var testimony=onMic?witnessTranscript(c.witnesses[s.witness],!!(s.heard&&s.heard.has(s.witness))):'';
+    return '<figure class="scene-learning-theater '+(kind==='culture'?'scene-culture':'scene-health')+(onMic?' has-full-testimony':'')+'" aria-label="Animated civic process illustration">'+
       '<div class="scene-learning-head"><span>WATCH IT HAPPEN · '+(kind==='culture'?'DRAFTING':'HEARING')+'</span>'+
       '<button type="button" class="scene-replay" data-scene-replay aria-label="Replay the process animation">↻ Replay animation</button></div>'+
       '<div class="scene-motion scene-play" data-scene-motion>'+shell(kind,data.html,data.title,data.desc)+'</div>'+
+      testimony+
       '<figcaption>'+e(data.title)+'</figcaption></figure>';
   }
   function draw(kind,s,c) {
